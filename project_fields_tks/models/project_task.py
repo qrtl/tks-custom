@@ -25,13 +25,7 @@ class ProjectTask(models.Model):
         readonly=True)
 
 
-    @api.onchange('budget_ratio')
-    def onchange_budget_ratio(self):
-        for task in self:
-            task.budget_amt = task.project_id.budget_amt * task.budget_ratio \
-                              / 100
-
-    @api.depends('project_id.budget_amt')
+    @api.depends('budget_ratio', 'project_id.budget_amt')
     def _update_budget_amt(self):
         for task in self:
             task.budget_amt = task.project_id.budget_amt * task.budget_ratio \
