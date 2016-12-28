@@ -8,8 +8,11 @@ from odoo import api, models, fields
 class ProjectProject(models.Model):
     _inherit = 'project.project'
 
-    budget_amt = fields.Float(
+    budget_amt = fields.Monetary(
         string='Budget Amount',
-        digits=(16,2),
-        default=0.0,
+    )
+    currency_id = fields.Many2one(
+        "res.currency",
+        string="Currency",
+        required=True
     )

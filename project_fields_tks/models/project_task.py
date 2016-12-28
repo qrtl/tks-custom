@@ -13,8 +13,17 @@ class ProjectTask(models.Model):
         digits=(16, 2),
         default=0.0
     )
-    budget_amt = fields.Float(
+    budget_amt = fields.Monetary(
         string='Budget Amount',
-        digits=(16,2),
-        default=0.0,
+        # default=0.0,
     )
+    currency_id = fields.Many2one(
+        related='project_id.currency_id',
+        store=True,
+        string='Currency',
+        readonly=True)
+
+    # @api.onchange('budget_ratio', 'project_id.budget_amt')
+    # def onchange_partner(self):
+    #     for invoice in self:
+    #         invoice.delivery_note = invoice.partner_id.delivery_note
