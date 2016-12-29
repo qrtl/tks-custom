@@ -12,6 +12,9 @@
                         <field name="budget_amt" widget="monetary"/>
                         <field name="currency_id"/>
                     </group>
+                    <group>
+                        <field name="cad_partner_id" domain="[('cad_partner','=',True)]"/>
+                    </group>
                 </group>
             </xpath>
         </field>
