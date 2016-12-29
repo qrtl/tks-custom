@@ -8,6 +8,10 @@ from odoo import api, models, fields
 class ProjectProject(models.Model):
     _inherit = 'project.project'
 
+    cad_partner_id = fields.Many2one(
+        "res.partner",
+        string="CAD Partner",
+    )
     budget_amt = fields.Monetary(
         string='Budget Amount',
     )
