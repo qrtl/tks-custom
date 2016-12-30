@@ -6,16 +6,50 @@
         <field name="model">project.project</field>
         <field name="inherit_id" ref="project.edit_project"/>
         <field name="arch" type="xml">
+            <xpath expr="//sheet[1]" position="before">
+                <header>
+                    <field name="state" widget="statusbar" clickable="True"
+                        options="{'fold_field': 'fold'}"/>
+                </header>
+            </xpath>
             <xpath expr="//notebook[1]" position="before">
                 <group>
                     <group>
                         <field name="budget_amt" widget="monetary"/>
-                        <field name="currency_id"/>
+                        <field name="currency_id" options="{'no_create':True, 'no_open':True}"/>
                     </group>
                     <group>
-                        <field name="cad_partner_id" domain="[('cad_partner','=',True)]"/>
+                        <field name="stairs" required="True"/>
+                        <field name="handrail"/>
+                        <field name="cad_partner_id" options="{'no_create':True}"/>
+                        <field name="manufacturer_id" options="{'no_create':True}"/>
                     </group>
                 </group>
+            </xpath>
+            <xpath expr="//notebook/page/group[1]" position="after">
+                <group>
+                    <field name="date_start"/>
+                    <field name="date"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_project_tree" model="ir.ui.view">
+        <field name="name">view.project.tree</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.view_project"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="replace"/>
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="partner_id"/>
+                <field name="date"/>
+                <field name="stairs"/>
+                <field name="handrail"/>
+                <field name="cad_partner_id"/>
+                <field name="manufacturer_id"/>
+                <field name="budget_amt"/>
+                <field name="state"/>
             </xpath>
         </field>
     </record>
