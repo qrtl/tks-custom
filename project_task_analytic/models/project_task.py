@@ -23,10 +23,14 @@ class ProjectTask(models.Model):
         store=True,
         string='Currency',
         readonly=True)
-    completed = fields.Boolean(
-        string='Completed',
-        related='stage_id.done_stage',
+    state = fields.Selection(
+        string='State',
+        related='stage_id.stage_state',
         readonly=True,
+    )
+    analytic_line_id = fields.Many2one(
+        comodel_name='account.analytic.line',
+        string='Analytic Line',
     )
 
 
@@ -39,15 +43,16 @@ class ProjectTask(models.Model):
     @api.multi
     def action_task_done(self):
         stage_obj = self.env['project.task.type']
-        stage_done = stage_obj.search([('done_stage', '=', True)])
-        self.write({'stage_id': stage_done.id})
+        stage_done = stage_obj.search([('stage_state', '=', 'done')])[0]
         analytic_line_obj = self.env['account.analytic.line']
         for task in self:
+            task.write({'stage_id': stage_done.id})
             if task.project_id.analytic_account_id:
                 analytic_line_id = analytic_line_obj.create(
                     {'name': task.name,
                      'date': fields.Date.context_today(self),
                      'account_id': task.project_id.analytic_account_id.id,
+                     'task_id': task.id,
                      'unit_amount': False,
                      'amount': task.budget_amt,
                      'partner_id': task.project_id.partner_id.id,
@@ -57,30 +62,13 @@ class ProjectTask(models.Model):
                      'ref': task.project_id.name,
                      }
                 )
-                task.analytic_line = analytic_line_id
+                task.analytic_line_id = analytic_line_id
 
-    # @api.multi
-    # def action_cancel(self):
-    #     moves = self.env['account.move']
-    #     for inv in self:
-    #         if inv.move_id:
-    #             moves += inv.move_id
-    #         if inv.payment_move_line_ids:
-    #             raise UserError(_('You cannot cancel an invoice which is partially paid. You need to unreconcile related payment entries first.'))
-    #
-    #     # First, set the invoices as cancelled and detach the move ids
-    #     self.write({'state': 'cancel', 'move_id': False})
-    #     if moves:
-    #         # second, invalidate the move(s)
-    #         moves.button_cancel()
-    #         # delete the move this invoice was pointing to
-    #         # Note that the corresponding move_lines and move_reconciles
-    #         # will be automatically deleted too
-    #         moves.unlink()
-    #     return True
-    #
-    # @api.multi
-    # def action_task_cancel(self):
-    #     if self.filtered(lambda inv: inv.state not in ['proforma2', 'draft', 'open']):
-    #         raise UserError(_("Invoice must be in draft,Pro-forma or open state in order to be cancelled."))
-    #     return self.action_cancel()
+    @api.multi
+    def action_task_undo(self):
+        stage_obj = self.env['project.task.type']
+        stage_todo = stage_obj.search([('stage_state', '=', 'to_do')])[0]
+        for task in self:
+            task.write({'stage_id': stage_todo.id})
+            if task.analytic_line_id:
+                task.analytic_line_id.unlink()
