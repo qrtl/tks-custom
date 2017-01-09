@@ -8,6 +8,15 @@ from odoo import api, models, fields
 class ProjectTaskType(models.Model):
     _inherit = 'project.task.type'
 
-    done_stage = fields.Boolean(
-        'Done Stage'
+    # unfinished = fields.Boolean(
+    #     'Unfinished Stage'
+    # )
+    # finished = fields.Boolean(
+    #     'Done Stage'
+    # )
+    stage_state = fields.Selection(
+        [('to_do', 'To Do'),
+         ('done', 'Done'),
+         ('no_need', 'Not Needed')],
+        'Stage State',
     )

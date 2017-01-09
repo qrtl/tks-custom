@@ -7,13 +7,14 @@
         <field name="inherit_id" ref="project.view_task_form2"/>
         <field name="arch" type="xml">
             <xpath expr="//header/field[@name='stage_id']" position="before">
-                <field name="completed" invisible="True"/>
-                <button name="action_task_done" string="Task Completed" type="object" class="btn-primary" attrs="{'invisible':[('completed','=', True)]}"/>
+                <field name="state" invisible="True"/>
+                <button name="action_task_done" string="Task Completed" type="object" class="btn-primary" attrs="{'invisible':[('state','=', 'done')]}"/>
+                <button name="action_task_undo" string="Undo Completion" type="object" attrs="{'invisible':[('state','=', 'to_do')]}"/>
             </xpath>
             <xpath expr="//notebook/page[2]/group[1]" position="after">
                 <group>
                     <group>
-                        <field name="budget_ratio" attrs="{'readonly':[('completed','=', True)]}"/>
+                        <field name="budget_ratio" attrs="{'readonly':[('state','=', 'done')]}"/>
                         <field name="budget_amt" widget="monetary"/>
                         <field name="currency_id"/>
                     </group>
