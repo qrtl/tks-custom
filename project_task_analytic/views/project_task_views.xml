@@ -13,7 +13,7 @@
             <xpath expr="//notebook/page[2]/group[1]" position="after">
                 <group>
                     <group>
-                        <field name="budget_ratio"/>
+                        <field name="budget_ratio" attrs="{'readonly':[('completed','=', True)]}"/>
                         <field name="budget_amt" widget="monetary"/>
                         <field name="currency_id"/>
                     </group>
