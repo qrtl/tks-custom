@@ -21,8 +21,11 @@
     },
     "depends": [
         "project",
+        "project_fields_tks",
     ],
     "data": [
+        'views/project_project_views.xml',
+        'views/project_task_type_views.xml',
         'views/project_task_views.xml',
     ],
     "demo": [

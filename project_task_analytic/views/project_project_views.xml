@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="edit_project" model="ir.ui.view">
+        <field name="name">project.project.form</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project_fields_tks.edit_project"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[1]/group[1]" position="before">
+                <group>
+                    <field name="budget_amt" widget="monetary"/>
+                    <field name="currency_id" options="{'no_create':True, 'no_open':True}"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_project_tree" model="ir.ui.view">
+        <field name="name">view.project.tree</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project_fields_tks.view_project_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='manufacturer_id']" position="after">
+                <field name="budget_amt"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
