@@ -15,10 +15,6 @@
             <xpath expr="//notebook[1]" position="before">
                 <group>
                     <group>
-                        <field name="budget_amt" widget="monetary"/>
-                        <field name="currency_id" options="{'no_create':True, 'no_open':True}"/>
-                    </group>
-                    <group>
                         <field name="stairs" required="True"/>
                         <field name="handrail"/>
                         <field name="cad_partner_id" options="{'no_create':True}"/>
@@ -48,7 +44,6 @@
                 <field name="handrail"/>
                 <field name="cad_partner_id"/>
                 <field name="manufacturer_id"/>
-                <field name="budget_amt"/>
                 <field name="state"/>
             </xpath>
         </field>

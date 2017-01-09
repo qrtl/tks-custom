@@ -8,11 +8,38 @@ from odoo import api, models, fields
 class ProjectTask(models.Model):
     _inherit = 'project.task'
 
+    budget_ratio = fields.Float(
+        string='Budget Ratio',
+        digits=(16, 2),
+        default=0.0
+    )
+    budget_amt = fields.Monetary(
+        compute='_update_budget_amt',
+        store=True,
+        string='Budget Amount',
+    )
+    currency_id = fields.Many2one(
+        related='project_id.currency_id',
+        store=True,
+        string='Currency',
+        readonly=True)
+    completed = fields.Boolean(
+        string='Completed',
+        related='stage_id.done_stage',
+        readonly=True,
+    )
+
+
+    @api.depends('budget_ratio', 'project_id.budget_amt')
+    def _update_budget_amt(self):
+        for task in self:
+            task.budget_amt = task.project_id.budget_amt * task.budget_ratio \
+                              / 100
 
     @api.multi
     def action_task_done(self):
         stage_obj = self.env['project.task.type']
-        stage_done = stage_obj.search([('sequence', '=', 2)])
+        stage_done = stage_obj.search([('done_stage', '=', True)])
         self.write({'stage_id': stage_done.id})
         analytic_line_obj = self.env['account.analytic.line']
         for task in self:
