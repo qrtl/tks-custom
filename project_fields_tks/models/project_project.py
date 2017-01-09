@@ -38,7 +38,7 @@ class ProjectProject(models.Model):
         ('wip', 'In Progress'),
         ('invoiced', 'Invoiced'),
         ('done', 'Done')], 'Status',
-        compute='_update_project_state',
+        # compute='_update_project_state',
         default='quotation',
         store=True
     )
