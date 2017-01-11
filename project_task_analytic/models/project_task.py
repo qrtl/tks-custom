@@ -56,6 +56,7 @@ class ProjectTask(models.Model):
                      'unit_amount': False,
                      'amount': task.budget_amt,
                      'partner_id': task.project_id.partner_id.id,
+                     'user_id': task.user_id.id,
                      'product_id': False,
                      'product_uom_id': False,
                      'general_account_id': False,
