@@ -28,6 +28,7 @@
         'views/project_task_type_views.xml',
         'views/project_task_views.xml',
         'views/account_analytic_line_views.xml',
+        'wizard/project_task_complete_view.xml',
     ],
     "demo": [
     ],
