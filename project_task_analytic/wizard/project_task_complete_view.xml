@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+
+    <record id="view_project_task_compete_wizard" model="ir.ui.view">
+        <field name="name">view.project.task.complete.wizard</field>
+        <field name="model">project.task.complete</field>
+        <field name="arch" type="xml">
+            <form string="Complete Tasks">
+                <footer>
+                    <button name="action_task_done" string="Complete Tasks" type="object"  class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <act_window id="action_task_done"
+                name="Task Completed"
+                res_model="project.task.complete"
+                src_model="project.task"
+                view_mode="form"
+                target="new"
+                multi="True"/>
+
+</data>
+</odoo>
