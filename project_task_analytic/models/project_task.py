@@ -2,7 +2,8 @@
 # Copyright 2016 Rooms For (Hong Kong) Limited T/A OSCG
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, models, fields
+from odoo import models, fields, api, _
+from odoo.exceptions import Warning
 
 
 class ProjectTask(models.Model):
@@ -41,29 +42,34 @@ class ProjectTask(models.Model):
                               / 100
 
     @api.multi
+    def create_analytic_line(self):
+        self.ensure_one()
+        analytic_line_obj = self.env['account.analytic.line']
+        analytic_line_id = analytic_line_obj.create(
+            {'name': self.name,
+             'date': fields.Date.context_today(self),
+             'account_id': self.project_id.analytic_account_id.id,
+             'task_id': self.id,
+             'unit_amount': False,
+             'amount': self.budget_amt,
+             'partner_id': self.project_id.partner_id.id,
+             'user_id': self.user_id.id,
+             'product_id': False,
+             'product_uom_id': False,
+             'general_account_id': False,
+             'ref': self.project_id.name,
+             }
+        )
+        self.analytic_line_id = analytic_line_id
+
+    @api.multi
     def action_task_done(self):
         stage_obj = self.env['project.task.type']
         stage_done = stage_obj.search([('stage_state', '=', 'done')])[0]
-        analytic_line_obj = self.env['account.analytic.line']
         for task in self:
-            task.write({'stage_id': stage_done.id})
+            task.stage_id = stage_done
             if task.project_id.analytic_account_id:
-                analytic_line_id = analytic_line_obj.create(
-                    {'name': task.name,
-                     'date': fields.Date.context_today(self),
-                     'account_id': task.project_id.analytic_account_id.id,
-                     'task_id': task.id,
-                     'unit_amount': False,
-                     'amount': task.budget_amt,
-                     'partner_id': task.project_id.partner_id.id,
-                     'user_id': task.user_id.id,
-                     'product_id': False,
-                     'product_uom_id': False,
-                     'general_account_id': False,
-                     'ref': task.project_id.name,
-                     }
-                )
-                task.analytic_line_id = analytic_line_id
+                task.create_analytic_line()
 
     @api.multi
     def action_task_undo(self):
@@ -73,3 +79,35 @@ class ProjectTask(models.Model):
             task.write({'stage_id': stage_todo.id})
             if task.analytic_line_id:
                 task.analytic_line_id.unlink()
+
+    @api.multi
+    def try_update_stage(self, stage):
+        self.ensure_one()
+        res = {}
+        from_state = self.stage_id.stage_state
+        to_state = stage.stage_state
+        if not (from_state and to_state):
+            res = {'warning': _('Stage State must be set for Stages.')}
+        if from_state == 'done' and to_state == 'no_need':
+            res = {'warning': _('You are not allowed to move task from "Done"'
+                                ' to "No Need".')}
+        if from_state == 'no_need' and to_state == 'done':
+            res = {'warning': _('You are not allowed to move task from'
+                                ' "No Need" to "Done".')}
+        if from_state == "to_do" and to_state == "done":
+            self.create_analytic_line()
+        if from_state == "done" and to_state == "to_do":
+            if self.analytic_line_id:
+                self.analytic_line_id.unlink()
+        return res
+
+    @api.multi
+    def write(self, vals):
+        if 'stage_id' in vals:
+            new_stage = self.env['project.task.type'].browse(vals['stage_id'])
+            for task in self:
+                message = task.try_update_stage(new_stage)
+                if message and message.get('warning'):
+                    raise Warning(message.get('warning'))
+        res = super(ProjectTask, self).write(vals)
+        return res
