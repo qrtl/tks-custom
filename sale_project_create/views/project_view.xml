@@ -7,11 +7,7 @@
         <field name="inherit_id" ref="project.edit_project"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='sequence']" position="after">
-               <field name="project_type"/>
-            </xpath>
-            <xpath expr="//field[@name='resource_calendar_id']" position="before">
-               <field name="date_start"/>
-               <field name="date"/>
+               <field name="is_template"/>
             </xpath>
         </field>
     </record>
