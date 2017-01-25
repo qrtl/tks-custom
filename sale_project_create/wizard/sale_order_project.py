@@ -1,0 +1,55 @@
+# -*- coding: utf-8 -*-
+# Copyright 2017 Rooms For (Hong Kong) Limited T/A OSCG
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
+from odoo import api, fields, models, _
+
+
+class SaleOrderProject(models.TransientModel):
+    _name = 'sale.project'
+
+    project_template_id = fields.Many2one(
+        'project.project',
+        string="Project Template",
+        required=True,
+    )
+    start_date = fields.Date(
+        string="Start Date",
+        required=True,
+        default=fields.Date.context_today,
+    )
+    end_date = fields.Date(
+        string="End Date",
+        required=True,
+        default=fields.Date.context_today,
+    )
+    project_type = fields.Selection(
+        selection=[
+            ('stairs', 'Stairs'),
+            ('handrail', 'Handrail')],
+        string="Project Type",
+        required=True,
+    )
+
+    @api.multi
+    def create_project(self):
+        context = dict(self._context or {})
+        active_ids = context.get('active_ids', [])
+        active_model = context.get('active_model', False)
+        order = self.env[active_model].browse(active_ids)
+        default = {
+            'name': str("Project for " + order.name),
+            'date_start': self.start_date,
+            'date': self.end_date,
+            'project_type': self.project_type,
+        }
+        new_project_id = self.project_template_id.sudo().copy(default)
+        analytic_account_id = new_project_id.analytic_account_id.id
+        order.write({
+            'sale_project_id': new_project_id.id,
+            'project_id': analytic_account_id,
+        })
+        action_id = self.env.ref('project.open_view_project_all_config')
+        action = action_id.read([])[0]
+        action['domain'] ="[('id','in', ["+','.join(map(str, [new_project_id.id]))+"])]"
+        return action
