@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_sale_project_create" model="ir.ui.view">
+        <field name="name">Create Project</field>
+        <field name="model">sale.project</field>
+        <field name="arch" type="xml">
+            <form string="Create Project">
+                    <group>
+                        <group>
+                            <field name="project_template_id"/>
+                        </group>
+                        <group>
+                            <field name="project_type" />
+                        </group>
+                    </group>
+                    <group string="Project Period">
+                        <group>
+                            <field name="start_date"/>
+                        </group>
+                        <group>
+                            <field name="end_date"/>
+                        </group>
+                    </group>
+                <footer>
+                    <button name="create_project" string="Create" type="object"
+                        class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_view_sale_project_create" model="ir.actions.act_window">
+        <field name="name">Create Project</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.project</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>
