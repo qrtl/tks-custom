@@ -8,9 +8,6 @@ from odoo import fields, models
 class Project(models.Model):
     _inherit = 'project.project'
 
-    project_type = fields.Selection(
-        selection=[
-            ('stairs', 'Stairs'),
-            ('handrail', 'Handrail')],
-        string="Project Type",
+    is_template = fields.Boolean(
+        string="Template Project",
     )

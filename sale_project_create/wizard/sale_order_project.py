@@ -23,13 +23,7 @@ class SaleOrderProject(models.TransientModel):
         required=True,
         default=fields.Date.context_today,
     )
-    project_type = fields.Selection(
-        selection=[
-            ('stairs', 'Stairs'),
-            ('handrail', 'Handrail')],
-        string="Project Type",
-        required=True,
-    )
+
 
     @api.multi
     def create_project(self):
@@ -38,10 +32,12 @@ class SaleOrderProject(models.TransientModel):
         active_model = context.get('active_model', False)
         order = self.env[active_model].browse(active_ids)
         default = {
-            'name': str("Project for " + order.name),
+            'name': order.partner_id.name + " " + order.name,
             'date_start': self.start_date,
             'date': self.end_date,
-            'project_type': self.project_type,
+            'budget_amt': order.amount_total,
+            'partner_id': order.partner_id.id,
+            'is_template': False,
         }
         new_project_id = self.project_template_id.sudo().copy(default)
         analytic_account_id = new_project_id.analytic_account_id.id
@@ -51,5 +47,6 @@ class SaleOrderProject(models.TransientModel):
         })
         action_id = self.env.ref('project.open_view_project_all_config')
         action = action_id.read([])[0]
-        action['domain'] ="[('id','in', ["+','.join(map(str, [new_project_id.id]))+"])]"
+        action['domain'] = \
+            "[('id','in', ["+','.join(map(str, [new_project_id.id]))+"])]"
         return action
