@@ -19,11 +19,6 @@ class ProjectProject(models.Model):
         domain=[('cad_partner', '=', True)],
         string="CAD Partner",
     )
-    manufacturer_id = fields.Many2one(
-        'res.partner',
-        domain=[('supplier', '=', True)],
-        string = 'Manufacturer',
-    )
     state = fields.Selection([
         ('quotation', 'Quotation'),
         ('sales_order', 'Sales Order'),

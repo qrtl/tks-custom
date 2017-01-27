@@ -18,7 +18,6 @@
                         <field name="stairs" required="True"/>
                         <field name="handrail"/>
                         <field name="cad_partner_id" options="{'no_create':True}"/>
-                        <field name="manufacturer_id" options="{'no_create':True}"/>
                     </group>
                 </group>
                 <group>
@@ -50,7 +49,6 @@
                 <field name="stairs"/>
                 <field name="handrail"/>
                 <field name="cad_partner_id"/>
-                <field name="manufacturer_id"/>
                 <field name="state"/>
             </xpath>
         </field>

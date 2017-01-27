@@ -23,7 +23,7 @@
         <field name="model">project.project</field>
         <field name="inherit_id" ref="project_fields_tks.view_project_tree"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='manufacturer_id']" position="after">
+            <xpath expr="//field[@name='cad_partner_id']" position="after">
                 <field name="budget_amt"/>
             </xpath>
         </field>
