@@ -10,7 +10,7 @@ class ProjectTask(models.Model):
     _inherit = 'project.task'
 
     budget_ratio = fields.Float(
-        string='Budget Ratio',
+        string='Budget Ratio (%)',
         digits=(16, 2),
         default=0.0
     )

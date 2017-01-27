@@ -35,7 +35,7 @@ class SaleOrderProject(models.TransientModel):
             'name': order.partner_id.name + " " + order.name,
             'date_start': self.start_date,
             'date': self.end_date,
-            'budget_amt': order.amount_total,
+            'sales_amt': order.amount_untaxed,
             'partner_id': order.partner_id.id,
             'is_template': False,
         }
