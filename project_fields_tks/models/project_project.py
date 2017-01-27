@@ -34,7 +34,10 @@ class ProjectProject(models.Model):
         default='quotation',
         store=True
     )
-
+    purchase_line_ids = fields.Many2many(
+        comodel_name='purchase.order.line',
+        string='Purchase Order Lines',
+    )
 
     # below logic needs to be updated!!!
     @api.one
