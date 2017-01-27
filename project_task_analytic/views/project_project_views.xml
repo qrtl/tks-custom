@@ -10,6 +10,7 @@
                 <group>
                     <field name="sales_amt" widget="monetary"/>
                     <field name="currency_id" options="{'no_create':True, 'no_open':True}"/>
+                    <field name="profit_percent"/>
                     <field name="labor_ratio"/>
                     <field name="budget_amt"/>
                 </group>

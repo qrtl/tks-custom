@@ -16,6 +16,11 @@ class ProjectProject(models.Model):
         string="Currency",
         required=True
     )
+    profit_percent = fields.Float(
+        string='Profit (%)',
+        digits=(16, 2),
+        default=0.0
+    )
     labor_ratio = fields.Float(
         string='Labor Ratio (%)',
         digits=(16, 2),
@@ -29,8 +34,9 @@ class ProjectProject(models.Model):
 
 
     @api.multi
-    @api.depends('sales_amt', 'labor_ratio')
+    @api.depends('sales_amt', 'profit_percent', 'labor_ratio')
     def _update_budget_amt(self):
         for pj in self:
-            pj.budget_amt = pj.sales_amt * pj.labor_ratio / 100
+            pj.budget_amt = pj.sales_amt * (1 - pj.profit_percent / 100) * \
+                            (pj.labor_ratio / 100)
         return
