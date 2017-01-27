@@ -10,7 +10,7 @@
     'license': "AGPL-3",
     'depends': [
         'sales_team',
-        'project'
+        'project_task_analytic',
     ],
     'data': [
         'wizard/sale_order_project_wizard.xml',
