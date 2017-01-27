@@ -34,10 +34,12 @@ class ProjectProject(models.Model):
         default='quotation',
         store=True
     )
-    purchase_line_ids = fields.Many2many(
+    purchase_line_ids = fields.One2many(
         comodel_name='purchase.order.line',
+        inverse_name='project_id',
         string='Purchase Order Lines',
     )
+
 
     # below logic needs to be updated!!!
     @api.one
