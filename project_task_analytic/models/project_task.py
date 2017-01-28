@@ -49,6 +49,7 @@ class ProjectTask(models.Model):
             {'name': self.name,
              'date': fields.Date.context_today(self),
              'account_id': self.project_id.analytic_account_id.id,
+             'project_id': False,  # to not show the record in timesheet
              'task_id': self.id,
              'unit_amount': False,
              'amount': self.budget_amt,
