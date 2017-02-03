@@ -100,6 +100,13 @@ class ProjectTask(models.Model):
         if from_state == "done" and to_state == "to_do":
             if self.analytic_line_id:
                 self.analytic_line_id.unlink()
+        # update color
+        if to_state == "no_need":
+            self.color = 1  # gray color
+        elif to_state == "done":
+            self.color = 6  # default color
+        elif to_state == "to_do":
+            self.color = 0  # default color
         return res
 
     @api.multi
