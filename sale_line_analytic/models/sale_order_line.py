@@ -32,6 +32,8 @@ class SaleOrderLine(models.Model):
 
     @api.multi
     def _prepare_invoice_line(self, qty):
+        self.ensure_one()
         res = super(SaleOrderLine, self)._prepare_invoice_line(qty=qty)
-        res.update({'account_analytic_id': self.related_project_id.id})
+        if self.related_project_id:
+            res.update({'account_analytic_id': self.related_project_id.id})
         return res
