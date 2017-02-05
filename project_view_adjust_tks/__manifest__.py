@@ -21,6 +21,7 @@
     },
     "depends": [
         "project_fields_tks",
+        "project_task_analytic",
     ],
     "data": [
         'views/project_task_views.xml',
