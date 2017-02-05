@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data noupdate="1">
+
+    <record id="task_category_01" model="project.task.category">
+        <field name="name">Quotation</field>
+        <field name="code">quotation</field>
+        <field name="sequence">10</field>
+    </record>
+    <record id="task_category_02" model="project.task.category">
+        <field name="name">Layout Drawing</field>
+        <field name="code">layout</field>
+        <field name="sequence">20</field>
+    </record>
+    <record id="task_category_03" model="project.task.category">
+        <field name="name">Part Drawing</field>
+        <field name="code">part</field>
+        <field name="sequence">30</field>
+    </record>
+    <record id="task_category_04" model="project.task.category">
+        <field name="name">Cutting</field>
+        <field name="code">cutting</field>
+        <field name="sequence">40</field>
+    </record>
+    <record id="task_category_05" model="project.task.category">
+        <field name="name">Plasma</field>
+        <field name="code">plasma</field>
+        <field name="sequence">50</field>
+    </record>
+    <record id="task_category_06" model="project.task.category">
+        <field name="name">Sasara</field>
+        <field name="code">sasara</field>
+        <field name="sequence">60</field>
+    </record>
+    <record id="task_category_07" model="project.task.category">
+        <field name="name">Assembly</field>
+        <field name="code">assembly</field>
+        <field name="sequence">70</field>
+    </record>
+    <record id="task_category_08" model="project.task.category">
+        <field name="name">Welding</field>
+        <field name="code">welding</field>
+        <field name="sequence">80</field>
+    </record>
+    <record id="task_category_09" model="project.task.category">
+        <field name="name">Finishing</field>
+        <field name="code">finishing</field>
+        <field name="sequence">90</field>
+    </record>
+    <record id="task_category_10" model="project.task.category">
+        <field name="name">Painting</field>
+        <field name="code">painting</field>
+        <field name="sequence">100</field>
+    </record>
+    <record id="task_category_11" model="project.task.category">
+        <field name="name">Loading</field>
+        <field name="code">loading</field>
+        <field name="sequence">110</field>
+    </record>
+    <record id="task_category_12" model="project.task.category">
+        <field name="name">Inspection</field>
+        <field name="code">inspection</field>
+        <field name="sequence">120</field>
+    </record>
+    <record id="task_category_13" model="project.task.category">
+        <field name="name">Weight</field>
+        <field name="code">weight</field>
+        <field name="sequence">130</field>
+    </record>
+    <record id="task_category_14" model="project.task.category">
+        <field name="name">Invoicing</field>
+        <field name="code">invoicing</field>
+        <field name="sequence">140</field>
+    </record>
+    <record id="task_category_15" model="project.task.category">
+        <field name="name">Payment</field>
+        <field name="code">payment</field>
+        <field name="sequence">150</field>
+    </record>
+    <record id="task_category_16" model="project.task.category">
+        <field name="name">Done</field>
+        <field name="code">done</field>
+        <field name="sequence">160</field>
+    </record>
+
+</data>
+</odoo>

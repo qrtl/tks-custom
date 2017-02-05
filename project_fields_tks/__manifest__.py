@@ -4,7 +4,7 @@
 {
     "name": "Project Fields",
     "summary": "",
-    "version": "10.0.1.1.0",
+    "version": "10.0.1.2.0",
     "category": "Project",
     "website": "https://www.odoo-asia.com/",
     "author": "Rooms For (Hong Kong) Limited T/A OSCG",
@@ -24,8 +24,12 @@
         "purchase",
     ],
     "data": [
+        'security/ir.model.access.csv',
         'views/res_partner_views.xml',
         'views/project_project_views.xml',
+        'views/project_task_category_views.xml',
+        'views/project_task_views.xml',
+        'data/project_task_category_data.xml',
     ],
     "demo": [
     ],
