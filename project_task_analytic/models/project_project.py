@@ -31,6 +31,15 @@ class ProjectProject(models.Model):
         compute='_update_budget_amt',
         store=True,
     )
+    quotation_done = fields.Boolean(
+        string='Quotation Done',
+    )
+    layout_done = fields.Boolean(
+        string='Layout Done',
+    )
+    invoice_done = fields.Boolean(
+        string='Invoice Done',
+    )
 
 
     @api.multi

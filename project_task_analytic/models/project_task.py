@@ -105,8 +105,20 @@ class ProjectTask(models.Model):
             self.color = 1  # gray color
         elif to_state == "done":
             self.color = 6  # default color
+            if self.category_id.code == 'quotation':
+                self.project_id.quotation_done = True
+            elif self.category_id.code == 'layout':
+                self.project_id.layout_done = True
+            elif self.category_id.code == 'invoicing':
+                self.project_id.invoice_done = True
         elif to_state == "to_do":
             self.color = 0  # default color
+            if self.category_id.code == 'quotation':
+                self.project_id.quotation_done = False
+            elif self.category_id.code == 'layout':
+                self.project_id.layout_done = False
+            elif self.category_id.code == 'invoicing':
+                self.project_id.invoice_done = False
         return res
 
     @api.multi
