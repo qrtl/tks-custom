@@ -20,5 +20,8 @@ class PurchaseOrderLine(models.Model):
     @api.depends('account_analytic_id')
     def _get_project(self):
         for ln in self:
-            ln.project_id = ln.account_analytic_id.project_ids[0]
+            if ln.account_analytic_id:
+                ln.project_id = ln.account_analytic_id.project_ids[0]
+            else:
+                ln.project_id = False
         return
