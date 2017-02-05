@@ -15,6 +15,11 @@
                     <field name="budget_amt"/>
                 </group>
             </xpath>
+            <xpath expr="//field[@name='cad_partner_id']" position="after">
+                <field name="quotation_done"/>
+                <field name="layout_done"/>
+                <field name="invoice_done"/>
+            </xpath>
         </field>
     </record>
 
@@ -25,6 +30,9 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='cad_partner_id']" position="after">
                 <field name="budget_amt"/>
+                <field name="quotation_done"/>
+                <field name="layout_done"/>
+                <field name="invoice_done"/>
             </xpath>
         </field>
     </record>
