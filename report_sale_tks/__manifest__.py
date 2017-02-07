@@ -24,7 +24,10 @@
         "report_common_tks",
     ],
     "data": [
-        'report/sale_report_quotation.xml'
+        'security/ir.model.access.csv',
+        'views/sale_layout_category_desc_views.xml',
+        'views/sale_order_views.xml',
+        'report/sale_report_quotation.xml',
     ],
     "demo": [
     ],

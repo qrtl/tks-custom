@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_layout_category_desc_tree" model="ir.ui.view">
+        <field name="name">view.layout.category.desc.tree</field>
+        <field name="model">sale.layout_category.desc</field>
+        <field name="arch" type="xml">
+            <tree string="Category Description" editable="bottom">
+                <field name="layout_category_id" string="Section"/>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+</odoo>
