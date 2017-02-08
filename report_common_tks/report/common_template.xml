@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="common_header_layout">
+        <table BORDER="0">
+            <tr>
+                <td width="400">
+                    <table class="table">
+                        <tr>
+                            <td style="font-size:20px">
+                                <t t-if="doc.partner_id.parent_id">
+                                    <span t-field="doc.partner_id.parent_id.name"/>, <span t-field="doc.partner_id.name"/>
+                                </t>
+                                <t t-if="not doc.partner_id.parent_id">
+                                    <span t-field="doc.partner_id.name"/>
+                                </t>
+                                <t t-if="doc.partner_id.lang == 'ja_JP'">
+                                    <span style="position:relative; left:20px;" t-field="doc.partner_id.title"/>
+                                </t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <t t-if="type == 'quotation'">
+                                    <span>Please find our quotation details as follows.<br/>We are looking forward to doing business with you.</span>
+                                </t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Expected Date: <span t-field="doc.requested_date" t-field-options="{'format':'YYYY/MM/dd'}"/>
+                            </td>
+                        </tr>
+                        <t t-if="type == 'quotation'">
+                            <tr>
+                                <td>Transaction Method: <span t-field="doc.transaction_method"/></td>
+                            </tr>
+                        </t>
+                        <tr>
+                            <td>
+                                Effective Until: <span t-field="doc.validity_date" t-field-options="{'format':'YYYY/MM/dd'}"/>
+                            </td>
+                        </tr>
+                        <tr t-if="doc.doc_title">
+                            <td>
+                                Title: <span t-field="doc.doc_title"/>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td width="100"></td>
+                <td width="300">
+                    <table>
+                        <tr>
+                            <td style="white-space:nowrap; position:absolute; right:50px;">
+                                Issue Date: <span t-field="doc.date_order" t-field-options="{'format':'YYYY/MM/dd'}"/>
+                            </td>
+                        </tr>
+                    </table>
+                    <table>
+                        <div class="background-image" style="position:absolute; opacity:0.6; right:100px; padding:0px; background-repeat:no-repeat;">
+                            <img t-if="doc.company_id.chop" t-att-src="'data:image/png;base64,%s' % doc.company_id.chop" style="max-height: 120px;" align="top"/>
+                        </div>
+                        <tr>
+                            <table>
+                                <tr height="40px"/>
+                            </table>
+                            <p>
+                                <strong><span style="font-size:20px" t-field="doc.company_id.name"/></strong>
+                            </p>
+                            <p>
+                                ZIP: <span t-field="doc.company_id.zip"/><br/>
+                                <span t-field="doc.company_id.street"/><br/>
+                                <span t-field="doc.company_id.street2"/>
+                            </p>
+
+                            <table style="margin-bottom:10px;">
+                                <tr>
+                                    <td style="width:100;">TEL: </td><td><span t-field="doc.company_id.phone"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="width:100;">FAX: </td><td><span t-field="doc.company_id.fax"/></td>
+                                </tr>
+                            </table>
+                            <t t-if="type == 'quotation'">
+                                <table class="table table-bordered">
+                                    <tr height="70">
+                                        <td/>
+                                        <td/>
+                                        <td/>
+                                    </tr>
+                                </table>
+                            </t>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <table style="margin-bottom:25px;">
+            <tr t-if="doc.amount_total">
+                <td>
+                    <t t-if="type == 'quotation'">Quotation Amount: </t>
+                    <t t-if="type == 'purchase'">Total Amount: </t>
+                    <!--t t-if="type == 'quotation' and doc.show_tax == False">
+                        <span style="position:relative; left:40px; font-size:30px" t-field="doc.amount_untaxed"/>
+                    </t-->
+                    <span style="position:relative; left:40px; font-size:30px" t-field="doc.amount_total"/>
+                </td>
+            </tr>
+        </table>
+    </template>
+
+    <template id="common_footer_layout">
+        <t t-if="type in ('invoice', 'acceptance', 'deliverynote')">
+            <p t-if="doc.comment">
+                <span t-field="doc.comment"/>
+            </p>
+        </t>
+        <t t-if="type == 'quotation'">
+            <p t-if="doc.note">
+                <span t-field="doc.note"/>
+            </p>
+        </t>
+        <t t-if="type == 'purchase'">
+            <p t-if="doc.notes">
+                <span t-field="doc.notes"/>
+            </p>
+        </t>
+        <p t-if="doc.payment_term_id">
+            <span t-field="doc.payment_term_id.note"/>
+        </p>
+        <t t-if="type in ('invoice', 'deliverynote')">
+            <div class="row zero_min_height" style="margin-top:20px; margin-bottom:10px;">
+                <div class="col-xs-12">
+                    <div style="border-bottom: 1px solid #DCDCDC;"></div>
+                </div>
+            </div>
+            <div style="font-size:16px">
+                <p t-if="doc.company_id.bank_details">
+                    Bank Details: <span t-field="doc.company_id.bank_details"/>
+                </p>
+                <p t-if="doc.date_due">
+                    Due Date:
+                    <t t-if="doc.partner_id.lang == 'ja_JP'">
+                        <span t-field="doc.date_due" t-field-options="{'format':'YYYY'}"/>年
+                        <span t-field="doc.date_due" t-field-options="{'format':'MM'}"/>月
+                        <span t-field="doc.date_due" t-field-options="{'format':'dd'}"/>日
+                    </t>
+                    <t t-if="doc.partner_id.lang != 'ja_JP'">
+                        <span t-field="doc.date_due" t-field-options="{'format':'MMM dd, YYYY'}"/>
+                    </t>
+                    <span style="position:relative; left:20px; font-size:14px">Bank charges shall be borne by the customer.</span>
+                </p>
+            </div>
+            <div class="row zero_min_height">
+                <div class="col-xs-12">
+                    <div style="border-bottom: 1px solid black;"></div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="external_layout_tks">
+        <!-- Multicompany -->
+        <t t-if="o and 'company_id' in o">
+            <t t-set="company" t-value="o.company_id"></t>
+        </t>
+        <t t-if="not o or not 'company_id' in o">
+            <t t-set="company" t-value="res_company"></t>
+        </t>
+
+        <div class="header">
+            <table class="table" style="table-layout:fixed">
+                <tr style="border-top:hidden;">
+                    <td>
+                        <div style="width:30%"></div>
+                    </td>
+                    <td>
+                        <div style="width:40%; font-size:35px; white-space:nowrap;">Quotation</div>
+                    </td>
+                    <td width="30%">
+                        <table>
+                            <tr height="25px"/>
+                        </table>
+                        <t t-if="type == 'quotation'">
+                            <div style="position:absolute; right:50px;">
+                                No.: <span t-field="doc.name"/>
+                            </div>
+                        </t>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="footer">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <ul class="list-inline">
+                        <li><span class="page"/></li>
+                        <li>/</li>
+                        <li><span class="topage"/></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <t t-raw="0" />
+    </template>
+
+</odoo>
