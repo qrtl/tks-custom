@@ -22,10 +22,7 @@
                         <tr>
                             <td>
                                 <t t-if="type == 'quotation'">
-                                    <span>
-                                        Please find our quotation details as follows.<br/>
-                                        We are looking forward to doing business with you.
-                                    </span>
+                                    <span>Please find our quotation details as follows.<br/>We are looking forward to doing business with you.</span>
                                 </t>
                             </td>
                         </tr>
