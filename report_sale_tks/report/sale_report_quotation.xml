@@ -19,13 +19,16 @@
                                 <th class="text-right" groups="sale.group_show_price_subtotal">Price</th>
                                 <th class="text-right price_tax_included" groups="sale.group_show_price_total">Amount</th>
                             </tr>
-                       </thead>
-                       <tbody class="sale_tbody">
+                        </thead>
+                        <tbody class="sale_tbody">
                             <t t-foreach="page" t-as="layout_category">
                                 <t t-if="layout_category_size > 1 or page_size > 1" groups="sale.group_sale_layout">
                                     <tr class="active">
-                                        <td colspan="7" style="font-weight: bold; border-bottom: 1px solid black;">&amp;bull;
-                                            <t t-esc="layout_category['name']"/>
+                                        <td colspan="7" style="font-weight: bold; border-bottom: 1px solid black;">
+                                            <!-- is there a better way than this??? -->
+                                            <t t-foreach="layout_category['lines'][0]" t-as="l">
+                                                <t t-esc="l['category_desc']"/>
+                                            </t>
                                         </td>
                                     </tr>
                                 </t>

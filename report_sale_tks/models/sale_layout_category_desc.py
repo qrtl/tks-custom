@@ -23,10 +23,19 @@ class SaleLayoutCategoryDesc(models.Model):
         string='Description',
     )
 
+    _sql_constraints = [
+        ('layout_category_uniq',
+         'unique (layout_category_id, sale_order_id)',
+         'Multiple entries of a section in an order is not allowed.')
+    ]
+
 
     @api.multi
     @api.onchange('layout_category_id')
     def onchange_layout_category(self):
         self.ensure_one()
-        self.name = self.layout_category_id.name
+        if self.layout_category_id:
+            self.name = self.layout_category_id.name
+        else:
+            self.name = False
         return

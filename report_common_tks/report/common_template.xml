@@ -55,7 +55,7 @@
                 <td width="300">
                     <table>
                         <tr>
-                            <td style="white-space:nowrap; font-size:18px">
+                            <td style="white-space:nowrap; position:absolute; right:50px;">
                                 Issue Date: <span t-field="doc.date_order" t-field-options="{'format':'YYYY/MM/dd'}"/>
                             </td>
                         </tr>
@@ -79,19 +79,13 @@
 
                             <table style="margin-bottom:10px;">
                                 <tr>
-                                    <td style="width:100;">Phone: </td><td><span t-field="doc.company_id.phone"/></td>
+                                    <td style="width:100;">TEL: </td><td><span t-field="doc.company_id.phone"/></td>
                                 </tr>
                                 <tr>
-                                    <td style="width:100;">Fax: </td><td><span t-field="doc.company_id.fax"/></td>
-                                </tr>
-                                <tr>
-                                    <td style="width:100;">Email: </td><td><span t-field="doc.company_id.email"/></td>
-                                </tr>
-                                <tr>
-                                    <td style="width:100;">Website: </td><td><span t-field="doc.company_id.website"/></td>
+                                    <td style="width:100;">FAX: </td><td><span t-field="doc.company_id.fax"/></td>
                                 </tr>
                             </table>
-                            <t t-if="type in ('invoice', 'deliveryoder')">
+                            <t t-if="type == 'quotation'">
                                 <table class="table table-bordered">
                                     <tr height="70">
                                         <td/>
@@ -100,23 +94,12 @@
                                     </tr>
                                 </table>
                             </t>
-                            <t t-if="type == 'quotation'">
-                                <p>
-                                    Salesperson: <span t-field="doc.user_id.name"/><br/>
-                                    <span>Effective for one month from the date of quotation.</span>
-                                </p>
-                            </t>
-                            <t t-if="type == 'purchase'">
-                                <p>
-                                    Salesperson: <span t-field="doc.user_id.name"/><br/>
-                                </p>
-                            </t>
                         </tr>
                     </table>
                 </td>
             </tr>
         </table>
-        <table>
+        <table style="margin-bottom:25px;">
             <tr t-if="doc.amount_total">
                 <td>
                     <t t-if="type == 'quotation'">Quotation Amount: </t>
@@ -203,7 +186,7 @@
                             <tr height="25px"/>
                         </table>
                         <t t-if="type == 'quotation'">
-                            <div style="position:relative; left:100px; font-size:14px">
+                            <div style="position:absolute; right:50px;">
                                 No.: <span t-field="doc.name"/>
                             </div>
                         </t>
