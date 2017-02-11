@@ -10,8 +10,11 @@
                 <field name="related_project_id"/>
                 <field name="project_id"/>
             </xpath>
+            <xpath expr="/form/sheet/notebook/page[1]/field[1]/tree/field[@name='analytic_tag_ids']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
             <xpath expr="/form/sheet/notebook/page[1]/field[1]/tree/field[@name='price_unit']" position="before">
-                <field name="related_project_id"/>
+                <field name="related_project_id" invisible="1"/>
                 <field name="project_id"/>
             </xpath>
         </field>
