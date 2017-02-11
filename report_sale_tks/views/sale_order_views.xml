@@ -12,7 +12,7 @@
                 </group>
             </xpath>
             <xpath expr="/form/sheet/notebook/page[1]/field[1]/tree/field[@name='layout_category_id']" position="after">
-                <field name="category_desc"/>
+                <field name="category_desc" invisible="1"/>
             </xpath>
         </field>
     </record>
