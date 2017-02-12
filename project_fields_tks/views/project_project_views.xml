@@ -33,7 +33,6 @@
                                 <span attrs="{'invisible':[('handrail','=',0)]}">kg</span>
                             </div>
                         </div>
-
                         <field name="cad_partner_id" options="{'no_create':True}"/>
                     </group>
                 </group>
