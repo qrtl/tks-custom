@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="account_invoice_line_form_inherit" model="ir.ui.view">
+        <field name="name">account.invoice.line.form.inherited</field>
+        <field name="model">account.invoice.line</field>
+        <field name="inherit_id" ref="account.view_invoice_line_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='account_analytic_id']" position="after">
+                <field name="analytic_type_id"/>
+            </xpath>
+        </field>
+    </record>
+    
+    <record id="account_invoice_form_inherit" model="ir.ui.view">
+        <field name="name">account.invoice.form.inherited</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='account_id']" position="after">
+                <field name="analytic_type_id"/>
+            </xpath>
+        </field>
+    </record>
+    
+    <record id="account_invoice_line_tree_inherit" model="ir.ui.view">
+        <field name="name">account.invoice.line.tree.inherited</field>
+        <field name="model">account.invoice.line</field>
+        <field name="inherit_id" ref="account.view_invoice_line_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='account_id']" position="after">
+                <field name="analytic_type_id"/>
+            </xpath>
+        </field>
+    </record>
+    
+    <record id="account_invoice_line_tree_inherit" model="ir.ui.view">
+        <field name="name">account.invoice.supplier.form.inherited</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_supplier_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='account_id']" position="after">
+                <field name="analytic_type_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

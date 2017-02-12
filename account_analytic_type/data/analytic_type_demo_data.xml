@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="analytic_type_ev_actual" model="analytic.type">
+            <field name="name">EV (Actual)</field>
+            <field name="analytic_type">ev_actual</field>
+        </record>
+        <record id="analytic_type_labour" model="analytic.type">
+            <field name="name">Labour</field>
+            <field name="analytic_type">labour</field>
+        </record>
+        <record id="analytic_type_sales" model="analytic.type">
+            <field name="name">Sales</field>
+            <field name="analytic_type">sales</field>
+        </record>
+        <record id="analytic_type_overhead" model="analytic.type">
+            <field name="name">Overhead</field>
+            <field name="analytic_type">overhead</field>
+        </record>
+        <record id="analytic_type_material_costs" model="analytic.type">
+            <field name="name">Material Costs</field>
+            <field name="analytic_type">material_costs</field>
+        </record>
+        <record id="analytic_type_outsourcing" model="analytic.type">
+            <field name="name">Outsourcing</field>
+            <field name="analytic_type">outsourcing</field>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="project_issue_form_view_inherit" model="ir.ui.view">
+        <field name="name">project.issue.form.inherited</field>
+        <field name="model">project.issue</field>
+        <field name="inherit_id" ref="project_issue_sheet.project_issue_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page/field/tree/field[@name='name']" position="after">
+                <field name="analytic_type_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

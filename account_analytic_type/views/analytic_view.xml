@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="account_analytic_line_tree_inherit" model="ir.ui.view">
+        <field name="name">account.analytic.line.tree.inherited</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="analytic.view_account_analytic_line_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='account_id']" position="after">
+                <field name="analytic_type_id"/>
+            </xpath>
+        </field>
+    </record>
+    
+    <record id="account_analytic_line_select_inherit" model="ir.ui.view">
+        <field name="name">account.analytic.line.select.inherited</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="analytic.view_account_analytic_line_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='account_id']" position="after">
+                <filter string="Productivity Analysis" domain="['|',('related_analytic_type','=','ev_actual'),('related_analytic_type','=','labour')]"/>
+                <filter string="Project Analysis" domain="['|','|','|','|',('related_analytic_type','=','sales'),('related_analytic_type','=','labour'),('related_analytic_type','=','overhead'),('related_analytic_type','=','material_costs'),('related_analytic_type','=','outsourcing')]"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
