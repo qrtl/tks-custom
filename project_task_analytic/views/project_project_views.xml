@@ -8,8 +8,13 @@
         <field name="arch" type="xml">
             <xpath expr="//group[1]/group[1]" position="before">
                 <group>
-                    <field name="sales_amt" widget="monetary"/>
-                    <field name="currency_id" options="{'no_create':True, 'no_open':True}"/>
+                    <label for="sales_amt"/>
+                    <div>
+                        <div class="o_row mr16">
+                            <field name="sales_amt" widget="monetary"/>
+                            <field name="currency_id" options="{'no_create':True, 'no_open':True}"/>
+                        </div>
+                    </div>
                     <field name="profit_percent"/>
                     <field name="labor_ratio"/>
                     <field name="budget_amt"/>

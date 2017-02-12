@@ -2,7 +2,7 @@
 # Copyright 2017 Rooms For (Hong Kong) Limited T/A OSCG
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import models, fields
+from odoo import models, fields, api
 
 
 class ProjectTask(models.Model):
@@ -19,3 +19,50 @@ class ProjectTask(models.Model):
         store=True,
         readonly=True,
     )
+    stairs = fields.Integer(
+        compute='_get_stairs_handrail',
+        store=True,
+        readonly=True,
+        string='Stairs',
+    )
+    weight_stairs = fields.Float(
+        compute='_get_stairs_handrail',
+        store=True,
+        readonly=True,
+        string='Weight',
+    )
+    handrail = fields.Float(
+        compute='_get_stairs_handrail',
+        store=True,
+        readonly=True,
+        string='Handrail',
+    )
+    weight_handrail = fields.Float(
+        compute='_get_stairs_handrail',
+        store=True,
+        readonly=True,
+        string='Weight',
+    )
+
+
+    @api.multi
+    @api.depends('project_id.stairs', 'project_id.weight_stairs',
+                 'project_id.handrail', 'project_id.weight_handrail',
+                 'category_id')
+    def _get_stairs_handrail(self):
+        for task in self:
+            if task.category_id and task.category_id.code == 'quotation':
+                stairs = task.project_id.stairs
+                weight_stairs = task.project_id.weight_stairs
+                handrail = task.project_id.handrail
+                weight_handrail = task.project_id.weight_handrail
+            else:
+                stairs = 0
+                weight_stairs = 0.0
+                handrail = 0.0
+                weight_handrail = 0.0
+            task.stairs = stairs
+            task.weight_stairs = weight_stairs
+            task.handrail = handrail
+            task.weight_handrail = weight_handrail
+        return
