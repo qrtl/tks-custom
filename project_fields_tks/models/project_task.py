@@ -46,7 +46,9 @@ class ProjectTask(models.Model):
 
 
     @api.multi
-    @api.depends('project_id.stairs', 'project_id.weight_stairs', 'project_id.handrail', 'project_id.weight_handrail', 'category_id')
+    @api.depends('project_id.stairs', 'project_id.weight_stairs',
+                 'project_id.handrail', 'project_id.weight_handrail',
+                 'category_id')
     def _get_stairs_handrail(self):
         for task in self:
             if task.category_id and task.category_id.code == 'quotation':
