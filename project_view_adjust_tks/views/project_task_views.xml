@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <!-- add a kanban view with new menu item -->
     <record model="ir.ui.view" id="view_task_kanban_progress">
         <field name="name">project.task.kanban.progress</field>
         <field name="model">project.task</field>
@@ -81,5 +82,22 @@
               id="menu_action_view_task_kanban"
               parent="project.menu_project_management"
               sequence="10"/>
+
+
+    <!-- adjust calendar view presentation -->
+
+    <record id="view_task_calendar" model="ir.ui.view">
+        <field name="name">project.task.calendar</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_calendar"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='project_id']" position="after">
+                <field name="stairs"/>
+                <field name="weight_stairs"/>
+                <field name="handrail"/>
+                <field name="weight_handrail"/>
+            </xpath>
+        </field>
+    </record>
 
 </odoo>
