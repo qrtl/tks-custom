@@ -38,6 +38,7 @@ class SaleOrderProject(models.TransientModel):
             'sales_amt': order.amount_untaxed,
             'partner_id': order.partner_id.id,
             'is_template': False,
+            'so_id': order.id,
         }
         new_project_id = self.project_template_id.sudo().copy(default)
         analytic_account_id = new_project_id.analytic_account_id.id

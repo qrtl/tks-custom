@@ -11,3 +11,7 @@ class Project(models.Model):
     is_template = fields.Boolean(
         string="Template Project",
     )
+    so_id = fields.Many2one(
+        comodel_name='sale.order',
+        string='Sales Order',
+    )
