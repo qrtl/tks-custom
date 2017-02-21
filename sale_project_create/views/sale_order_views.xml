@@ -10,9 +10,6 @@
                 <button name="%(action_view_sale_project_create)d" string="Create Project" groups="sales_team.group_sale_salesman"
                     type="action" class="btn-primary" attrs="{'invisible': [('project_id', '!=', False)]}"/>
              </xpath>
-             <xpath expr="//field[@name='related_project_id']" position="after">
-               <field name="sale_project_id" string="Project"/>
-             </xpath>
         </field>
     </record>
         
