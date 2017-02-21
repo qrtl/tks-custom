@@ -8,6 +8,7 @@
             <form string="Create Project">
                     <group>
                         <group>
+                            <field name="description"/>
                             <field name="project_template_id" domain="[('is_template','=',True)]"/>
                         </group>
                     </group>
