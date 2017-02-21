@@ -52,7 +52,7 @@ class SaleOrderProject(models.TransientModel):
                     self.description,
             'date_start': self.start_date,
             'date': self.end_date,
-            'sales_amt': order.amount_untaxed,
+            # 'sales_amt': order.amount_untaxed,
             'partner_id': order.partner_id.id,
             'is_template': False,
             'so_id': order.id,
