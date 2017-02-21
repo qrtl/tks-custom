@@ -10,6 +10,8 @@ class SaleOrderLine(models.Model):
     
     project_id = fields.Many2one(
         comodel_name='project.project',
+        compute='_get_category_desc',
+        store=True,
         string="Project"
     )
     related_project_id = fields.Many2one(
@@ -37,3 +39,19 @@ class SaleOrderLine(models.Model):
         if self.related_project_id:
             res.update({'account_analytic_id': self.related_project_id.id})
         return res
+
+    @api.depends('layout_category_id', 'order_id.category_desc_ids')
+    def _get_category_desc(self):
+        desc_obj = self.env['sale.layout_category.desc']
+        for line in self:
+            desc_recs = desc_obj.search([
+                ('sale_order_id', '=', line.order_id.id),
+                ('layout_category_id', '=', line.layout_category_id.id),
+            ])
+            if desc_recs:
+                line.category_desc = desc_recs[0].name
+                line.project_id = desc_recs[0].project_id
+            else:
+                line.category_desc = False
+                line.project_id = False
+        return

@@ -10,9 +10,11 @@
     'license': "AGPL-3",
     'depends': [
         'sale',
-        'project'
+        'project',
+        'report_sale_tks',
     ],
     'data': [
+        'views/sale_layout_category_desc_views.xml',
         'views/sale_order_line_views.xml',
         'views/sale_order_views.xml',
     ],
