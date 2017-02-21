@@ -22,7 +22,8 @@ class Project(models.Model):
 
 
     @api.multi
-    @api.depends('so_id.order_line.project_id', 'so_id.order_line.price_subtotal')
+    @api.depends('so_id.order_line.project_id',
+                 'so_id.order_line.price_subtotal')
     def _compute_sales_amt(self):
         self.ensure_one()
         amt = 0.0

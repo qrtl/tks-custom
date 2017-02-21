@@ -52,17 +52,11 @@ class SaleOrderProject(models.TransientModel):
                     self.description,
             'date_start': self.start_date,
             'date': self.end_date,
-            # 'sales_amt': order.amount_untaxed,
             'partner_id': order.partner_id.id,
             'is_template': False,
             'so_id': order.id,
         }
         new_project_id = self.project_template_id.sudo().copy(default)
-        # analytic_account_id = new_project_id.analytic_account_id.id
-        # order.write({
-        #     'sale_project_id': new_project_id.id,
-        #     'project_id': analytic_account_id,
-        # })
         action_id = self.env.ref('project.open_view_project_all_config')
         action = action_id.read([])[0]
         action['domain'] = \
