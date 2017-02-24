@@ -11,6 +11,7 @@ class Project(models.Model):
     sales_amt = fields.Monetary(
         string='Sales Amount',
         compute='_compute_sales_amt',
+        store=True,
     )
     is_template = fields.Boolean(
         string="Template Project",
