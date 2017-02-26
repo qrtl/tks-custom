@@ -14,8 +14,9 @@
                             <field name="content"/>
                         </group>
                         <group>
-                            <field name="task_id"/>
                             <field name="project_id"/>
+                            <field name="task_id" domain="[('project_id','=',project_id)]"/>
+                            <field name="user_id"/>
                         </group>
                     </group>
                 </sheet>
@@ -27,10 +28,11 @@
         <field name="name">project.comm.history.tree</field>
         <field name="model">project.comm.history</field>
         <field name="arch" type="xml">
-            <tree string="Communication History">
-                <field name="task_id"/>
+            <tree string="Communication History" editable="top">
                 <field name="project_id"/>
+                <field name="task_id" domain="[('project_id','=',project_id)]"/>
                 <field name="date"/>
+                <field name="user_id"/>
                 <field name="type"/>
                 <field name="content"/>
             </tree>
@@ -41,8 +43,9 @@
         <field name="name">project.comm.history.tree2</field>
         <field name="model">project.comm.history</field>
         <field name="arch" type="xml">
-            <tree string="Communication History">
+            <tree string="Communication History" editable="top">
                 <field name="date"/>
+                <field name="user_id"/>
                 <field name="type"/>
                 <field name="content"/>
             </tree>
@@ -54,13 +57,60 @@
         <field name="model">project.comm.history</field>
         <field name="arch" type="xml">
             <search string="Communication History">
-                <field name="task_id"/>
                 <field name="project_id"/>
+                <field name="task_id"/>
                 <field name="date"/>
+                <field name="user_id"/>
                 <field name="content"/>
+                <filter string="My Records" name="my_records" domain="[('user_id','=',uid)]"/>
+                <separator/>
+                <filter string="Received" name="received" domain="[('type','=','received')]"/>
+                <filter string="Sent" name="sent" domain="[('type','=','sent')]"/>
+                <separator/>
+                <group expand="0" string="Group By">
+                    <filter string="Project" name="project" context="{'group_by':'project_id'}"/>
+                    <filter string="Task" name="task" context="{'group_by':'task_id'}"/>
+                    <filter string="Date" name="date" context="{'group_by':'date'}"/>
+                    <filter string="User" name="user" context="{'group_by':'user_id'}"/>
+                    <filter string="Type" name="type" context="{'group_by':'type'}"/>
+                </group>
             </search>
         </field>
     </record>
+
+    <record id="view_task_search_form" model="ir.ui.view">
+        <field name="name">project.task.search.form</field>
+        <field name="model">project.task</field>
+        <field name="arch" type="xml">
+           <search string="Tasks">
+                <field name="name" string="Tasks"/>
+                <field name="tag_ids"/>
+                <field name="partner_id"/>
+                <field name="project_id"/>
+                <field name="user_id"/>
+                <field name="stage_id"/>
+                <filter string="My Tasks" name="my_tasks" domain="[('user_id','=',uid)]"/>
+                <filter string="Unassigned" name="unassigned" domain="[('user_id', '=', False)]"/>
+                <separator/>
+                <filter string="New" name="draft" domain="[('stage_id.sequence', '&lt;=', 1)]"/>
+                <separator/>
+                <filter string="Unread Messages" name="message_needaction" domain="[('message_needaction','=',True)]"/>
+                <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Project" name="project" context="{'group_by':'project_id'}"/>
+                    <filter string="Task" context="{'group_by':'name'}"/>
+                    <filter string="Assigned to" name="User" context="{'group_by':'user_id'}"/>
+                    <filter string="Stage" name="Stage" context="{'group_by':'stage_id'}"/>
+                    <filter string="Company" context="{'group_by':'company_id'}" groups="base.group_multi_company"/>
+                    <separator/>
+                    <filter string="Last Message" name="group_message_last_post" context="{'group_by':'message_last_post:week'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+
 
     <record id="open_project_comm_history" model="ir.actions.act_window">
         <field name="name">Communication History</field>
