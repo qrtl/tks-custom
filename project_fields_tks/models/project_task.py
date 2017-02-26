@@ -13,6 +13,11 @@ class ProjectTask(models.Model):
         string='Category',
         required=True
     )
+    category_code = fields.Char(
+        related='category_id.code',
+        string='Code',
+        required=True,
+    )
     category_sequence = fields.Integer(
         string='Category Sequence',
         related='category_id.sequence',

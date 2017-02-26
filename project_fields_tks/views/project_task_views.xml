@@ -8,6 +8,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='progress']" position="after">
                 <field name="category_id"/>
+                <field name="category_code" invisible="1"/>
                 <field name="category_sequence" invisible="1"/>
                 <label for="stairs"/>
                 <div>
