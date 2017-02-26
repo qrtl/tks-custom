@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="project_comm_history_form" model="ir.ui.view">
+        <field name="name">project.comm.history.form</field>
+        <field name="model">project.comm.history</field>
+        <field name="arch" type="xml">
+            <form string="Communication History">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="date"/>
+                            <field name="type"/>
+                            <field name="content"/>
+                        </group>
+                        <group>
+                            <field name="task_id"/>
+                            <field name="project_id"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="project_comm_history_tree" model="ir.ui.view">
+        <field name="name">project.comm.history.tree</field>
+        <field name="model">project.comm.history</field>
+        <field name="arch" type="xml">
+            <tree string="Communication History">
+                <field name="task_id"/>
+                <field name="project_id"/>
+                <field name="date"/>
+                <field name="type"/>
+                <field name="content"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="project_comm_history_tree2" model="ir.ui.view">
+        <field name="name">project.comm.history.tree2</field>
+        <field name="model">project.comm.history</field>
+        <field name="arch" type="xml">
+            <tree string="Communication History">
+                <field name="date"/>
+                <field name="type"/>
+                <field name="content"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="project_comm_history_search" model="ir.ui.view">
+        <field name="name">project.comm.history.search</field>
+        <field name="model">project.comm.history</field>
+        <field name="arch" type="xml">
+            <search string="Communication History">
+                <field name="task_id"/>
+                <field name="project_id"/>
+                <field name="date"/>
+                <field name="content"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="open_project_comm_history" model="ir.actions.act_window">
+        <field name="name">Communication History</field>
+        <field name="res_model">project.comm.history</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem action="open_project_comm_history"
+              id="menu_project_comm_history"
+              name="Communication History"
+              parent="project.menu_project_management"
+              sequence="15"/>
+
+</odoo>
