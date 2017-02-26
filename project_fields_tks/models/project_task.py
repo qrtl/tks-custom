@@ -16,7 +16,7 @@ class ProjectTask(models.Model):
     category_code = fields.Char(
         related='category_id.code',
         string='Code',
-        required=True,
+        store=True,
     )
     category_sequence = fields.Integer(
         string='Category Sequence',
@@ -53,10 +53,10 @@ class ProjectTask(models.Model):
     @api.multi
     @api.depends('project_id.stairs', 'project_id.weight_stairs',
                  'project_id.handrail', 'project_id.weight_handrail',
-                 'category_id')
+                 'category_code')
     def _get_stairs_handrail(self):
         for task in self:
-            if task.category_id and task.category_id.code == 'quotation':
+            if task.category_code == 'quotation':
                 stairs = task.project_id.stairs
                 weight_stairs = task.project_id.weight_stairs
                 handrail = task.project_id.handrail

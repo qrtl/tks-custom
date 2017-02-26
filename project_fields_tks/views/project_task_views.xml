@@ -10,8 +10,8 @@
                 <field name="category_id"/>
                 <field name="category_code" invisible="1"/>
                 <field name="category_sequence" invisible="1"/>
-                <label for="stairs"/>
-                <div>
+                <label for="stairs" attrs="{'invisible':[('category_code','!=','quotation')]}"/>
+                <div attrs="{'invisible':[('category_code','!=','quotation')]}">
                     <div class="o_row mr16">
                         <field name="stairs"/>
                         <span class="oe_form_field">sets&#160;</span>
@@ -19,8 +19,8 @@
                         <span attrs="{'invisible':[('stairs','=',0)]}">kg</span>
                     </div>
                 </div>
-                <label for="handrail"/>
-                <div>
+                <label for="handrail" attrs="{'invisible':[('category_code','!=','quotation')]}"/>
+                <div attrs="{'invisible':[('category_code','!=','quotation')]}">
                     <div class="o_row mr16">
                         <field name="handrail"/>
                         <span class="oe_form_field">meters&#160;</span>
