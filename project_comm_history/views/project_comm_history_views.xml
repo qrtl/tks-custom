@@ -109,9 +109,6 @@
         </field>
     </record>
 
-
-
-
     <record id="open_project_comm_history" model="ir.actions.act_window">
         <field name="name">Communication History</field>
         <field name="res_model">project.comm.history</field>
