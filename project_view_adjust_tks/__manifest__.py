@@ -25,6 +25,7 @@
     ],
     "data": [
         'views/project_task_views.xml',
+        'views/project_project_views.xml',
     ],
     "demo": [
     ],
