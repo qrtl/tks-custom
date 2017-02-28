@@ -22,6 +22,7 @@ class ProjectTask(models.Model):
         string='Category Sequence',
         related='category_id.sequence',
         store=True,
+        index=True,
         readonly=True,
     )
     date_startdate = fields.Date(
