@@ -24,6 +24,10 @@ class ProjectTask(models.Model):
         store=True,
         readonly=True,
     )
+    date_startdate = fields.Date(
+        string='Start Date',
+        copy=False
+    )
     stairs = fields.Integer(
         compute='_get_stairs_handrail',
         store=True,
