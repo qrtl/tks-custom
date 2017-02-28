@@ -16,6 +16,7 @@
                         <field name="date_deadline"/>
                     </div>
                 </div>
+                <field name="days_project_due"/>
             </xpath>
         </field>
     </record>
