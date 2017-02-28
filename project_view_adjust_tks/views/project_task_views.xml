@@ -96,6 +96,7 @@
         <field name="view_id" ref="view_task_kanban_progress"/>
         <field name="context">{
             'group_by': 'project_id',
+            'kanban_sort': True,
         }</field>
         <field name="search_view_id" ref="project.view_task_search_form"/>
     </record>
