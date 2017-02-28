@@ -22,6 +22,7 @@
     "depends": [
         "project_fields_tks",
         "project_task_analytic",
+        "project_date_update",
         "sale_project_create",
     ],
     "data": [
