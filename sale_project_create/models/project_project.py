@@ -26,9 +26,9 @@ class Project(models.Model):
     @api.depends('so_id.order_line.project_id',
                  'so_id.order_line.price_subtotal')
     def _compute_sales_amt(self):
-        self.ensure_one()
-        amt = 0.0
-        for line in self.so_id.order_line:
-            if line.project_id == self:
-                amt += line.price_subtotal
-        self.sales_amt = amt
+        for project in self:
+            amt = 0.0
+            for line in project.so_id.order_line:
+                if line.project_id == project:
+                    amt += line.price_subtotal
+            project.sales_amt = amt
