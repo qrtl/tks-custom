@@ -48,3 +48,8 @@ class SaleLayoutCategoryDesc(models.Model):
         else:
             self.name = False
         return
+
+    @api.onchange('hide_price')
+    def onchange_hide_price(self):
+        if self.hide_price:
+            self.subtotal = True
