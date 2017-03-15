@@ -78,7 +78,7 @@
                         <p style="page-break-before:always;"> </p>
                     </t>
                 </t>
-                <div class="row" name="total">
+                <div class="row" name="total" style="page-break-inside:avoid;">
                     <div class="col-xs-4 pull-right">
                         <table class="table table-condensed">
                             <tr class="border-black">
