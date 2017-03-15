@@ -8,6 +8,7 @@
             <tree string="Category Description" editable="bottom">
                 <field name="layout_category_id" string="Section"/>
                 <field name="name"/>
+                <field name="hide_price"/>
                 <field name="subtotal"/>
                 <field name="pagebreak"/>
             </tree>

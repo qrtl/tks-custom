@@ -26,7 +26,10 @@ class SaleLayoutCategoryDesc(models.Model):
         'Add Subtotal',
     )
     pagebreak = fields.Boolean(
-        'Add Pagebreak'
+        'Add Pagebreak',
+    )
+    hide_price = fields.Boolean(
+        'Hide Price',
     )
 
     _sql_constraints = [
@@ -45,3 +48,8 @@ class SaleLayoutCategoryDesc(models.Model):
         else:
             self.name = False
         return
+
+    @api.onchange('hide_price')
+    def onchange_hide_price(self):
+        if self.hide_price:
+            self.subtotal = True
