@@ -35,11 +35,11 @@ class SaleOrder(models.Model):
                 category_desc = self.category_desc_ids.search(
                     [('sale_order_id', '=', self.id),
                      ('layout_category_id', '=', category.id)]
-                )[0]
+                )
                 if category_desc:
-                    description = category_desc.name
-                    subtotal = category_desc.subtotal
-                    pagebreak = category_desc.pagebreak
+                    description = category_desc[0].name
+                    subtotal = category_desc[0].subtotal
+                    pagebreak = category_desc[0].pagebreak
 
             # If last added category induced a pagebreak, this one will be on a new page
             if report_pages[-1] and report_pages[-1][-1]['pagebreak']:
