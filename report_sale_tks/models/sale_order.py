@@ -28,7 +28,9 @@ class SaleOrder(models.Model):
         for category, lines in groupby(self.order_line, lambda l: l.layout_category_id):
 
             # get description and subtotal from SO category descs [OSCG]
-            description, subtotal = '', False
+            description = ''
+            subtotal = False
+            pagebreak = False
             if category:
                 category_desc = self.category_desc_ids.search(
                     [('sale_order_id', '=', self.id),
@@ -37,6 +39,7 @@ class SaleOrder(models.Model):
                 if category_desc:
                     description = category_desc.name
                     subtotal = category_desc.subtotal
+                    pagebreak = category_desc.pagebreak
 
             # If last added category induced a pagebreak, this one will be on a new page
             if report_pages[-1] and report_pages[-1][-1]['pagebreak']:
@@ -47,7 +50,8 @@ class SaleOrder(models.Model):
                 'description': description, # added [OSCG]
                 # 'subtotal': category and category.subtotal, # deleted [OSCG]
                 'subtotal': subtotal,  # added [OSCG]
-                'pagebreak': category and category.pagebreak,
+                # 'pagebreak': category and category.pagebreak, # del [OSCG]
+                'pagebreak': pagebreak,
                 'lines': list(lines)
             })
 

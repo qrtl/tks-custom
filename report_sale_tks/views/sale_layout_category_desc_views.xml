@@ -9,6 +9,7 @@
                 <field name="layout_category_id" string="Section"/>
                 <field name="name"/>
                 <field name="subtotal"/>
+                <field name="pagebreak"/>
             </tree>
         </field>
     </record>
