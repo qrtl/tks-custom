@@ -25,10 +25,7 @@
                                 <t t-if="layout_category_size > 0 or page_size > 1" groups="sale.group_sale_layout">
                                     <tr class="active">
                                         <td colspan="7" style="font-weight: bold; border-bottom: 1px solid black;">
-                                            <!-- is there a better way than this??? -->
-                                            <t t-foreach="layout_category['lines'][0]" t-as="l">
-                                                <t t-esc="l['category_desc']"/>
-                                            </t>
+                                            <t t-esc="layout_category['description']"/>
                                         </td>
                                     </tr>
                                 </t>
