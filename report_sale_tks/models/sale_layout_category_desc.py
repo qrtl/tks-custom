@@ -22,6 +22,12 @@ class SaleLayoutCategoryDesc(models.Model):
     name = fields.Char(
         string='Description',
     )
+    subtotal = fields.Boolean(
+        'Add Subtotal',
+    )
+    pagebreak = fields.Boolean(
+        'Add Pagebreak'
+    )
 
     _sql_constraints = [
         ('layout_category_uniq',
