@@ -29,6 +29,7 @@ class SaleOrder(models.Model):
 
             # get description and subtotal from SO category descs [OSCG]
             description = ''
+            hide_price = False
             subtotal = False
             pagebreak = False
             if category:
@@ -38,6 +39,7 @@ class SaleOrder(models.Model):
                 )
                 if category_desc:
                     description = category_desc[0].name
+                    hide_price = category_desc[0].hide_price
                     subtotal = category_desc[0].subtotal
                     pagebreak = category_desc[0].pagebreak
 
@@ -48,6 +50,7 @@ class SaleOrder(models.Model):
             report_pages[-1].append({
                 'name': category and category.name or 'Uncategorized',
                 'description': description, # added [OSCG]
+                'hide_price': hide_price,
                 # 'subtotal': category and category.subtotal, # deleted [OSCG]
                 'subtotal': subtotal,  # added [OSCG]
                 # 'pagebreak': category and category.pagebreak, # del [OSCG]

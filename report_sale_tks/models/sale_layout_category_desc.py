@@ -26,7 +26,10 @@ class SaleLayoutCategoryDesc(models.Model):
         'Add Subtotal',
     )
     pagebreak = fields.Boolean(
-        'Add Pagebreak'
+        'Add Pagebreak',
+    )
+    hide_price = fields.Boolean(
+        'Hide Price',
     )
 
     _sql_constraints = [
