@@ -30,6 +30,8 @@ class SaleLayoutCategoryDesc(models.Model):
     )
     hide_price = fields.Boolean(
         'Hide Price',
+        help='Hide price in printed document for lines with Material Subtotal'
+             'selection',
     )
 
     _sql_constraints = [

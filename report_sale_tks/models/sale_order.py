@@ -43,19 +43,27 @@ class SaleOrder(models.Model):
                     subtotal = category_desc[0].subtotal
                     pagebreak = category_desc[0].pagebreak
 
+            l_lines = list(lines)
+            grouped_lines = []
+            for matl_subtotal, inner_lines in groupby(
+                    l_lines, lambda l: l.matl_subtotal):
+                grouped_lines.append({
+                    'matl_subtotal': matl_subtotal,
+                    'inner_lines': list(inner_lines),
+                })
+
             # If last added category induced a pagebreak, this one will be on a new page
             if report_pages[-1] and report_pages[-1][-1]['pagebreak']:
                 report_pages.append([])
             # Append category to current report page
             report_pages[-1].append({
                 'name': category and category.name or 'Uncategorized',
-                'description': description, # added [OSCG]
+                'description': description,
                 'hide_price': hide_price,
-                # 'subtotal': category and category.subtotal, # deleted [OSCG]
-                'subtotal': subtotal,  # added [OSCG]
-                # 'pagebreak': category and category.pagebreak, # del [OSCG]
+                'subtotal': subtotal,
                 'pagebreak': pagebreak,
-                'lines': list(lines)
+                'lines': l_lines,
+                'grouped_lines': grouped_lines,
             })
 
         return report_pages
