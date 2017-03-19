@@ -12,3 +12,5 @@ class SaleOrderLine(models.Model):
     matl_subtotal = fields.Boolean(
         'Material Subtotal',
     )
+    remark = fields.Text(
+    )

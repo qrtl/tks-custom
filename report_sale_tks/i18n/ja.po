@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-08 07:57+0000\n"
-"PO-Revision-Date: 2017-02-08 07:57+0000\n"
+"POT-Creation-Date: 2017-03-19 11:06+0000\n"
+"PO-Revision-Date: 2017-03-19 11:06+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,23 +17,33 @@ msgstr ""
 
 #. module: report_sale_tks
 #: model:ir.ui.view,arch_db:report_sale_tks.report_salequotation_document
+msgid "<span>Material Subtotal: </span>"
+msgstr "<span>鋼材小計: </span>"
+
+#. module: report_sale_tks
+#: model:ir.ui.view,arch_db:report_sale_tks.common_header_layout
+msgid "<span>Please find our quotation details as follows.<br/>We are looking forward to doing business with you.</span>"
+msgstr "<span>下記の通り、御見積申し上げます。<br/>何卒ご用命くださいますようお願い致します。 </span>"
+
+#. module: report_sale_tks
+#: model:ir.ui.view,arch_db:report_sale_tks.report_salequotation_document
 msgid "<strong>Subtotal: </strong>"
 msgstr "<strong>小計: </strong>"
 
 #. module: report_sale_tks
 #: model:ir.ui.view,arch_db:report_sale_tks.report_salequotation_document
-msgid "<strong>Tax Amount</strong>"
+msgid "<strong>Total Amount</strong>"
 msgstr "<strong>税額</strong>"
 
 #. module: report_sale_tks
-#: model:ir.ui.view,arch_db:report_sale_tks.report_salequotation_document
-msgid "<strong>Total Amount</strong>"
-msgstr "<strong>合計金額</strong>"
+#: model:ir.model.fields,field_description:report_sale_tks.field_sale_layout_category_desc_pagebreak
+msgid "Add Pagebreak"
+msgstr "改ページ"
 
 #. module: report_sale_tks
-#: model:ir.ui.view,arch_db:report_sale_tks.report_salequotation_document
-msgid "<strong>Total without Taxes</strong>"
-msgstr "<strong>本体合計</strong>"
+#: model:ir.model.fields,field_description:report_sale_tks.field_sale_layout_category_desc_subtotal
+msgid "Add Subtotal"
+msgstr "小計"
 
 #. module: report_sale_tks
 #: model:ir.ui.view,arch_db:report_sale_tks.report_salequotation_document
@@ -43,7 +53,7 @@ msgstr "金額"
 #. module: report_sale_tks
 #: model:ir.ui.view,arch_db:report_sale_tks.view_layout_category_desc_tree
 msgid "Category Description"
-msgstr "カテゴリ説明"
+msgstr "セクション詳細"
 
 #. module: report_sale_tks
 #: model:ir.model.fields,field_description:report_sale_tks.field_sale_layout_category_desc_create_uid
@@ -71,9 +81,34 @@ msgid "Display Name"
 msgstr "表示名"
 
 #. module: report_sale_tks
+#: model:ir.ui.view,arch_db:report_sale_tks.common_header_layout
+msgid "Effective Until:"
+msgstr "有効期限:"
+
+#. module: report_sale_tks
+#: model:ir.ui.view,arch_db:report_sale_tks.common_header_layout
+msgid "Expected Date:"
+msgstr "受渡期日:"
+
+#. module: report_sale_tks
+#: model:ir.model.fields,field_description:report_sale_tks.field_sale_layout_category_desc_hide_price
+msgid "Hide Price"
+msgstr "価格非表示"
+
+#. module: report_sale_tks
+#: model:ir.model.fields,help:report_sale_tks.field_sale_layout_category_desc_hide_price
+msgid "Hide price in printed document for lines with Material Subtotalselection"
+msgstr "見積書印刷時に、鋼材小計対象明細の価格を非表示にします。"
+
+#. module: report_sale_tks
 #: model:ir.model.fields,field_description:report_sale_tks.field_sale_layout_category_desc_id
 msgid "ID"
 msgstr "ID"
+
+#. module: report_sale_tks
+#: model:ir.ui.view,arch_db:report_sale_tks.common_header_layout
+msgid "Issue Date:"
+msgstr "発行日:"
 
 #. module: report_sale_tks
 #: model:ir.ui.view,arch_db:report_sale_tks.report_salequotation_document
@@ -101,14 +136,24 @@ msgid "Layout Category"
 msgstr "レイアウトカテゴリ"
 
 #. module: report_sale_tks
+#: model:ir.model.fields,field_description:report_sale_tks.field_sale_order_line_matl_subtotal
+msgid "Material Subtotal"
+msgstr "鋼材小計"
+
+#. module: report_sale_tks
 #: sql_constraint:sale.layout_category.desc:0
 msgid "Multiple entries of a section in an order is not allowed."
 msgstr "1オーダ同一セクションは複数もてません。"
 
 #. module: report_sale_tks
+#: model:ir.ui.view,arch_db:report_sale_tks.external_layout_tks
+msgid "No.:"
+msgstr "No.:"
+
+#. module: report_sale_tks
 #: model:ir.ui.view,arch_db:report_sale_tks.report_salequotation_document
 msgid "Price"
-msgstr "金額"
+msgstr "価格"
 
 #. module: report_sale_tks
 #: model:ir.ui.view,arch_db:report_sale_tks.report_salequotation_document
@@ -116,9 +161,25 @@ msgid "Quantity"
 msgstr "数量"
 
 #. module: report_sale_tks
+#: model:ir.ui.view,arch_db:report_sale_tks.external_layout_tks
+msgid "Quotation"
+msgstr "御 見 積 書"
+
+#. module: report_sale_tks
 #: model:ir.actions.report.xml,name:report_sale_tks.report_sale_quotation
 msgid "Quotation (TKS)"
 msgstr "見積書 (TKS)"
+
+#. module: report_sale_tks
+#: model:ir.ui.view,arch_db:report_sale_tks.common_header_layout
+msgid "Quotation Amount:"
+msgstr "合計金額:"
+
+#. module: report_sale_tks
+#: model:ir.model.fields,field_description:report_sale_tks.field_sale_order_line_remark
+#: model:ir.ui.view,arch_db:report_sale_tks.report_salequotation_document
+msgid "Remark"
+msgstr "備考"
 
 #. module: report_sale_tks
 #: model:ir.model,name:report_sale_tks.model_sale_category_desc
@@ -144,14 +205,18 @@ msgstr "セクション"
 
 #. module: report_sale_tks
 #: model:ir.model.fields,field_description:report_sale_tks.field_sale_order_category_desc_ids
-#: model:ir.model.fields,field_description:report_sale_tks.field_sale_order_line_category_desc
 msgid "Section Description"
-msgstr "セクション説明"
+msgstr "セクション詳細"
 
 #. module: report_sale_tks
-#: model:ir.ui.view,arch_db:report_sale_tks.report_salequotation_document
-msgid "Taxes"
-msgstr "税"
+#: model:ir.ui.view,arch_db:report_sale_tks.common_header_layout
+msgid "Title:"
+msgstr "工事名:"
+
+#. module: report_sale_tks
+#: model:ir.ui.view,arch_db:report_sale_tks.common_header_layout
+msgid "Transaction Method:"
+msgstr "取引方法:"
 
 #. module: report_sale_tks
 #: model:ir.ui.view,arch_db:report_sale_tks.report_salequotation_document
