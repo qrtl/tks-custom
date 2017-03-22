@@ -33,7 +33,7 @@ msgstr "<strong>小計: </strong>"
 #. module: report_sale_tks
 #: model:ir.ui.view,arch_db:report_sale_tks.report_salequotation_document
 msgid "<strong>Total Amount</strong>"
-msgstr "<strong>税額</strong>"
+msgstr "<strong>合計金額</strong>"
 
 #. module: report_sale_tks
 #: model:ir.model.fields,field_description:report_sale_tks.field_sale_layout_category_desc_pagebreak
