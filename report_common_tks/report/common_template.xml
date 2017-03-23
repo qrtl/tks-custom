@@ -21,45 +21,55 @@
                         </tr>
                     </table>
                 </td>
-                <td width="100"></td>
-                <td width="300">
+                <td width="50">
+                </td>
+                <td width="350">
                     <!-- placeholder for document date -->
                     <table name="doc_date">
                     </table>
                     <table>
-                        <div class="background-image" style="position:absolute; opacity:0.6; right:100px; padding:0px; background-repeat:no-repeat;">
+                        <div class="background-image" style="position:absolute; opacity:0.7; right:20px; top:40px; padding:0px; background-repeat:no-repeat;">
                             <img t-if="doc.company_id.chop" t-att-src="'data:image/png;base64,%s' % doc.company_id.chop" style="max-height: 120px;" align="top"/>
                         </div>
                         <tr>
                             <table>
                                 <tr height="40px"/>
                             </table>
-                            <p>
-                                <strong><span style="font-size:20px" t-field="doc.company_id.name"/></strong>
-                            </p>
-                            <p>
-                                ZIP: <span t-field="doc.company_id.zip"/><br/>
-                                <span t-field="doc.company_id.street"/><br/>
-                                <span t-field="doc.company_id.street2"/>
-                            </p>
+                            <table>
+                                <td>
+                                    <div style="position:relaive; padding:10px;">
+                                        <img t-if="doc.company_id.logo" t-att-src="'data:image/png;base64,%s' % doc.company_id.logo" style="max-height: 60px;"/>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p>
+                                        <strong><span style="font-size:20px" t-field="doc.company_id.name"/></strong>
+                                    </p>
+                                    <p>
+                                        ZIP: <span t-field="doc.company_id.zip"/><br/>
+                                        <span t-field="doc.company_id.street"/><br/>
+                                        <span t-field="doc.company_id.street2"/>
+                                    </p>
 
-                            <table style="margin-bottom:10px;">
-                                <tr>
-                                    <td style="width:100;">TEL: </td><td><span t-field="doc.company_id.phone"/></td>
-                                </tr>
-                                <tr>
-                                    <td style="width:100;">FAX: </td><td><span t-field="doc.company_id.fax"/></td>
-                                </tr>
+                                    <table style="margin-bottom:10px;">
+                                        <tr>
+                                            <td style="width:70;">TEL: </td><td><span t-field="doc.company_id.phone"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width:70;">FAX: </td><td><span t-field="doc.company_id.fax"/></td>
+                                        </tr>
+                                    </table>
+                                    <t t-if="type == 'quotation'">
+                                        <table class="table table-bordered">
+                                            <tr height="70">
+                                                <td/>
+                                                <td/>
+                                                <td/>
+                                            </tr>
+                                        </table>
+                                    </t>
+                                </td>
                             </table>
-                            <t t-if="type == 'quotation'">
-                                <table class="table table-bordered">
-                                    <tr height="70">
-                                        <td/>
-                                        <td/>
-                                        <td/>
-                                    </tr>
-                                </table>
-                            </t>
                         </tr>
                     </table>
                 </td>
