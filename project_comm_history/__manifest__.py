@@ -21,6 +21,7 @@
     },
     "depends": [
         "project_fields_tks",
+        "project_task_analytic",
     ],
     "data": [
         'security/ir.model.access.csv',
