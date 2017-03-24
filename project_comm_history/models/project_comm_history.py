@@ -18,8 +18,8 @@ class ProjectCommHistory(models.Model):
         string='Task',
         required=True,
     )
-    task_stage_state = fields.Selection(
-        related='task_id.stage_id.stage_state',
+    task_state = fields.Selection(
+        related='task_id.state',
         string='Task State',
         store=True,
         readonly=True,
