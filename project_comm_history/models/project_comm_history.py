@@ -18,6 +18,12 @@ class ProjectCommHistory(models.Model):
         string='Task',
         required=True,
     )
+    task_stage_state = fields.Selection(
+        related='task_id.stage_id.stage_state',
+        string='Task State',
+        store=True,
+        readonly=True,
+    )
     project_id = fields.Many2one(
         comodel_name='project.project',
         related='task_id.project_id',
