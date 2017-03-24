@@ -53,6 +53,12 @@ class ProjectTask(models.Model):
         readonly=True,
         string='Weight',
     )
+    project_state = fields.Selection(
+        related='project_id.state',
+        store=True,
+        readonly=True,
+        string='Project State',
+    )
 
 
     @api.multi

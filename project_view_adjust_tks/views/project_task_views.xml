@@ -89,6 +89,17 @@
         </field>
      </record>
 
+    <record id="view_task_search_form" model="ir.ui.view">
+        <field name="name">project.task.search.form</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_search_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='my_tasks']" position="after">
+                <filter string="Open Projects" name="open_projects" domain="[('project_state','not in',['done','cancel'])]"/>
+            </xpath>
+        </field>
+    </record>
+
     <record id="action_view_task_kanban" model="ir.actions.act_window">
         <field name="name">Tasks by Project</field>
         <field name="res_model">project.task</field>
@@ -97,8 +108,9 @@
         <field name="context">{
             'group_by': 'project_id',
             'kanban_sort': True,
+            'search_default_open_projects': 1,
         }</field>
-        <field name="search_view_id" ref="project.view_task_search_form"/>
+        <field name="search_view_id" ref="view_task_search_form"/>
     </record>
 
     <menuitem action="action_view_task_kanban"
