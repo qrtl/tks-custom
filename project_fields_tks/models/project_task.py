@@ -30,25 +30,25 @@ class ProjectTask(models.Model):
         copy=False
     )
     stairs = fields.Integer(
-        compute='_get_stairs_handrail',
+        related='project_id.stairs',
         store=True,
         readonly=True,
         string='Stairs',
     )
     weight_stairs = fields.Float(
-        compute='_get_stairs_handrail',
+        related='project_id.weight_stairs',
         store=True,
         readonly=True,
         string='Weight',
     )
     handrail = fields.Float(
-        compute='_get_stairs_handrail',
+        related='project_id.handrail',
         store=True,
         readonly=True,
         string='Handrail',
     )
     weight_handrail = fields.Float(
-        compute='_get_stairs_handrail',
+        related='project_id.weight_handrail',
         store=True,
         readonly=True,
         string='Weight',
@@ -59,26 +59,3 @@ class ProjectTask(models.Model):
         readonly=True,
         string='Project State',
     )
-
-
-    @api.multi
-    @api.depends('project_id.stairs', 'project_id.weight_stairs',
-                 'project_id.handrail', 'project_id.weight_handrail',
-                 'category_code')
-    def _get_stairs_handrail(self):
-        for task in self:
-            if task.category_code == 'quotation':
-                stairs = task.project_id.stairs
-                weight_stairs = task.project_id.weight_stairs
-                handrail = task.project_id.handrail
-                weight_handrail = task.project_id.weight_handrail
-            else:
-                stairs = 0
-                weight_stairs = 0.0
-                handrail = 0.0
-                weight_handrail = 0.0
-            task.stairs = stairs
-            task.weight_stairs = weight_stairs
-            task.handrail = handrail
-            task.weight_handrail = weight_handrail
-        return
