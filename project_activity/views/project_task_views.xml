@@ -8,9 +8,9 @@
         <field name="arch" type="xml">
             <xpath expr="//notebook[1]" position="before">
                 <group>
-                    <field name="comm_history_ids"
-                           attrs="{'invisible':[('category_code','!=','layout')]}"
-                           context="{'tree_view_ref':'project_comm_history.project_comm_history_tree2','default_task_id':active_id}"
+                    <field name="activity_ids"
+                           nolabel="1"
+                           context="{'tree_view_ref':'project_activity.project_activity_tree2','default_task_id':active_id}"
                     />
                 </group>
             </xpath>
