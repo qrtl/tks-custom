@@ -95,12 +95,27 @@
         </field>
     </record>
 
+    <record id="view_project_activity_pivot" model="ir.ui.view">
+        <field name="name">project.activity.pivot</field>
+        <field name="model">project.activity</field>
+        <field name="arch" type="xml">
+            <pivot string="Activities">
+                <field name="date" type="col"/>
+                <field name="user_id" type="row"/>
+                <field name="plan_stairs" type="measure"/>
+                <field name="actual_stairs" type="measure"/>
+                <field name="plan_output_amt" type="measure"/>
+                <field name="actual_output_amt" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
     <record id="open_project_activity" model="ir.actions.act_window">
         <field name="name">Project Activities</field>
         <field name="res_model">project.activity</field>
         <field name="type">ir.actions.act_window</field>
         <field name="view_type">form</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,pivot,form</field>
         <field name="context">{'search_default_open_tasks': 1}</field>
     </record>
 
