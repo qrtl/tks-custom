@@ -9,16 +9,16 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="date"/>
+                            <field name="date" attrs="{'readonly': [('actual_stairs', '&gt;', 0)]}"/>
                             <field name="note"/>
                         </group>
                         <group>
-                            <field name="project_id"/>
-                            <field name="task_id" domain="[('project_id','=',project_id)]"/>
-                            <field name="user_id"/>
+                            <field name="project_id" attrs="{'readonly': [('actual_stairs', '&gt;', 0)]}"/>
+                            <field name="task_id" domain="[('project_id','=',project_id)]" attrs="{'readonly': [('actual_stairs', '&gt;', 0)]}"/>
+                            <field name="user_id" attrs="{'readonly': [('actual_stairs', '&gt;', 0)]}"/>
                         </group>
                         <group>
-                            <field name="plan_stairs"/>
+                            <field name="plan_stairs" attrs="{'readonly': [('actual_stairs', '&gt;', 0)]}"/>
                             <field name="plan_weight_stairs"/>
                             <field name="plan_output_amt"/>
                         </group>
@@ -38,12 +38,12 @@
         <field name="model">project.activity</field>
         <field name="arch" type="xml">
             <tree string="Activities" editable="top">
-                <field name="project_id"/>
-                <field name="task_id" domain="[('project_id','=',project_id)]"/>
+                <field name="project_id" attrs="{'readonly': [('actual_stairs', '&gt;', 0)]}"/>
+                <field name="task_id" domain="[('project_id','=',project_id)]" attrs="{'readonly': [('actual_stairs', '&gt;', 0)]}"/>
                 <field name="task_state"/>
-                <field name="date"/>
-                <field name="user_id"/>
-                <field name="plan_stairs"/>
+                <field name="date" attrs="{'readonly': [('actual_stairs', '&gt;', 0)]}"/>
+                <field name="user_id" attrs="{'readonly': [('actual_stairs', '&gt;', 0)]}"/>
+                <field name="plan_stairs" attrs="{'readonly': [('actual_stairs', '&gt;', 0)]}"/>
                 <field name="plan_weight_stairs"/>
                 <field name="plan_output_amt"/>
                 <field name="actual_stairs"/>
@@ -59,9 +59,9 @@
         <field name="model">project.activity</field>
         <field name="arch" type="xml">
             <tree string="Activities" editable="top">
-                <field name="date"/>
-                <field name="user_id"/>
-                <field name="plan_stairs"/>
+                <field name="date" attrs="{'readonly': [('actual_stairs', '&gt;', 0)]}"/>
+                <field name="user_id" attrs="{'readonly': [('actual_stairs', '&gt;', 0)]}"/>
+                <field name="plan_stairs" attrs="{'readonly': [('actual_stairs', '&gt;', 0)]}"/>
                 <field name="plan_weight_stairs"/>
                 <field name="plan_output_amt"/>
                 <field name="actual_stairs"/>
