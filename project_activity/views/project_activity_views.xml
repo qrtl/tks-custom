@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="project_activity_tree" model="ir.ui.view">
+        <field name="name">project.activity.tree</field>
+        <field name="model">project.activity</field>
+        <field name="arch" type="xml">
+            <tree string="Activities" editable="top">
+                <field name="project_id" domain="[('state','!=','done')]" attrs="{'readonly': [('actual_stairs', '&gt;', 0)]}" options="{'no_create': True}"/>
+                <field name="task_id" domain="[('project_id','=',project_id)]" attrs="{'readonly': [('actual_stairs', '&gt;', 0)]}" options="{'no_create': True}"/>
+                <field name="task_state"/>
+                <field name="date" attrs="{'readonly': [('actual_stairs', '&gt;', 0)]}"/>
+                <field name="user_id" attrs="{'readonly': [('actual_stairs', '&gt;', 0)]}"/>
+                <field name="plan_stairs" attrs="{'readonly': [('actual_stairs', '&gt;', 0)]}"/>
+                <field name="plan_weight_stairs"/>
+                <field name="plan_output_amt"/>
+                <field name="actual_stairs"/>
+                <field name="actual_weight_stairs"/>
+                <field name="actual_output_amt"/>
+                <field name="note"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="project_activity_tree2" model="ir.ui.view">
+        <field name="name">project.activity.tree2</field>
+        <field name="model">project.activity</field>
+        <field name="arch" type="xml">
+            <tree string="Activities" editable="top">
+                <field name="date" attrs="{'readonly': [('actual_stairs', '&gt;', 0)]}"/>
+                <field name="user_id" attrs="{'readonly': [('actual_stairs', '&gt;', 0)]}"/>
+                <field name="plan_stairs" attrs="{'readonly': [('actual_stairs', '&gt;', 0)]}"/>
+                <field name="plan_weight_stairs"/>
+                <field name="plan_output_amt"/>
+                <field name="actual_stairs"/>
+                <field name="actual_weight_stairs"/>
+                <field name="actual_output_amt"/>
+                <field name="note"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_project_activity_pivot" model="ir.ui.view">
+        <field name="name">project.activity.pivot</field>
+        <field name="model">project.activity</field>
+        <field name="arch" type="xml">
+            <pivot string="Activities">
+                <field name="date" type="col"/>
+                <field name="user_id" type="row"/>
+                <field name="plan_stairs" type="measure"/>
+                <field name="actual_stairs" type="measure"/>
+                <field name="plan_output_amt" type="measure"/>
+                <field name="actual_output_amt" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="view_activity_search_form" model="ir.ui.view">
+        <field name="name">project.activity.search.form</field>
+        <field name="model">project.activity</field>
+        <field name="arch" type="xml">
+           <search string="Activities">
+                <field name="project_id"/>
+                <field name="task_id"/>
+                <field name="user_id"/>
+                <filter string="My Activities" name="my_activities" domain="[('user_id','=',uid)]"/>
+                <filter string="Unassigned" name="unassigned" domain="[('user_id', '=', False)]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Project" name="project" context="{'group_by':'project_id'}"/>
+                    <filter string="Task" name="task" context="{'group_by':'task_id'}"/>
+                    <filter string="Date" name="date" context="{'group_by':'date'}"/>
+                    <filter string="Assigned to" name="user" context="{'group_by':'user_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="open_project_activity_all" model="ir.actions.act_window">
+        <field name="name">Project Activities</field>
+        <field name="res_model">project.activity</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,pivot,form</field>
+    </record>
+
+    <menuitem action="open_project_activity_all"
+              id="menu_project_activity_all"
+              name="Project Activities"
+              parent="project.menu_project_management"
+              sequence="14"/>
+
+    <record id="open_project_activity_staff" model="ir.actions.act_window">
+        <field name="name">My Project Activities</field>
+        <field name="res_model">project.activity</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_my_activities': 1}</field>
+    </record>
+
+    <menuitem action="open_project_activity_staff"
+              id="menu_project_activity_staff"
+              name="My Project Activities"
+              parent="project.menu_project_management"
+              sequence="13"/>
+
+</odoo>
