@@ -20,12 +20,12 @@
                         <group>
                             <field name="plan_stairs"/>
                             <field name="plan_weight_stairs"/>
-                            <field name="plan_budget_amt"/>
+                            <field name="plan_output_amt"/>
                         </group>
                         <group>
                             <field name="actual_stairs"/>
                             <field name="actual_weight_stairs"/>
-                            <field name="actual_budget_amt"/>
+                            <field name="actual_output_amt"/>
                         </group>
                     </group>
                 </sheet>
@@ -45,10 +45,10 @@
                 <field name="user_id"/>
                 <field name="plan_stairs"/>
                 <field name="plan_weight_stairs"/>
-                <field name="plan_budget_amt"/>
+                <field name="plan_output_amt"/>
                 <field name="actual_stairs"/>
                 <field name="actual_weight_stairs"/>
-                <field name="actual_budget_amt"/>
+                <field name="actual_output_amt"/>
                 <field name="note"/>
             </tree>
         </field>
@@ -58,15 +58,15 @@
         <field name="name">project.activity.tree2</field>
         <field name="model">project.activity</field>
         <field name="arch" type="xml">
-            <tree string="Communication History" editable="top">
+            <tree string="Activities" editable="top">
                 <field name="date"/>
                 <field name="user_id"/>
                 <field name="plan_stairs"/>
                 <field name="plan_weight_stairs"/>
-                <field name="plan_budget_amt"/>
+                <field name="plan_output_amt"/>
                 <field name="actual_stairs"/>
                 <field name="actual_weight_stairs"/>
-                <field name="actual_budget_amt"/>
+                <field name="actual_output_amt"/>
                 <field name="note"/>
             </tree>
         </field>
@@ -76,7 +76,7 @@
         <field name="name">project.activity.search</field>
         <field name="model">project.activity</field>
         <field name="arch" type="xml">
-            <search string="Communication History">
+            <search string="Activities">
                 <field name="project_id"/>
                 <field name="task_id"/>
                 <field name="date"/>
@@ -96,7 +96,7 @@
     </record>
 
     <record id="open_project_activity" model="ir.actions.act_window">
-        <field name="name">Communication History</field>
+        <field name="name">Project Activities</field>
         <field name="res_model">project.activity</field>
         <field name="type">ir.actions.act_window</field>
         <field name="view_type">form</field>

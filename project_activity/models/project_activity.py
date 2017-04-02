@@ -30,20 +30,11 @@ class ProjectActivity(models.Model):
         string='project',
         store=True,
     )
-    # type = fields.Selection(
-    #     selection=[
-    #         ('received', 'Received'),
-    #         ('sent', 'Sent')
-    #     ],
-    #     string='Type',
-    #     required=True,
-    # )
     date = fields.Date(
         required=True,
         default=fields.Date.context_today,
     )
     note = fields.Text(
-        # required=True,
     )
     user_id = fields.Many2one(
         comodel_name='res.users',
@@ -56,25 +47,53 @@ class ProjectActivity(models.Model):
     )
     plan_weight_stairs = fields.Float(
         string='Weight (Plan)',
+        compute='_update_plan_vals',
+        store=True,
+        readonly=True,
     )
-    plan_budget_amt = fields.Monetary(
-        # compute='_update_budget_amt',
-        # store=True,
-        string='Budget Amount (Plan)',
+    plan_output_amt = fields.Monetary(
+        string='Output Amount (Plan)',
+        compute='_update_plan_vals',
+        store=True,
+        readonly=True,
     )
     actual_stairs = fields.Integer(
         string='Stairs (Actual)',
     )
     actual_weight_stairs = fields.Float(
         string='Weight (Actual)',
+        compute='_update_actual_vals',
+        store=True,
+        readonly=True,
     )
-    actual_budget_amt = fields.Monetary(
-        # compute='_update_budget_amt',
-        # store=True,
-        string='Budget Amount (Plan)',
+    actual_output_amt = fields.Monetary(
+        string='Output Amount (Actual)',
+        compute='_update_actual_vals',
+        store=True,
+        readonly=True,
     )
     currency_id = fields.Many2one(
         related='task_id.currency_id',
         store=True,
         string='Currency',
-        readonly=True)
+        readonly=True,
+    )
+
+
+    @api.multi
+    @api.depends('task_id', 'plan_stairs')
+    def _update_plan_vals(self):
+        for act in self:
+            if act.task_id and act.task_id.stairs:
+                ratio = float(act.plan_stairs) / float(act.task_id.stairs)
+                act.plan_weight_stairs = act.task_id.weight_stairs * ratio
+                act.plan_output_amt = act.task_id.budget_amt * ratio
+
+    @api.multi
+    @api.depends('actual_stairs')
+    def _update_actual_vals(self):
+        for act in self:
+            if act.task_id and act.task_id.stairs:
+                ratio = float(act.actual_stairs) / float(act.task_id.stairs)
+                act.actual_weight_stairs = act.task_id.weight_stairs * ratio
+                act.actual_output_amt = act.task_id.budget_amt * ratio
