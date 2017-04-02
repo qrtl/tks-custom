@@ -13,7 +13,7 @@
                             <field name="note"/>
                         </group>
                         <group>
-                            <field name="project_id" attrs="{'readonly': [('actual_stairs', '&gt;', 0)]}"/>
+                            <field name="project_id" domain="[('state','!=','done')]" attrs="{'readonly': [('actual_stairs', '&gt;', 0)]}"/>
                             <field name="task_id" domain="[('project_id','=',project_id)]" attrs="{'readonly': [('actual_stairs', '&gt;', 0)]}"/>
                             <field name="user_id" attrs="{'readonly': [('actual_stairs', '&gt;', 0)]}"/>
                         </group>
@@ -38,8 +38,8 @@
         <field name="model">project.activity</field>
         <field name="arch" type="xml">
             <tree string="Activities" editable="top">
-                <field name="project_id" attrs="{'readonly': [('actual_stairs', '&gt;', 0)]}"/>
-                <field name="task_id" domain="[('project_id','=',project_id)]" attrs="{'readonly': [('actual_stairs', '&gt;', 0)]}"/>
+                <field name="project_id" domain="[('state','!=','done')]" attrs="{'readonly': [('actual_stairs', '&gt;', 0)]}" options="{'no_create': True}"/>
+                <field name="task_id" domain="[('project_id','=',project_id)]" attrs="{'readonly': [('actual_stairs', '&gt;', 0)]}" options="{'no_create': True}"/>
                 <field name="task_state"/>
                 <field name="date" attrs="{'readonly': [('actual_stairs', '&gt;', 0)]}"/>
                 <field name="user_id" attrs="{'readonly': [('actual_stairs', '&gt;', 0)]}"/>

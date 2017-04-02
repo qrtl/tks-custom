@@ -8,6 +8,8 @@ from openerp import fields, models, api
 class ProjectActivity(models.Model):
     _name = 'project.activity'
     _description = 'Project Activity'
+    _order = 'date desc, id desc'
+
 
     @api.model
     def _default_user(self):
