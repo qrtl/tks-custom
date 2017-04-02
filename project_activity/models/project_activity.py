@@ -83,7 +83,7 @@ class ProjectActivity(models.Model):
 
 
     @api.multi
-    @api.depends('task_id', 'plan_stairs')
+    @api.depends('task_id', 'task_id.budget_amt', 'plan_stairs')
     def _update_plan_vals(self):
         for act in self:
             if act.task_id and act.task_id.stairs:
@@ -92,7 +92,7 @@ class ProjectActivity(models.Model):
                 act.plan_output_amt = act.task_id.budget_amt * ratio
 
     @api.multi
-    @api.depends('actual_stairs')
+    @api.depends('task_id.budget_amt', 'actual_stairs')
     def _update_actual_vals(self):
         for act in self:
             if act.task_id and act.task_id.stairs:
