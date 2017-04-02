@@ -11,10 +11,6 @@ class ProjectActivity(models.Model):
     _order = 'date desc, id desc'
 
 
-    @api.model
-    def _default_user(self):
-        return self.env.context.get('user_id', self.env.user.id)
-
     task_id = fields.Many2one(
         comodel_name='project.task',
         string='Task',
@@ -41,7 +37,6 @@ class ProjectActivity(models.Model):
     user_id = fields.Many2one(
         comodel_name='res.users',
         string='User',
-        default=_default_user,
         required=True,
     )
     plan_stairs = fields.Integer(
