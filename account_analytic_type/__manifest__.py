@@ -30,7 +30,6 @@
         'views/hr_timesheet_sheet_views.xml',
         'views/project_timesheet_view.xml',
         'views/project_issue_view.xml',
-        'views/account_invoice.xml',
         'views/account_move.xml',
         'views/hr_expense.xml',
 #         'views/purchase.xml',
