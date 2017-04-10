@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
+# Copyright 2017 Rooms For (Hong Kong) Limited T/A OSCG
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-import analytic_type
-import account
-import account_invoice
-import account_move
-import hr_expense
+from . import analytic_type
+from . import account
+from . import account_invoice
+from . import account_move
+from . import hr_expense
 # import sale
 # import purchase

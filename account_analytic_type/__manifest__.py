@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-# Copyright 2016 Rooms For (Hong Kong) Limited T/A OSCG
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# Copyright 2017 Rooms For (Hong Kong) Limited T/A OSCG
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 {
-    'name': "Analytic Type Entries",
+    'name': "Analytic Type",
     'version': "10.0.1.0.0",
     'author': "Rooms For (Hong Kong) Limited T/A OSCG",
     'website': "https://www.odoo-asia.com/",
     'category': "Accounting",
-    'license': "AGPL-3",
+    'license': "LGPL-3",
     'depends': [
         'account',
         'sale',
@@ -22,7 +22,7 @@
         'hr_expense'
         ],
     'data': [
-        'data/analytic_type_demo_data.xml',
+        'data/analytic_type_data.xml',
         'security/ir.model.access.csv',
         'views/analytic_type_view.xml',
         'views/account_view.xml',
