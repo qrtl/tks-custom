@@ -5,16 +5,7 @@
 from openerp import api, fields, models
 
 
-class AccountAccount(models.Model):
-    _inherit = "account.account"
-
-    analytic_type_id = fields.Many2one(
-        'analytic.type',
-        string='Analytic Type'
-    )
-
-
-class AccountAccountLine(models.Model):
+class AccountAnalyticLine(models.Model):
     _inherit = "account.analytic.line"
 
     analytic_type_id = fields.Many2one(
@@ -25,6 +16,7 @@ class AccountAccountLine(models.Model):
         related="analytic_type_id.analytic_type",
     )
 
+
     @api.model
     def create(self, vals):
         if vals.get('general_account_id', False) and\
@@ -33,7 +25,7 @@ class AccountAccountLine(models.Model):
             account_obj = self.env['account.account']
             account = account_obj.browse(vals['general_account_id'])
             vals.update(analytic_type_id=account.analytic_type_id.id)
-        return super(AccountAccountLine, self).create(vals)
+        return super(AccountAnalyticLine, self).create(vals)
 
     @api.onchange('general_account_id')
     def _onchange_analytic_type_id(self):
