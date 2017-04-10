@@ -18,7 +18,6 @@
         'sale_stock',
         'analytic',
         'hr_timesheet',
-        'project_issue_sheet',
         'hr_expense'
         ],
     'data': [
@@ -29,7 +28,6 @@
         'views/account_analytic_line_views.xml',
         'views/hr_timesheet_sheet_views.xml',
         'views/project_timesheet_view.xml',
-        'views/project_issue_view.xml',
         'views/hr_expense.xml',
 #         'views/purchase.xml',
 #         'views/sale_view.xml',
