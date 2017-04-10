@@ -25,6 +25,11 @@ class AccountAnalyticLine(models.Model):
             account_obj = self.env['account.account']
             account = account_obj.browse(vals['general_account_id'])
             vals.update(analytic_type_id=account.analytic_type_id.id)
+        # assumption: project_id is included only for timesheet entries
+        if vals.get('project_id', False):
+            analytic_type_id = self.env['analytic.type'].search([
+                ('analytic_type', '=', 'labour')])[0].id
+            vals.update(analytic_type_id=analytic_type_id)
         return super(AccountAnalyticLine, self).create(vals)
 
     @api.onchange('general_account_id')
