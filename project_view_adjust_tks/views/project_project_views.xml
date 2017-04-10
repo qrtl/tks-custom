@@ -90,6 +90,7 @@
                 <field name="handrail"/>
                 <field name="cad_partner_id"/>
                 <field name="budget_amt"/>
+                <field name="currency_id" invisible="1"/>
                 <field name="quotation_done"/>
                 <field name="layout_done"/>
                 <field name="invoice_done"/>
