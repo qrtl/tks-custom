@@ -69,8 +69,6 @@ class ProjectTask(models.Model):
         stage_done = stage_obj.search([('stage_state', '=', 'done')])[0]
         for task in self:
             task.stage_id = stage_done
-            if task.project_id.analytic_account_id:
-                task.create_analytic_line()
 
     @api.multi
     def action_task_undo(self):
