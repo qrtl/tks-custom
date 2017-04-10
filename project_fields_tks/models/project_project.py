@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2016 Rooms For (Hong Kong) Limited T/A OSCG
+# Copyright 2016-2017 Rooms For (Hong Kong) Limited T/A OSCG
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, models, fields
@@ -9,10 +9,17 @@ class ProjectProject(models.Model):
     _inherit = 'project.project'
 
     stairs = fields.Integer(
-        'Stairs'
+        string='Stairs',
+    )
+    weight_stairs = fields.Float(
+        string='Weight',
     )
     handrail = fields.Float(
-        'Handrail'
+        string='Handrail',
+        help='Length of the handrails in meters.'
+    )
+    weight_handrail = fields.Float(
+        string='Weight',
     )
     cad_partner_id = fields.Many2one(
         "res.partner",

@@ -5,9 +5,9 @@
 from odoo import fields, models
 
 
-class Project(models.Model):
-    _inherit = 'project.project'
+class ProductTemplate(models.Model):
+    _inherit = 'product.template'
 
-    is_template = fields.Boolean(
-        string="Template Project",
+    matl_subtotal = fields.Boolean(
+        'Material Subtotal',
     )

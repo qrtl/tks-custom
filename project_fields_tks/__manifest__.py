@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2016 Rooms For (Hong Kong) Limited T/A OSCG
+# Copyright 2016-2017 Rooms For (Hong Kong) Limited T/A OSCG
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     "name": "Project Fields",
@@ -26,7 +26,6 @@
     "data": [
         'security/ir.model.access.csv',
         'views/res_partner_views.xml',
-        'views/project_project_views.xml',
         'views/project_task_category_views.xml',
         'views/project_task_views.xml',
         'data/project_task_category_data.xml',
@@ -36,3 +35,4 @@
     "qweb": [
     ]
 }
+

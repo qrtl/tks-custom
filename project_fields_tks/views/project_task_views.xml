@@ -8,7 +8,22 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='progress']" position="after">
                 <field name="category_id"/>
-                <field name="category_sequence"/>
+                <field name="category_code" invisible="1"/>
+                <field name="category_sequence" invisible="1"/>
+                <label for="stairs"/>
+                <div class="o_row mr16">
+                    <field name="stairs"/>
+                    <span class="oe_form_field">sets&#160;</span>
+                    <field name="weight_stairs" attrs="{'invisible':[('stairs','=',0)]}"/>
+                    <span attrs="{'invisible':[('stairs','=',0)]}">kg</span>
+                </div>
+                <label for="handrail"/>
+                <div class="o_row mr16">
+                    <field name="handrail"/>
+                    <span class="oe_form_field">meters&#160;</span>
+                    <field name="weight_handrail" attrs="{'invisible':[('handrail','=',0)]}"/>
+                    <span attrs="{'invisible':[('handrail','=',0)]}">kg</span>
+                </div>
             </xpath>
         </field>
     </record>

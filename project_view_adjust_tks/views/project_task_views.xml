@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <!-- adjust form view -->
+
+    <record id="view_task_form2" model="ir.ui.view">
+        <field name="name">view.task.form2</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='date_deadline']" position="replace">
+                <label string="Period"/>
+                <div>
+                    <div class="o_row mr16">
+                        <field name="date_startdate"/>-
+                        <field name="date_deadline"/>
+                    </div>
+                </div>
+                <field name="days_project_due"/>
+            </xpath>
+        </field>
+    </record>
+
+
+    <!-- add a kanban view with new menu item -->
+
     <record model="ir.ui.view" id="view_task_kanban_progress">
         <field name="name">project.task.kanban.progress</field>
         <field name="model">project.task</field>
@@ -25,6 +48,8 @@
                 <field name="legend_done"/>
                 <field name="budget_amt"/>
                 <field name="currency_id"/>
+                <field name="project_id"/>
+                <field name="category_code"/>
                 <templates>
                 <t t-name="kanban-box">
                     <div t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_card oe_kanban_global_click">
@@ -47,30 +72,35 @@
                             <div>
                                 <strong><field name="name"/></strong>
                                 <t t-if="record.budget_amt.raw_value"><field name="budget_amt" widget="monetary"/></t>
-                            </div>
-                            <div class="oe_kanban_bottom_left">
-                                <field name="priority" widget="priority"/>
-                                <t t-if="record.message_needaction_counter.raw_value">
-                                    <span class='oe_kanban_mail_new' title='Unread Messages'><i class='fa fa-comments'/><t t-raw="record.message_needaction_counter.raw_value"/></span>
-                                </t>
-                            </div>
-                            <div class="oe_kanban_bottom_right">
-                                <img t-att-src="kanban_image('res.users', 'image_small', record.user_id.raw_value)" t-att-title="record.user_id.value" width="24" height="24" class="oe_kanban_avatar pull-right"/>
-                                <div class="pull-left" groups="base.group_user">
-                                    <field name="kanban_state" widget="kanban_state_selection"/>
+                                <div attrs="{'invisible':[('category_code','!=','quotation')]}">
+                                    <field name="stairs" attrs="{'invisible':[('stairs','=',0)]}"/>
+                                    <span attrs="{'invisible':[('stairs','=',0)]}">sets</span>
+                                    <field name="weight_stairs" attrs="{'invisible':[('stairs','=',0)]}"/>
+                                    <span attrs="{'invisible':[('stairs','=',0)]}">kg</span>
+                                    <field name="handrail" attrs="{'invisible':[('handrail','=',0)]}"/>
+                                    <span class="oe_form_field" attrs="{'invisible':[('handrail','=',0)]}">meters</span>
+                                    <field name="weight_handrail" attrs="{'invisible':[('handrail','=',0)]}"/>
+                                    <span attrs="{'invisible':[('handrail','=',0)]}">kg</span>
                                 </div>
                             </div>
                         </div>
-                        <div t-if="record.displayed_image_id.value">
-                            <field name="displayed_image_id" widget="attachment_image"/>
-                        </div>
-                        <div class="oe_clear"></div>
                     </div>
                 </t>
                 </templates>
             </kanban>
         </field>
      </record>
+
+    <record id="view_task_search_form" model="ir.ui.view">
+        <field name="name">project.task.search.form</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_search_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='my_tasks']" position="after">
+                <filter string="Open Projects" name="open_projects" domain="[('project_state','not in',['done','cancel'])]"/>
+            </xpath>
+        </field>
+    </record>
 
     <record id="action_view_task_kanban" model="ir.actions.act_window">
         <field name="name">Tasks by Project</field>
@@ -79,13 +109,32 @@
         <field name="view_id" ref="view_task_kanban_progress"/>
         <field name="context">{
             'group_by': 'project_id',
+            'kanban_sort': True,
+            'search_default_open_projects': 1,
         }</field>
-        <field name="search_view_id" ref="project.view_task_search_form"/>
+        <field name="search_view_id" ref="view_task_search_form"/>
     </record>
 
     <menuitem action="action_view_task_kanban"
               id="menu_action_view_task_kanban"
               parent="project.menu_project_management"
               sequence="10"/>
+
+
+    <!-- adjust calendar view presentation -->
+
+    <record id="view_task_calendar" model="ir.ui.view">
+        <field name="name">project.task.calendar</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_calendar"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='project_id']" position="after">
+                <field name="stairs"/>
+                <field name="weight_stairs"/>
+                <field name="handrail"/>
+                <field name="weight_handrail"/>
+            </xpath>
+        </field>
+    </record>
 
 </odoo>

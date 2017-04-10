@@ -24,7 +24,6 @@
         "project_fields_tks",
     ],
     "data": [
-        'views/project_project_views.xml',
         'views/project_task_type_views.xml',
         'views/project_task_views.xml',
         'views/account_analytic_line_views.xml',

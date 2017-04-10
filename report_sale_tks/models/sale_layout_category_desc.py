@@ -22,6 +22,17 @@ class SaleLayoutCategoryDesc(models.Model):
     name = fields.Char(
         string='Description',
     )
+    subtotal = fields.Boolean(
+        'Add Subtotal',
+    )
+    pagebreak = fields.Boolean(
+        'Add Pagebreak',
+    )
+    hide_price = fields.Boolean(
+        'Hide Price',
+        help='Hide price in printed document for lines with Material Subtotal'
+             'selection',
+    )
 
     _sql_constraints = [
         ('layout_category_uniq',
@@ -39,3 +50,8 @@ class SaleLayoutCategoryDesc(models.Model):
         else:
             self.name = False
         return
+
+    @api.onchange('hide_price')
+    def onchange_hide_price(self):
+        if self.hide_price:
+            self.subtotal = True

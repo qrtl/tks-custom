@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_task_form2" model="ir.ui.view">
+        <field name="name">view.task.form2</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook[1]" position="before">
+                <group>
+                    <field name="activity_ids"
+                           nolabel="1"
+                           context="{'tree_view_ref':'project_activity.project_activity_tree2','default_task_id':active_id}"
+                    />
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

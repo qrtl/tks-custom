@@ -8,11 +8,14 @@
         <field name="arch" type="xml">
             <xpath expr="//notebook[1]" position="before">
                 <group>
-                    <field name="category_desc_ids"/>
+                    <field name="category_desc_ids" context="{'default_sale_order_id':active_id}"/>
                 </group>
             </xpath>
             <xpath expr="/form/sheet/notebook/page[1]/field[1]/tree/field[@name='layout_category_id']" position="after">
-                <field name="category_desc" invisible="1"/>
+                <field name="matl_subtotal"/>
+            </xpath>
+            <xpath expr="/form/sheet/notebook/page[1]/field[1]/tree/field[@name='name']" position="after">
+                <field name="remark"/>
             </xpath>
         </field>
     </record>
