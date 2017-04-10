@@ -7,10 +7,12 @@ from openerp import api, fields, models
 
 class AccountAnalyticLine(models.Model):
     _inherit = "account.analytic.line"
+    _order = "date desc, id desc"
 
     analytic_type_id = fields.Many2one(
         'analytic.type',
         string='Analytic Type',
+        required=True,
     )
     related_analytic_type = fields.Selection(
         related="analytic_type_id.analytic_type",
