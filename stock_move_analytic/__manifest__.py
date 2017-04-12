@@ -11,9 +11,11 @@
     'depends': [
         'sale',
         'stock',
-        'sale_line_analytic'
+        'sale_line_analytic',
+        'account_analytic_type',
     ],
     'data': [
+        'views/stock_move_views.xml',
     ],
     "application": False,
     "installable": True,
