@@ -22,6 +22,7 @@
     "depends": [
         "project",
         "project_fields_tks",
+        "account_analytic_type",
     ],
     "data": [
         'views/project_task_type_views.xml',

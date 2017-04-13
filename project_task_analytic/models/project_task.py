@@ -49,12 +49,14 @@ class ProjectTask(models.Model):
             {'name': self.name,
              'date': fields.Date.context_today(self),
              'account_id': self.project_id.analytic_account_id.id,
+             'analytic_type_id': self.env['analytic.type'].search([
+                 ('analytic_type', '=', 'ev_actual')])[0].id,
              'project_id': False,  # to not show the record in timesheet
              'task_id': self.id,
              'unit_amount': False,
              'amount': self.budget_amt,
              'partner_id': self.project_id.partner_id.id,
-             'user_id': self.user_id.id,
+             'user_id': self._context.get('uid', False),
              'product_id': False,
              'product_uom_id': False,
              'general_account_id': False,
@@ -69,8 +71,6 @@ class ProjectTask(models.Model):
         stage_done = stage_obj.search([('stage_state', '=', 'done')])[0]
         for task in self:
             task.stage_id = stage_done
-            if task.project_id.analytic_account_id:
-                task.create_analytic_line()
 
     @api.multi
     def action_task_undo(self):
