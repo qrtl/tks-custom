@@ -56,7 +56,7 @@ class ProjectTask(models.Model):
              'unit_amount': False,
              'amount': self.budget_amt,
              'partner_id': self.project_id.partner_id.id,
-             'user_id': self.user_id.id,
+             'user_id': self._context.get('uid', False),
              'product_id': False,
              'product_uom_id': False,
              'general_account_id': False,

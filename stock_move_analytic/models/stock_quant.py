@@ -34,10 +34,10 @@ class StockQuant(models.Model):
             # additional steps  # oscg
             if move.location_id.usage == 'internal' and \
                             move.location_dest_id.usage == 'customer':
-                self.create_analytic_line(move, -qty, cost)
+                self.create_analytic_line(move, qty, -cost)
             if move.location_id.usage == 'customer' and \
                             move.location_dest_id.usage == 'internal':
-                self.create_analytic_line(move, qty, cost)
+                self.create_analytic_line(move, -qty, -cost)
 
     def create_analytic_line(self, move, qty, cost):
         analytic_line_obj = self.env['account.analytic.line']
