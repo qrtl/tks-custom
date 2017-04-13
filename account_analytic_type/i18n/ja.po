@@ -1,0 +1,159 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* account_analytic_type
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-13 14:55+0000\n"
+"PO-Revision-Date: 2017-04-13 14:55+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: account_analytic_type
+#: model:ir.model,name:account_analytic_type.model_account_account
+msgid "Account"
+msgstr "勘定科目"
+
+#. module: account_analytic_type
+#: model:ir.ui.view,arch_db:account_analytic_type.view_account_analytic_line_pivot
+msgid "Analytic Entries"
+msgstr "分析エントリ"
+
+#. module: account_analytic_type
+#: model:ir.model,name:account_analytic_type.model_account_analytic_line
+msgid "Analytic Line"
+msgstr "分析行"
+
+#. module: account_analytic_type
+#: model:ir.actions.act_window,name:account_analytic_type.account_type_action
+#: model:ir.model.fields,field_description:account_analytic_type.field_account_account_analytic_type_id
+#: model:ir.model.fields,field_description:account_analytic_type.field_account_analytic_line_analytic_type_id
+#: model:ir.model.fields,field_description:account_analytic_type.field_account_analytic_line_related_analytic_type
+#: model:ir.model.fields,field_description:account_analytic_type.field_analytic_type_analytic_type
+#: model:ir.model.fields,field_description:account_analytic_type.field_hr_expense_analytic_type_id
+#: model:ir.ui.menu,name:account_analytic_type.account_type_menu
+msgid "Analytic Type"
+msgstr "分析タイプ"
+
+#. module: account_analytic_type
+#: model:ir.actions.act_window,help:account_analytic_type.account_type_action
+msgid "Click to add a new tag."
+msgstr "クリックで新しいタグを追加"
+
+#. module: account_analytic_type
+#: model:ir.model.fields,field_description:account_analytic_type.field_analytic_type_create_uid
+msgid "Created by"
+msgstr "作成者"
+
+#. module: account_analytic_type
+#: model:ir.model.fields,field_description:account_analytic_type.field_analytic_type_create_date
+msgid "Created on"
+msgstr "作成日"
+
+#. module: account_analytic_type
+#: model:ir.model.fields,field_description:account_analytic_type.field_analytic_type_display_name
+msgid "Display Name"
+msgstr "表示名"
+
+#. module: account_analytic_type
+#: selection:analytic.type,analytic_type:0
+msgid "EV (Actual)"
+msgstr "生産高 (結果)"
+
+#. module: account_analytic_type
+#: model:ir.model,name:account_analytic_type.model_hr_expense
+msgid "Expense"
+msgstr "経費"
+
+#. module: account_analytic_type
+#: model:ir.model.fields,field_description:account_analytic_type.field_analytic_type_id
+msgid "ID"
+msgstr "ID"
+
+#. module: account_analytic_type
+#: model:ir.model,name:account_analytic_type.model_account_invoice_line
+msgid "Invoice Line"
+msgstr "請求書行"
+
+#. module: account_analytic_type
+#: model:ir.model,name:account_analytic_type.model_account_move_line
+msgid "Journal Item"
+msgstr "仕訳明細"
+
+#. module: account_analytic_type
+#: selection:analytic.type,analytic_type:0
+msgid "Labour"
+msgstr "労務費"
+
+#. module: account_analytic_type
+#: model:ir.model.fields,field_description:account_analytic_type.field_analytic_type___last_update
+msgid "Last Modified on"
+msgstr "最終更新日"
+
+#. module: account_analytic_type
+#: model:ir.model.fields,field_description:account_analytic_type.field_analytic_type_write_uid
+msgid "Last Updated by"
+msgstr "最終更新者"
+
+#. module: account_analytic_type
+#: model:ir.model.fields,field_description:account_analytic_type.field_analytic_type_write_date
+msgid "Last Updated on"
+msgstr "最終更新日"
+
+#. module: account_analytic_type
+#: selection:analytic.type,analytic_type:0
+msgid "Material Costs"
+msgstr "材料費"
+
+#. module: account_analytic_type
+#: model:ir.model.fields,field_description:account_analytic_type.field_analytic_type_name
+msgid "Name"
+msgstr "名称"
+
+#. module: account_analytic_type
+#: selection:analytic.type,analytic_type:0
+msgid "Outsourcing"
+msgstr "外注費"
+
+#. module: account_analytic_type
+#: selection:analytic.type,analytic_type:0
+msgid "Overhead"
+msgstr "販管費"
+
+#. module: account_analytic_type
+#: model:ir.ui.view,arch_db:account_analytic_type.account_analytic_line_select_inherit
+msgid "Productivity Analysis"
+msgstr "生産高分析"
+
+#. module: account_analytic_type
+#: model:ir.ui.view,arch_db:account_analytic_type.account_analytic_line_select_inherit
+msgid "Project Analysis"
+msgstr "案件損益分析"
+
+#. module: account_analytic_type
+#: selection:analytic.type,analytic_type:0
+msgid "Sales"
+msgstr "売上高"
+
+#. module: account_analytic_type
+#: model:ir.model.fields,field_description:account_analytic_type.field_analytic_type_sequence
+msgid "Sequence"
+msgstr "順序"
+
+#. module: account_analytic_type
+#: model:ir.ui.view,arch_db:account_analytic_type.account_type_view_form
+msgid "Type"
+msgstr "タイプ"
+
+#. module: account_analytic_type
+#: model:ir.model,name:account_analytic_type.model_analytic_type
+msgid "analytic.type"
+msgstr "analytic.type"
+
+
