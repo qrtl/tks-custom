@@ -11,6 +11,7 @@ class AnalyticType(models.Model):
 
     name = fields.Char(
         string="Name",
+        translate=True,
         required=True
     )
     analytic_type = fields.Selection(selection=[
