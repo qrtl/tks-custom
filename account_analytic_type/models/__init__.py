@@ -6,5 +6,3 @@ from . import analytic_type
 from . import account_account
 from . import account_analytic_line
 from . import hr_expense
-# import sale
-# import purchase
