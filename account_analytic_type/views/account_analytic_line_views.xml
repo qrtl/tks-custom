@@ -22,6 +22,21 @@
             </xpath>
         </field>
     </record>
+
+    <record id="view_account_analytic_line_pivot" model="ir.ui.view">
+        <field name="name">account.analytic.line.pivot</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="account.view_account_analytic_line_pivot"/>
+        <field name="arch" type="xml">
+            <xpath expr="//pivot" position="replace">
+                <pivot string="Analytic Entries">
+                    <field name="analytic_type_id" type="row"/>
+                    <field name="date" type="col"/>
+                    <field name="amount" type="measure"/>
+                </pivot>
+            </xpath>
+        </field>
+    </record>
     
     <record id="account_analytic_line_select_inherit" model="ir.ui.view">
         <field name="name">account.analytic.line.select.inherited</field>
