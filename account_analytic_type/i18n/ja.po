@@ -155,5 +155,3 @@ msgstr "タイプ"
 #: model:ir.model,name:account_analytic_type.model_analytic_type
 msgid "analytic.type"
 msgstr "analytic.type"
-
-

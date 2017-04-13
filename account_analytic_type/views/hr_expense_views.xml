@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+
     <record id="hr_expense_tree_inherit" model="ir.ui.view">
         <field name="name">hr.expense.tree.inherited</field>
         <field name="model">hr.expense</field>
@@ -32,4 +33,5 @@
             </xpath>
         </field>
     </record>
+
 </odoo>
