@@ -17,6 +17,7 @@
                 <field name="actual_stairs"/>
                 <field name="actual_weight_stairs"/>
                 <field name="actual_output_amt"/>
+                <field name="hours"/>
                 <field name="note"/>
             </tree>
         </field>
@@ -35,6 +36,7 @@
                 <field name="actual_stairs"/>
                 <field name="actual_weight_stairs"/>
                 <field name="actual_output_amt"/>
+                <field name="hours"/>
                 <field name="note"/>
             </tree>
         </field>
