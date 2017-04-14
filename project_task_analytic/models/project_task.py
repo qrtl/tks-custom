@@ -52,7 +52,7 @@ class ProjectTask(models.Model):
              'analytic_type_id': self.env['analytic.type'].search([
                  ('analytic_type', '=', 'ev_actual')])[0].id,
              'project_id': False,  # to not show the record in timesheet
-             'task_id': self.id,
+             'task_id': False,  # to not show the record in task timesheet
              'unit_amount': False,
              'amount': self.budget_amt,
              'partner_id': self.project_id.partner_id.id,
