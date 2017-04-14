@@ -43,8 +43,8 @@ msgstr "分析タイプ"
 
 #. module: account_analytic_type
 #: model:ir.actions.act_window,help:account_analytic_type.account_type_action
-msgid "Click to add a new tag."
-msgstr "クリックで新しいタグを追加"
+msgid "Click to add a new type."
+msgstr "クリックして新しい分析タイプを追加してください。"
 
 #. module: account_analytic_type
 #: model:ir.model.fields,field_description:account_analytic_type.field_analytic_type_create_uid
