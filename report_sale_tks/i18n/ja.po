@@ -83,7 +83,7 @@ msgstr "表示名"
 #. module: report_sale_tks
 #: model:ir.ui.view,arch_db:report_sale_tks.common_header_layout
 msgid "Effective Until:"
-msgstr "有効期限:"
+msgstr "見積有効期日:"
 
 #. module: report_sale_tks
 #: model:ir.ui.view,arch_db:report_sale_tks.common_header_layout
