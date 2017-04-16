@@ -1,0 +1,191 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* project_activity
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-16 08:05+0000\n"
+"PO-Revision-Date: 2017-04-16 08:05+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: project_activity
+#: model:ir.model.fields,field_description:project_activity.field_project_task_activity_ids
+#: model:ir.ui.view,arch_db:project_activity.project_activity_tree
+#: model:ir.ui.view,arch_db:project_activity.project_activity_tree2
+#: model:ir.ui.view,arch_db:project_activity.view_activity_search_form
+#: model:ir.ui.view,arch_db:project_activity.view_project_activity_pivot
+msgid "Activities"
+msgstr "活動"
+
+#. module: project_activity
+#: model:ir.model.fields,field_description:project_activity.field_project_activity_analytic_line_id
+msgid "Analytic Line"
+msgstr "分析ライン"
+
+#. module: project_activity
+#: model:ir.ui.view,arch_db:project_activity.view_activity_search_form
+msgid "Assigned to"
+msgstr "担当者"
+
+#. module: project_activity
+#: model:ir.model.fields,field_description:project_activity.field_project_activity_create_uid
+msgid "Created by"
+msgstr "作成者"
+
+#. module: project_activity
+#: model:ir.model.fields,field_description:project_activity.field_project_activity_create_date
+msgid "Created on"
+msgstr "作成日"
+
+#. module: project_activity
+#: model:ir.model.fields,field_description:project_activity.field_project_activity_currency_id
+msgid "Currency"
+msgstr "通貨"
+
+#. module: project_activity
+#: model:ir.model.fields,field_description:project_activity.field_project_activity_date
+#: model:ir.ui.view,arch_db:project_activity.view_activity_search_form
+msgid "Date"
+msgstr "日付"
+
+#. module: project_activity
+#: model:ir.model.fields,field_description:project_activity.field_project_activity_display_name
+msgid "Display Name"
+msgstr "表示名"
+
+#. module: project_activity
+#: model:ir.ui.view,arch_db:project_activity.view_activity_search_form
+msgid "Group By"
+msgstr "グループ化"
+
+#. module: project_activity
+#: model:ir.model.fields,field_description:project_activity.field_project_activity_hours
+msgid "Hours"
+msgstr "時間"
+
+#. module: project_activity
+#: model:ir.model.fields,field_description:project_activity.field_project_activity_id
+msgid "ID"
+msgstr "ID"
+
+#. module: project_activity
+#: model:ir.model.fields,field_description:project_activity.field_project_activity___last_update
+msgid "Last Modified on"
+msgstr "最終更新日"
+
+#. module: project_activity
+#: model:ir.model.fields,field_description:project_activity.field_project_activity_write_uid
+msgid "Last Updated by"
+msgstr "最終更新者"
+
+#. module: project_activity
+#: model:ir.model.fields,field_description:project_activity.field_project_activity_write_date
+msgid "Last Updated on"
+msgstr "最終更新日"
+
+#. module: project_activity
+#: model:ir.ui.view,arch_db:project_activity.view_activity_search_form
+msgid "My Activities"
+msgstr "自分の活動"
+
+#. module: project_activity
+#: model:ir.actions.act_window,name:project_activity.open_project_activity_staff
+#: model:ir.ui.menu,name:project_activity.menu_project_activity_staff
+msgid "My Project Activities"
+msgstr "自分のプロジェクト活動"
+
+#. module: project_activity
+#: model:ir.model.fields,field_description:project_activity.field_project_activity_note
+msgid "Note"
+msgstr "ノート"
+
+#. module: project_activity
+#: model:ir.model.fields,field_description:project_activity.field_project_activity_actual_output_amt
+msgid "Output Amount (Actual)"
+msgstr "生産高 (結果)"
+
+#. module: project_activity
+#: model:ir.model.fields,field_description:project_activity.field_project_activity_plan_output_amt
+msgid "Output Amount (Plan)"
+msgstr "生産高 (予定)"
+
+#. module: project_activity
+#: model:ir.ui.view,arch_db:project_activity.view_activity_search_form
+msgid "Project"
+msgstr "プロジェクト"
+
+#. module: project_activity
+#: model:ir.actions.act_window,name:project_activity.open_project_activity_all
+#: model:ir.ui.menu,name:project_activity.menu_project_activity_all
+msgid "Project Activities"
+msgstr "プロジェクト活動"
+
+#. module: project_activity
+#: model:ir.model,name:project_activity.model_project_activity
+msgid "Project Activity"
+msgstr "プロジェクト活動"
+
+#. module: project_activity
+#: model:ir.model.fields,field_description:project_activity.field_project_activity_project_type
+msgid "Project Type"
+msgstr "プロジェクトタイプ"
+
+#. module: project_activity
+#: model:ir.model.fields,field_description:project_activity.field_project_activity_actual_qty
+msgid "Qty (Actual)"
+msgstr "数量 (結果)"
+
+#. module: project_activity
+#: model:ir.model.fields,field_description:project_activity.field_project_activity_plan_qty
+msgid "Qty (Plan)"
+msgstr "数量 (予定)"
+
+#. module: project_activity
+#: model:ir.model,name:project_activity.model_project_task
+#: model:ir.model.fields,field_description:project_activity.field_project_activity_task_id
+#: model:ir.ui.view,arch_db:project_activity.view_activity_search_form
+msgid "Task"
+msgstr "タスク"
+
+#. module: project_activity
+#: model:ir.model.fields,field_description:project_activity.field_project_activity_task_qty
+msgid "Task Qty"
+msgstr "タスク数量"
+
+#. module: project_activity
+#: model:ir.model.fields,field_description:project_activity.field_project_activity_task_state
+msgid "Task State"
+msgstr "タスクステータス"
+
+#. module: project_activity
+#: model:ir.ui.view,arch_db:project_activity.view_activity_search_form
+msgid "Unassigned"
+msgstr "未割当"
+
+#. module: project_activity
+#: model:ir.model.fields,field_description:project_activity.field_project_activity_user_id
+msgid "User"
+msgstr "ユーザ"
+
+#. module: project_activity
+#: model:ir.model.fields,field_description:project_activity.field_project_activity_actual_weight
+msgid "Weight (Actual)"
+msgstr "重量 (結果)"
+
+#. module: project_activity
+#: model:ir.model.fields,field_description:project_activity.field_project_activity_plan_weight
+msgid "Weight (Plan)"
+msgstr "重量 (予定)"
+
+#. module: project_activity
+#: model:ir.model.fields,field_description:project_activity.field_project_activity_project_id
+msgid "project"
+msgstr "プロジェクト"
+
