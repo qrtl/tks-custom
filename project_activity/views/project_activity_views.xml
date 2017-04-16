@@ -6,16 +6,17 @@
         <field name="model">project.activity</field>
         <field name="arch" type="xml">
             <tree string="Activities" editable="top">
-                <field name="project_id" domain="[('state','!=','done')]" attrs="{'readonly': [('actual_stairs', '&gt;', 0)]}" options="{'no_create': True}"/>
-                <field name="task_id" domain="[('project_id','=',project_id)]" attrs="{'readonly': [('actual_stairs', '&gt;', 0)]}" options="{'no_create': True}"/>
+                <field name="project_id" domain="[('state','!=','done')]" attrs="{'readonly': [('actual_qty', '&gt;', 0)]}" options="{'no_create': True}"/>
+                <field name="project_type"/>
+                <field name="task_id" domain="[('project_id','=',project_id)]" attrs="{'readonly': [('actual_qty', '&gt;', 0)]}" options="{'no_create': True}"/>
                 <field name="task_state"/>
-                <field name="date" attrs="{'readonly': [('actual_stairs', '&gt;', 0)]}"/>
-                <field name="user_id" attrs="{'readonly': [('actual_stairs', '&gt;', 0)]}"/>
-                <field name="plan_stairs" attrs="{'readonly': [('actual_stairs', '&gt;', 0)]}"/>
-                <field name="plan_weight_stairs"/>
+                <field name="date" attrs="{'readonly': [('actual_qty', '&gt;', 0)]}"/>
+                <field name="user_id" attrs="{'readonly': [('actual_qty', '&gt;', 0)]}"/>
+                <field name="plan_qty" attrs="{'readonly': [('actual_qty', '&gt;', 0)]}"/>
+                <field name="plan_weight"/>
                 <field name="plan_output_amt"/>
-                <field name="actual_stairs"/>
-                <field name="actual_weight_stairs"/>
+                <field name="actual_qty"/>
+                <field name="actual_weight"/>
                 <field name="actual_output_amt"/>
                 <field name="hours"/>
                 <field name="note"/>
@@ -28,13 +29,13 @@
         <field name="model">project.activity</field>
         <field name="arch" type="xml">
             <tree string="Activities" editable="top">
-                <field name="date" attrs="{'readonly': [('actual_stairs', '&gt;', 0)]}"/>
-                <field name="user_id" attrs="{'readonly': [('actual_stairs', '&gt;', 0)]}"/>
-                <field name="plan_stairs" attrs="{'readonly': [('actual_stairs', '&gt;', 0)]}"/>
-                <field name="plan_weight_stairs"/>
+                <field name="date" attrs="{'readonly': [('actual_qty', '&gt;', 0)]}"/>
+                <field name="user_id" attrs="{'readonly': [('actual_qty', '&gt;', 0)]}"/>
+                <field name="plan_qty" attrs="{'readonly': [('actual_qty', '&gt;', 0)]}"/>
+                <field name="plan_weight"/>
                 <field name="plan_output_amt"/>
-                <field name="actual_stairs"/>
-                <field name="actual_weight_stairs"/>
+                <field name="actual_qty"/>
+                <field name="actual_weight"/>
                 <field name="actual_output_amt"/>
                 <field name="hours"/>
                 <field name="note"/>
@@ -49,8 +50,8 @@
             <pivot string="Activities">
                 <field name="date" type="col"/>
                 <field name="user_id" type="row"/>
-                <field name="plan_stairs" type="measure"/>
-                <field name="actual_stairs" type="measure"/>
+                <field name="plan_qty" type="measure"/>
+                <field name="actual_qty" type="measure"/>
                 <field name="plan_output_amt" type="measure"/>
                 <field name="actual_output_amt" type="measure"/>
             </pivot>

@@ -16,15 +16,9 @@ class ProjectProject(models.Model):
     stairs = fields.Integer(
         string='Stairs (sets)',
     )
-    weight_stairs = fields.Float(
-        string='Weight',
-    )
     handrail = fields.Float(
-        string='Handrail (meters)',
+        string='Handrail (m)',
         help='Length of the handrails in meters.'
-    )
-    weight_handrail = fields.Float(
-        string='Weight',
     )
     weight = fields.Float(
         string='Weight (kg)',

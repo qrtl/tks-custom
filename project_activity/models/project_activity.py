@@ -22,11 +22,24 @@ class ProjectActivity(models.Model):
         store=True,
         readonly=True,
     )
+    task_qty = fields.Float(
+        compute='_compute_task_qty',
+        string='Task Qty',
+        store=True,
+        readonly=True,
+    )
     project_id = fields.Many2one(
         comodel_name='project.project',
         related='task_id.project_id',
         string='project',
         store=True,
+        required=True,
+    )
+    project_type = fields.Selection(
+        related='project_id.type',
+        store=True,
+        string='Project Type',
+        readonly=True,
     )
     date = fields.Date(
         required=True,
@@ -39,10 +52,10 @@ class ProjectActivity(models.Model):
         string='User',
         required=True,
     )
-    plan_stairs = fields.Integer(
-        string='Stairs (Plan)',
+    plan_qty = fields.Float(
+        string='Qty (Plan)',
     )
-    plan_weight_stairs = fields.Float(
+    plan_weight = fields.Float(
         string='Weight (Plan)',
         compute='_update_plan_vals',
         store=True,
@@ -54,10 +67,10 @@ class ProjectActivity(models.Model):
         store=True,
         readonly=True,
     )
-    actual_stairs = fields.Integer(
-        string='Stairs (Actual)',
+    actual_qty = fields.Float(
+        string='Qty (Actual)',
     )
-    actual_weight_stairs = fields.Float(
+    actual_weight = fields.Float(
         string='Weight (Actual)',
         compute='_update_actual_vals',
         store=True,
@@ -79,31 +92,38 @@ class ProjectActivity(models.Model):
         comodel_name='account.analytic.line',
         string='Analytic Line',
     )
-    analytic_line_id = fields.Many2one(
-        comodel_name='account.analytic.line',
-        string='Analytic Line',
-    )
     hours = fields.Float(
         default=0.0
     )
 
 
     @api.multi
-    @api.depends('task_id', 'task_id.budget_amt', 'plan_stairs')
+    @api.depends('task_id', 'task_id.stairs', 'task_id.handrail')
+    def _compute_task_qty(self):
+        for act in self:
+            if act.task_id and act.project_type == 'stairs':
+                act.task_qty = float(act.task_id.stairs)
+            elif act.task_id and act.project_type == 'handrail':
+                act.task_qty = act.task_id.handrail
+            else:
+                act.task_qty = 0.0
+
+    @api.multi
+    @api.depends('task_id', 'task_qty', 'task_id.budget_amt', 'plan_qty')
     def _update_plan_vals(self):
         for act in self:
-            if act.task_id and act.task_id.stairs:
-                ratio = float(act.plan_stairs) / float(act.task_id.stairs)
-                act.plan_weight_stairs = act.task_id.weight_stairs * ratio
+            if act.task_id and act.task_qty:
+                ratio = act.plan_qty / act.task_qty
+                act.plan_weight = act.task_id.weight * ratio
                 act.plan_output_amt = act.task_id.budget_amt * ratio
 
     @api.multi
-    @api.depends('task_id.budget_amt', 'actual_stairs')
+    @api.depends('task_qty', 'task_id.budget_amt', 'actual_qty')
     def _update_actual_vals(self):
         for act in self:
-            if act.task_id and act.task_id.stairs:
-                ratio = float(act.actual_stairs) / float(act.task_id.stairs)
-                act.actual_weight_stairs = act.task_id.weight_stairs * ratio
+            if act.task_id and act.task_qty:
+                ratio = act.actual_qty / act.task_qty
+                act.actual_weight = act.task_id.weight * ratio
                 act.actual_output_amt = act.task_id.budget_amt * ratio
 
     @api.multi

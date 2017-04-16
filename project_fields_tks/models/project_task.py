@@ -41,23 +41,11 @@ class ProjectTask(models.Model):
         readonly=True,
         string='Stairs (sets)',
     )
-    weight_stairs = fields.Float(
-        related='project_id.weight_stairs',
-        store=True,
-        readonly=True,
-        string='Weight',
-    )
     handrail = fields.Float(
         related='project_id.handrail',
         store=True,
         readonly=True,
-        string='Handrail (meters)',
-    )
-    weight_handrail = fields.Float(
-        related='project_id.weight_handrail',
-        store=True,
-        readonly=True,
-        string='Weight',
+        string='Handrail (m)',
     )
     weight = fields.Float(
         related='project_id.weight',
