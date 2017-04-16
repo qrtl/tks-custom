@@ -48,4 +48,3 @@ class ProjectProject(models.Model):
         inverse_name='project_id',
         string='Purchase Order Lines',
     )
-

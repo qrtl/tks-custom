@@ -8,6 +8,12 @@ from odoo import models, fields, api
 class ProjectTask(models.Model):
     _inherit = 'project.task'
 
+    project_type = fields.Selection(
+        related='project_id.type',
+        store=True,
+        string='Project Type',
+        readonly=True,
+    )
     category_id = fields.Many2one(
         comodel_name='project.task.category',
         string='Category',
@@ -33,7 +39,7 @@ class ProjectTask(models.Model):
         related='project_id.stairs',
         store=True,
         readonly=True,
-        string='Stairs',
+        string='Stairs (sets)',
     )
     weight_stairs = fields.Float(
         related='project_id.weight_stairs',
@@ -45,13 +51,19 @@ class ProjectTask(models.Model):
         related='project_id.handrail',
         store=True,
         readonly=True,
-        string='Handrail',
+        string='Handrail (meters)',
     )
     weight_handrail = fields.Float(
         related='project_id.weight_handrail',
         store=True,
         readonly=True,
         string='Weight',
+    )
+    weight = fields.Float(
+        related='project_id.weight',
+        store=True,
+        readonly=True,
+        string='Weight (kg)',
     )
     project_state = fields.Selection(
         related='project_id.state',

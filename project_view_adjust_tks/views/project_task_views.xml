@@ -17,6 +17,15 @@
                     </div>
                 </div>
                 <field name="days_project_due"/>
+
+                <field name="category_id"/>
+                <field name="category_code" invisible="1"/>
+                <field name="category_sequence" invisible="1"/>
+                <field name="project_type"/>
+                <field name="stairs" attrs="{'invisible':[('project_type','!=','stairs')]}"/>
+                <field name="handrail" attrs="{'invisible':[('project_type','!=','handrail')]}"/>
+                <field name="weight"/>
+
             </xpath>
         </field>
     </record>
