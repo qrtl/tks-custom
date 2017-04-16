@@ -24,6 +24,7 @@
         "project_task_analytic",
         "project_date_update",
         "sale_project_create",
+        "account_analytic_line_project",
     ],
     "data": [
         'views/project_task_views.xml',
