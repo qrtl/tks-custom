@@ -22,12 +22,12 @@
     "depends": [
         "project",
         "purchase",
+        "hr_timesheet",
     ],
     "data": [
         'security/ir.model.access.csv',
         'views/res_partner_views.xml',
         'views/project_task_category_views.xml',
-        'views/project_task_views.xml',
         'data/project_task_category_data.xml',
     ],
     "demo": [

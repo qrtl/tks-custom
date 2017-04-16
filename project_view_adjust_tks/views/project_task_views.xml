@@ -17,6 +17,15 @@
                     </div>
                 </div>
                 <field name="days_project_due"/>
+
+                <field name="category_id"/>
+                <field name="category_code" invisible="1"/>
+                <field name="category_sequence" invisible="1"/>
+                <field name="project_type"/>
+                <field name="stairs" attrs="{'invisible':[('project_type','!=','stairs')]}"/>
+                <field name="handrail" attrs="{'invisible':[('project_type','!=','handrail')]}"/>
+                <field name="weight"/>
+
             </xpath>
         </field>
     </record>
@@ -50,6 +59,7 @@
                 <field name="currency_id"/>
                 <field name="project_id"/>
                 <field name="category_code"/>
+                <field name="project_type"/>
                 <templates>
                 <t t-name="kanban-box">
                     <div t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_card oe_kanban_global_click">
@@ -73,14 +83,12 @@
                                 <strong><field name="name"/></strong>
                                 <t t-if="record.budget_amt.raw_value"><field name="budget_amt" widget="monetary"/></t>
                                 <div attrs="{'invisible':[('category_code','!=','quotation')]}">
-                                    <field name="stairs" attrs="{'invisible':[('stairs','=',0)]}"/>
-                                    <span attrs="{'invisible':[('stairs','=',0)]}">sets</span>
-                                    <field name="weight_stairs" attrs="{'invisible':[('stairs','=',0)]}"/>
-                                    <span attrs="{'invisible':[('stairs','=',0)]}">kg</span>
-                                    <field name="handrail" attrs="{'invisible':[('handrail','=',0)]}"/>
-                                    <span class="oe_form_field" attrs="{'invisible':[('handrail','=',0)]}">meters</span>
-                                    <field name="weight_handrail" attrs="{'invisible':[('handrail','=',0)]}"/>
-                                    <span attrs="{'invisible':[('handrail','=',0)]}">kg</span>
+                                    <field name="stairs" attrs="{'invisible':[('project_type','!=','stairs')]}"/>
+                                    <span attrs="{'invisible':[('project_type','!=','stairs')]}">sets</span>
+                                    <field name="handrail" attrs="{'invisible':[('project_type','!=','handrail')]}"/>
+                                    <span class="oe_form_field" attrs="{'invisible':[('project_type','!=','handrail')]}">meters</span>
+                                    <field name="weight"/>
+                                    <span>kg</span>
                                 </div>
                             </div>
                         </div>
@@ -130,9 +138,8 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='project_id']" position="after">
                 <field name="stairs"/>
-                <field name="weight_stairs"/>
                 <field name="handrail"/>
-                <field name="weight_handrail"/>
+                <field name="weight"/>
             </xpath>
         </field>
     </record>

@@ -8,18 +8,20 @@ from odoo import api, models, fields
 class ProjectProject(models.Model):
     _inherit = 'project.project'
 
-    stairs = fields.Integer(
-        string='Stairs',
+    type = fields.Selection(
+        [('stairs', 'Stairs'),
+         ('handrail', 'Handrail')],
+        required=True,
     )
-    weight_stairs = fields.Float(
-        string='Weight',
+    stairs = fields.Integer(
+        string='Stairs (sets)',
     )
     handrail = fields.Float(
-        string='Handrail',
+        string='Handrail (m)',
         help='Length of the handrails in meters.'
     )
-    weight_handrail = fields.Float(
-        string='Weight',
+    weight = fields.Float(
+        string='Weight (kg)',
     )
     cad_partner_id = fields.Many2one(
         "res.partner",
@@ -32,7 +34,6 @@ class ProjectProject(models.Model):
         ('wip', 'In Progress'),
         ('invoiced', 'Invoiced'),
         ('done', 'Done')], 'Status',
-        # compute='_update_project_state',
         default='quotation',
         store=True
     )
@@ -41,13 +42,3 @@ class ProjectProject(models.Model):
         inverse_name='project_id',
         string='Purchase Order Lines',
     )
-
-
-    # below logic needs to be updated!!!
-    @api.one
-    @api.depends('task_ids.stage_id')
-    def _update_project_state(self):
-        for task in self.task_ids:
-            # if task.stage_id.name == 'In Progress':
-            if task.stage_id.sequence == 10:
-                self.state = 'wip'

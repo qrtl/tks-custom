@@ -1,0 +1,140 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* project_comm_history
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-16 08:11+0000\n"
+"PO-Revision-Date: 2017-04-16 08:11+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: project_comm_history
+#: model:ir.actions.act_window,name:project_comm_history.open_project_comm_history
+#: model:ir.model.fields,field_description:project_comm_history.field_project_task_comm_history_ids
+#: model:ir.ui.menu,name:project_comm_history.menu_project_comm_history
+#: model:ir.ui.view,arch_db:project_comm_history.project_comm_history_form
+#: model:ir.ui.view,arch_db:project_comm_history.project_comm_history_search
+#: model:ir.ui.view,arch_db:project_comm_history.project_comm_history_tree
+#: model:ir.ui.view,arch_db:project_comm_history.project_comm_history_tree2
+msgid "Communication History"
+msgstr "通信履歴"
+
+#. module: project_comm_history
+#: model:ir.model.fields,field_description:project_comm_history.field_project_comm_history_content
+msgid "Content"
+msgstr "内容"
+
+#. module: project_comm_history
+#: model:ir.model.fields,field_description:project_comm_history.field_project_comm_history_create_uid
+msgid "Created by"
+msgstr "作成者"
+
+#. module: project_comm_history
+#: model:ir.model.fields,field_description:project_comm_history.field_project_comm_history_create_date
+msgid "Created on"
+msgstr "作成日"
+
+#. module: project_comm_history
+#: model:ir.model.fields,field_description:project_comm_history.field_project_comm_history_date
+#: model:ir.ui.view,arch_db:project_comm_history.project_comm_history_search
+msgid "Date"
+msgstr "日付"
+
+#. module: project_comm_history
+#: model:ir.model.fields,field_description:project_comm_history.field_project_comm_history_display_name
+msgid "Display Name"
+msgstr "表示名"
+
+#. module: project_comm_history
+#: model:ir.ui.view,arch_db:project_comm_history.project_comm_history_search
+msgid "Group By"
+msgstr "グループ化"
+
+#. module: project_comm_history
+#: model:ir.model.fields,field_description:project_comm_history.field_project_comm_history_id
+msgid "ID"
+msgstr "ID"
+
+#. module: project_comm_history
+#: model:ir.model.fields,field_description:project_comm_history.field_project_comm_history___last_update
+msgid "Last Modified on"
+msgstr "最終更新日"
+
+#. module: project_comm_history
+#: model:ir.model.fields,field_description:project_comm_history.field_project_comm_history_write_uid
+msgid "Last Updated by"
+msgstr "最終更新者"
+
+#. module: project_comm_history
+#: model:ir.model.fields,field_description:project_comm_history.field_project_comm_history_write_date
+msgid "Last Updated on"
+msgstr "最終更新日"
+
+#. module: project_comm_history
+#: model:ir.ui.view,arch_db:project_comm_history.project_comm_history_search
+msgid "My Records"
+msgstr "自分のレコード"
+
+#. module: project_comm_history
+#: model:ir.ui.view,arch_db:project_comm_history.project_comm_history_search
+msgid "Open Tasks"
+msgstr "未完了タスク"
+
+#. module: project_comm_history
+#: model:ir.ui.view,arch_db:project_comm_history.project_comm_history_search
+msgid "Project"
+msgstr "プロジェクト"
+
+#. module: project_comm_history
+#: model:ir.model,name:project_comm_history.model_project_comm_history
+msgid "Project Communication History"
+msgstr "プロジェクト通信履歴"
+
+#. module: project_comm_history
+#: model:ir.ui.view,arch_db:project_comm_history.project_comm_history_search
+#: selection:project.comm.history,type:0
+msgid "Received"
+msgstr "受信"
+
+#. module: project_comm_history
+#: model:ir.ui.view,arch_db:project_comm_history.project_comm_history_search
+#: selection:project.comm.history,type:0
+msgid "Sent"
+msgstr "送信"
+
+#. module: project_comm_history
+#: model:ir.model,name:project_comm_history.model_project_task
+#: model:ir.model.fields,field_description:project_comm_history.field_project_comm_history_task_id
+#: model:ir.ui.view,arch_db:project_comm_history.project_comm_history_search
+msgid "Task"
+msgstr "タスク"
+
+#. module: project_comm_history
+#: model:ir.model.fields,field_description:project_comm_history.field_project_comm_history_task_state
+msgid "Task State"
+msgstr "タスクステータス"
+
+#. module: project_comm_history
+#: model:ir.model.fields,field_description:project_comm_history.field_project_comm_history_type
+#: model:ir.ui.view,arch_db:project_comm_history.project_comm_history_search
+msgid "Type"
+msgstr "タイプ"
+
+#. module: project_comm_history
+#: model:ir.model.fields,field_description:project_comm_history.field_project_comm_history_user_id
+#: model:ir.ui.view,arch_db:project_comm_history.project_comm_history_search
+msgid "User"
+msgstr "ユーザ"
+
+#. module: project_comm_history
+#: model:ir.model.fields,field_description:project_comm_history.field_project_comm_history_project_id
+msgid "project"
+msgstr "プロジェクト"
+
