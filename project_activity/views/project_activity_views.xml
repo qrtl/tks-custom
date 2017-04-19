@@ -6,7 +6,7 @@
         <field name="model">project.activity</field>
         <field name="arch" type="xml">
             <tree string="Activities" editable="top">
-                <field name="project_id" domain="[('state','!=','done')]" attrs="{'readonly': [('actual_qty', '&gt;', 0)]}" options="{'no_create': True}"/>
+                <field name="project_id" domain="[('state','!=','done')]" attrs="{'readonly': [('actual_qty', '&gt;', 0)]}" options="{'no_create': True}" required="True"/>
                 <field name="project_type"/>
                 <field name="task_id" domain="[('project_id','=',project_id)]" attrs="{'readonly': [('actual_qty', '&gt;', 0)]}" options="{'no_create': True}"/>
                 <field name="task_state"/>

@@ -28,12 +28,14 @@ class ProjectActivity(models.Model):
         store=True,
         readonly=True,
     )
+    """ avoid making this field required at model level to avoid error at
+        creation through task form view """
     project_id = fields.Many2one(
         comodel_name='project.project',
         related='task_id.project_id',
         string='project',
         store=True,
-        required=True,
+        # required=True,
     )
     project_type = fields.Selection(
         related='project_id.type',
