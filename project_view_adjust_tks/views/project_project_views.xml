@@ -104,6 +104,17 @@
         </field>
     </record>
 
+    <record id="view_project_project_filter" model="ir.ui.view">
+        <field name="name">project.project.select</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.view_project_project_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='inactive']" position="before">
+                <filter string="Open Projects" name="open_projects" domain="[('state','not in',('done','cancel'))]"/>
+            </xpath>
+        </field>
+    </record>
+
     <record id="open_view_project_tks" model="ir.actions.act_window">
         <field name="name">Projects</field>
         <field name="res_model">project.project</field>
@@ -112,7 +123,7 @@
         <field name="view_mode">list,pivot,form</field>
         <field name="view_id" ref="view_project_tree"/>
         <field name="search_view_id" ref="project.view_project_project_filter"/>
-        <field name="context">{}</field>
+        <field name="context">{'search_default_open_projects': 1}</field>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
                 Create a new project.

@@ -30,6 +30,18 @@
         </field>
     </record>
 
+    <!-- adjust tree view -->
+
+    <record id="view_task_tree2" model="ir.ui.view">
+        <field name="name">project.task.tree</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_tree2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="date_deadline"/>
+            </xpath>
+        </field>
+    </record>
 
     <!-- add a kanban view with new menu item -->
 
