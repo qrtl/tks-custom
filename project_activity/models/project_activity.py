@@ -16,6 +16,12 @@ class ProjectActivity(models.Model):
         string='Task',
         required=True,
     )
+    task_category_id = fields.Many2one(
+        related='task_id.category_id',
+        string='Task Category',
+        store=True,
+        readonly=True,
+    )
     task_state = fields.Selection(
         related='task_id.state',
         string='Task State',
