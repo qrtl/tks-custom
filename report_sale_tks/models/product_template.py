@@ -11,3 +11,8 @@ class ProductTemplate(models.Model):
     matl_subtotal = fields.Boolean(
         'Material Subtotal',
     )
+    discount_product = fields.Boolean(
+        'Discount Product',
+        help='If selected, the amount of the quotation line will be deducted '
+             'from the total amount to calculate "gross amount"',
+    )

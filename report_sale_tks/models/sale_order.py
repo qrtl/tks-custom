@@ -14,7 +14,25 @@ class SaleOrder(models.Model):
         inverse_name='sale_order_id',
         string='Section Description',
     )
+    amount_untaxed_wo_disc = fields.Monetary(
+        string='Untaxed Gross Amount',
+        store=True,
+        readonly=True,
+        compute='_amount_all',
+    )
 
+
+    @api.depends('order_line.price_total')
+    def _amount_all(self):
+        super(SaleOrder, self)._amount_all()
+        for order in self:
+            amount_untaxed_wo_disc = 0.0
+            for line in order.order_line:
+                if not line.product_id.discount_product:
+                    amount_untaxed_wo_disc += line.price_subtotal
+            order.update({
+                'amount_untaxed_wo_disc': amount_untaxed_wo_disc,
+            })
 
     # override the standard method
     @api.multi
