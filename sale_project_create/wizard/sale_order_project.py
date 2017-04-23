@@ -48,8 +48,7 @@ class SaleOrderProject(models.TransientModel):
         active_model = context.get('active_model', False)
         order = self.env[active_model].browse(active_ids)
         default = {
-            'name': order.partner_id.name + " " + order.name + " " +
-                    self.description,
+            'name': self.description,
             'date_start': self.start_date,
             'date': self.end_date,
             'partner_id': order.partner_id.id,
