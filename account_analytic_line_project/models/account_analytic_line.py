@@ -18,7 +18,7 @@ class AccountAnalyticLine(models.Model):
 
 
     pj_id = fields.Many2one(
-        comodel_id = 'project.project',
+        comodel_name='project.project',
         compute='_compute_pj_id',
         inverse='_set_account_id',
         store=True,
