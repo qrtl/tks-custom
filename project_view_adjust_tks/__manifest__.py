@@ -4,7 +4,7 @@
 {
     "name": "Adjustments to Project Views",
     "summary": "",
-    "version": "10.0.1.0.1",
+    "version": "10.0.1.1.0",
     "category": "Project",
     "website": "https://www.odoo-asia.com/",
     "author": "Rooms For (Hong Kong) Limited T/A OSCG",
@@ -25,6 +25,7 @@
         "project_date_update",
         "sale_project_create",
         "account_analytic_line_project",
+        "project_purchase_create",
     ],
     "data": [
         'views/project_task_views.xml',
