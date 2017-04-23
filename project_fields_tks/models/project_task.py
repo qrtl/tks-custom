@@ -31,10 +31,6 @@ class ProjectTask(models.Model):
         index=True,
         readonly=True,
     )
-    date_startdate = fields.Date(
-        string='Start Date',
-        copy=False
-    )
     stairs = fields.Integer(
         related='project_id.stairs',
         store=True,

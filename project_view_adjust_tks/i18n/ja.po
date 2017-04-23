@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-16 14:17+0000\n"
-"PO-Revision-Date: 2017-04-16 14:17+0000\n"
+"POT-Creation-Date: 2017-04-23 09:04+0000\n"
+"PO-Revision-Date: 2017-04-23 09:04+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -61,6 +61,7 @@ msgid "Edit Task"
 msgstr "タスクを編集"
 
 #. module: project_view_adjust_tks
+#: model:ir.ui.view,arch_db:project_view_adjust_tks.view_project_project_filter
 #: model:ir.ui.view,arch_db:project_view_adjust_tks.view_task_search_form
 msgid "Open Projects"
 msgstr "未完了プロジェクト"
@@ -69,11 +70,6 @@ msgstr "未完了プロジェクト"
 #: model:ir.actions.act_window,help:project_view_adjust_tks.open_view_project_tks
 msgid "Organize your activities (plan tasks, track issues, invoice timesheets) for internal, personal or customer projects."
 msgstr "社内、個人または顧客のプロジェクトのために、あなたの活動(計画タスク、課題追跡、請求書タイムシート)を整理します。"
-
-#. module: project_view_adjust_tks
-#: model:ir.ui.view,arch_db:project_view_adjust_tks.view_task_form2
-msgid "Period"
-msgstr "期間"
 
 #. module: project_view_adjust_tks
 #: model:ir.model,name:project_view_adjust_tks.model_project_project
@@ -97,6 +93,11 @@ msgstr "プロジェクト名"
 #: model:ir.ui.view,arch_db:project_view_adjust_tks.view_project_tree
 msgid "Projects"
 msgstr "プロジェクト"
+
+#. module: project_view_adjust_tks
+#: model:ir.ui.view,arch_db:project_view_adjust_tks.edit_project
+msgid "Purchase Orders"
+msgstr "発注"
 
 #. module: project_view_adjust_tks
 #: model:ir.ui.view,arch_db:project_view_adjust_tks.view_task_kanban_progress
