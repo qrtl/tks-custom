@@ -35,7 +35,7 @@ class ProjectActivity(models.Model):
         readonly=True,
     )
     """ avoid making this field required at model level to avoid error at
-        creation through task form view """
+    creation through task form view """
     project_id = fields.Many2one(
         comodel_name='project.project',
         related='task_id.project_id',
@@ -96,9 +96,10 @@ class ProjectActivity(models.Model):
         string='Currency',
         readonly=True,
     )
-    analytic_line_id = fields.Many2one(
+    analytic_line_ids = fields.One2many(
         comodel_name='account.analytic.line',
-        string='Analytic Line',
+        inverse_name='activity_id',
+        string="Analytic Line",
     )
     hours = fields.Float(
         default=0.0
@@ -138,8 +139,8 @@ class ProjectActivity(models.Model):
     def write(self, vals):
         self.ensure_one()
         if 'hours' in vals or 'note' in vals:
-            if self.analytic_line_id:
-                self.analytic_line_id.unlink()
+            if self.analytic_line_ids:
+                self.analytic_line_ids.unlink()
             self.create_analytic_line(vals)
         res = super(ProjectActivity, self).write(vals)
         return res
@@ -147,15 +148,17 @@ class ProjectActivity(models.Model):
     @api.multi
     def create_analytic_line(self, vals):
         self.ensure_one()
-        analytic_line_obj = self.env['account.analytic.line']
-        # 'analytic_type_id' gets proposed by account_analytic_type
-        # 'amount' gets calculated with standard logic
+        """
+        'analytic_type_id' gets proposed by account_analytic_type
+        'amount' gets calculated with standard logic
+        """
         analytic_line_vals = {
-            'name': 'note' in vals and vals['note'] or self.note,
+            'name': 'note' in vals and vals['note'] or self.note or '-',
             'date': fields.Date.context_today(self),
             'account_id': self.project_id.analytic_account_id.id,
             'project_id': self.project_id.id,
             'task_id': self.task_id.id,
+            'activity_id': self.id,
             'unit_amount': 'hours' in vals and vals['hours'] or self.hours,
             'partner_id': self.project_id.partner_id.id,
             'user_id': self.user_id.id,
@@ -164,5 +167,4 @@ class ProjectActivity(models.Model):
             'general_account_id': False,
             'ref': self.project_id.name,
         }
-        analytic_line_id = analytic_line_obj.create(analytic_line_vals)
-        self.analytic_line_id = analytic_line_id
+        self.env['account.analytic.line'].create(analytic_line_vals)
