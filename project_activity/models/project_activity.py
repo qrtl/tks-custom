@@ -141,7 +141,8 @@ class ProjectActivity(models.Model):
         if 'hours' in vals or 'note' in vals:
             if self.analytic_line_ids:
                 self.analytic_line_ids.unlink()
-            self.create_analytic_line(vals)
+            if vals['hours']:  # no action if 'hours' has been changed to zero
+                self.create_analytic_line(vals)
         res = super(ProjectActivity, self).write(vals)
         return res
 

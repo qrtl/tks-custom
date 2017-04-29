@@ -4,7 +4,7 @@
 {
     "name": "Project Activities",
     "summary": "",
-    "version": "10.0.1.1.0",
+    "version": "10.0.1.1.1",
     "category": "Project",
     "website": "https://www.odoo-asia.com/",
     "author": "Rooms For (Hong Kong) Limited T/A OSCG",
