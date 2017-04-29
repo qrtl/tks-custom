@@ -2,7 +2,8 @@
 # Copyright 2017 Rooms For (Hong Kong) Limited T/A OSCG
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import fields, models, api
+from openerp import fields, models, api, _
+from odoo.exceptions import UserError
 
 
 class ProjectActivity(models.Model):
@@ -104,6 +105,8 @@ class ProjectActivity(models.Model):
     hours = fields.Float(
         default=0.0
     )
+    confirmed = fields.Boolean(
+    )
 
 
     @api.multi
@@ -134,6 +137,19 @@ class ProjectActivity(models.Model):
                 ratio = act.actual_qty / act.task_qty
                 act.actual_weight = act.task_id.weight * ratio
                 act.actual_output_amt = act.task_id.budget_amt * ratio
+
+    @api.one
+    @api.constrains('plan_qty')
+    def _check_plan_qty(self):
+        activities = self.env['project.activity'].search(
+            [('task_id', '=', self.task_id.id)])
+        done_qty = sum(a.actual_qty for a in activities.filtered(
+            lambda r: r.actual_qty))
+        tbd_qty = sum(a.plan_qty for a in activities.filtered(
+            lambda r: not r.confirmed and not r.actual_qty))
+        if done_qty + tbd_qty > self.task_qty:
+            raise UserError(_('Planned quantity is larger than the outstanding'
+                              ' task quantity.'))
 
     @api.multi
     def write(self, vals):

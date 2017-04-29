@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_project_activity_confirm_wizard" model="ir.ui.view">
+        <field name="name">view.project.activity.confirm.wizard</field>
+        <field name="model">project.activity.confirm</field>
+        <field name="arch" type="xml">
+            <form string="Confirm Activities">
+                <footer>
+                    <button name="action_activity_confirm" string="Confirm Activities" type="object"  class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <act_window id="act_activity_confirm"
+                name="Confirm Activities"
+                res_model="project.activity.confirm"
+                src_model="project.activity"
+                view_mode="form"
+                target="new"
+                multi="True"
+                groups="project.group_project_manager"/>
+
+</odoo>

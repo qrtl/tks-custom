@@ -4,7 +4,7 @@
 {
     "name": "Project Activities",
     "summary": "",
-    "version": "10.0.1.1.1",
+    "version": "10.0.1.2.0",
     "category": "Project",
     "website": "https://www.odoo-asia.com/",
     "author": "Rooms For (Hong Kong) Limited T/A OSCG",
@@ -27,6 +27,7 @@
         'security/ir.model.access.csv',
         'views/project_activity_views.xml',
         'views/project_task_views.xml',
+        'wizard/project_activity_confirm_view.xml',
     ],
     "demo": [
     ],
