@@ -6,20 +6,21 @@
         <field name="model">project.activity</field>
         <field name="arch" type="xml">
             <tree string="Activities" editable="top">
-                <field name="project_id" domain="[('state','!=','done')]" attrs="{'readonly': [('actual_qty', '&gt;', 0)]}" options="{'no_create': True}" required="True"/>
+                <field name="project_id" domain="[('state','!=','done')]" attrs="{'readonly':['|',('actual_qty','&gt;',0),('confirmed','=',True)]}" options="{'no_create':True}" required="True"/>
                 <field name="project_type"/>
-                <field name="task_id" domain="[('project_id','=',project_id)]" attrs="{'readonly': [('actual_qty', '&gt;', 0)]}" options="{'no_create': True}"/>
+                <field name="task_id" domain="[('project_id','=',project_id)]" attrs="{'readonly':['|',('actual_qty','&gt;',0),('confirmed','=',True)]}" options="{'no_create':True}"/>
                 <field name="task_state"/>
-                <field name="date" attrs="{'readonly': [('actual_qty', '&gt;', 0)]}"/>
-                <field name="user_id" attrs="{'readonly': [('actual_qty', '&gt;', 0)]}"/>
-                <field name="plan_qty" attrs="{'readonly': [('actual_qty', '&gt;', 0)]}"/>
+                <field name="date" attrs="{'readonly':['|',('actual_qty','&gt;',0),('confirmed','=',True)]}"/>
+                <field name="user_id" attrs="{'readonly':['|',('actual_qty','&gt;',0),('confirmed','=',True)]}"/>
+                <field name="plan_qty" attrs="{'readonly':['|',('actual_qty','&gt;',0),('confirmed','=',True)]}"/>
                 <field name="plan_weight"/>
                 <field name="plan_output_amt"/>
-                <field name="actual_qty"/>
+                <field name="actual_qty" attrs="{'readonly':[('confirmed','=',True)]}"/>
                 <field name="actual_weight"/>
                 <field name="actual_output_amt"/>
-                <field name="hours"/>
-                <field name="note"/>
+                <field name="hours" attrs="{'readonly':[('confirmed','=',True)]}"/>
+                <field name="note" attrs="{'readonly':[('confirmed','=',True)]}"/>
+                <field name="confirmed" groups="project.group_project_manager"/>
             </tree>
         </field>
     </record>
@@ -29,16 +30,17 @@
         <field name="model">project.activity</field>
         <field name="arch" type="xml">
             <tree string="Activities" editable="top">
-                <field name="date" attrs="{'readonly': [('actual_qty', '&gt;', 0)]}"/>
-                <field name="user_id" attrs="{'readonly': [('actual_qty', '&gt;', 0)]}"/>
-                <field name="plan_qty" attrs="{'readonly': [('actual_qty', '&gt;', 0)]}"/>
+                <field name="date" attrs="{'readonly':['|',('actual_qty','&gt;',0),('confirmed','=',True)]}"/>
+                <field name="user_id" attrs="{'readonly':['|',('actual_qty','&gt;',0),('confirmed','=',True)]}"/>
+                <field name="plan_qty" attrs="{'readonly':['|',('actual_qty','&gt;',0),('confirmed','=',True)]}"/>
                 <field name="plan_weight"/>
                 <field name="plan_output_amt"/>
-                <field name="actual_qty"/>
+                <field name="actual_qty" attrs="{'readonly':[('confirmed','=',True)]}"/>
                 <field name="actual_weight"/>
                 <field name="actual_output_amt"/>
-                <field name="hours"/>
-                <field name="note"/>
+                <field name="hours" attrs="{'readonly':[('confirmed','=',True)]}"/>
+                <field name="note" attrs="{'readonly':[('confirmed','=',True)]}"/>
+                <field name="confirmed" groups="project.group_project_manager"/>
             </tree>
         </field>
     </record>
@@ -62,12 +64,15 @@
         <field name="name">project.activity.search.form</field>
         <field name="model">project.activity</field>
         <field name="arch" type="xml">
-           <search string="Activities">
+            <search string="Activities">
                 <field name="project_id"/>
                 <field name="task_id"/>
                 <field name="user_id"/>
                 <filter string="My Activities" name="my_activities" domain="[('user_id','=',uid)]"/>
-                <filter string="Unassigned" name="unassigned" domain="[('user_id', '=', False)]"/>
+                <filter string="Unassigned" name="unassigned" domain="[('user_id','=',False)]"/>
+                <separator/>
+                <filter string="Open" name="open_activities" domain="[('confirmed','=',False)]"/>
+                <filter string="Confirmed" name="confirmed_activities" domain="[('confirmed','=',True)]"/>
                 <group expand="0" string="Group By">
                     <filter string="Project" name="project" context="{'group_by':'project_id'}"/>
                     <filter string="Task" name="task" context="{'group_by':'task_id'}"/>
