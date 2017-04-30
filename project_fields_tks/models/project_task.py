@@ -55,3 +55,7 @@ class ProjectTask(models.Model):
         readonly=True,
         string='Project State',
     )
+    date_project_due = fields.Date(
+        related='project_id.date',
+        string='Project Due Date',
+    )
