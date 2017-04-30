@@ -3,82 +3,90 @@
 
     <template id="external_layout_tks" inherit_id="report_common_tks.external_layout_tks">
         <xpath expr="//table[@name='ext_header']" position="inside">
-            <tr style="border-top:hidden;">
-                <td>
-                    <div style="width:30%"></div>
-                </td>
-                <td>
-                    <div style="width:40%; font-size:35px; white-space:nowrap;">Quotation</div>
-                </td>
-                <td width="30%">
-                    <table>
-                        <tr height="25px"/>
-                    </table>
-                    <t t-if="type == 'quotation'">
+            <t t-if="type == 'quotation'">
+                <tr style="border-top:hidden;">
+                    <td>
+                        <div style="width:30%"></div>
+                    </td>
+                    <td>
+                        <div style="width:40%; font-size:35px; white-space:nowrap;">Quotation</div>
+                    </td>
+                    <td width="30%">
+                        <table>
+                            <tr height="25px"/>
+                        </table>
                         <div style="position:absolute; right:50px;">
                             No.: <span t-field="doc.name"/>
                         </div>
-                    </t>
-                </td>
-            </tr>
+                    </td>
+                </tr>
+            </t>
         </xpath>
     </template>
 
     <template id="common_header_layout" inherit_id="report_common_tks.common_header_layout">
         <xpath expr="//table[@name='header_main']/tr" position="after">
-            <tr>
-                <td>
-                    <span>Please find our quotation details as follows.<br/>We are looking forward to doing business with you.</span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Expected Date: <span t-field="doc.requested_date" t-field-options="{'format':'YYYY/MM/dd'}"/>
-                </td>
-            </tr>
-            <tr>
-                <td>Transaction Method: <span t-field="doc.transaction_method"/></td>
-            </tr>
-            <tr>
-                <td>
-                    Effective Until: <span t-field="doc.validity_date" t-field-options="{'format':'YYYY/MM/dd'}"/>
-                </td>
-            </tr>
-            <tr t-if="doc.doc_title">
-                <td style="font-size:20px">
-                    Title: <span t-field="doc.doc_title"/>
-                </td>
-            </tr>
+            <t t-if="type == 'quotation'">
+                <tr>
+                    <td>
+                        <span>Please find our quotation details as follows.<br/>We are looking forward to doing business with you.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Expected Date: <span t-field="doc.requested_date" t-field-options="{'format':'YYYY/MM/dd'}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Transaction Method: <span t-field="doc.transaction_method"/></td>
+                </tr>
+                <tr>
+                    <td>
+                        Effective Until: <span t-field="doc.validity_date" t-field-options="{'format':'YYYY/MM/dd'}"/>
+                    </td>
+                </tr>
+                <tr t-if="doc.doc_title">
+                    <td style="font-size:20px">
+                        Title: <span t-field="doc.doc_title"/>
+                    </td>
+                </tr>
+            </t>
         </xpath>
         <xpath expr="//table[@name='doc_date']" position="inside">
-            <tr>
-                <td style="white-space:nowrap; position:absolute; right:50px;">
-                    Issue Date: <span t-field="doc.date_order" t-field-options="{'format':'YYYY/MM/dd'}"/>
-                </td>
-            </tr>
+            <t t-if="type == 'quotation'">
+                <tr>
+                    <td style="white-space:nowrap; position:absolute; right:50px;">
+                        Issue Date: <span t-field="doc.date_order" t-field-options="{'format':'YYYY/MM/dd'}"/>
+                    </td>
+                </tr>
+            </t>
         </xpath>
         <xpath expr="//table[@name='header_amount']" position="inside">
-            <tr>
-                <td width="400px">
-                    Total Amount (w/o Tax):
-                    <span style="position:relative; left:40px; font-size:30px" t-field="doc.amount_untaxed_wo_disc"/>
-                </td>
-                <td width="400px">
-                    NET Amount (w/o Tax):
-                    <span style="position:relative; left:40px; font-size:30px" t-field="doc.amount_untaxed"/>
-                </td>
-            </tr>
+            <t t-if="type == 'quotation'">
+                <tr>
+                    <td width="400px">
+                        Total Amount (w/o Tax):
+                        <span style="position:relative; left:40px; font-size:30px" t-field="doc.amount_untaxed_wo_disc"/>
+                    </td>
+                    <td width="400px">
+                        NET Amount (w/o Tax):
+                        <span style="position:relative; left:40px; font-size:30px" t-field="doc.amount_untaxed"/>
+                    </td>
+                </tr>
+            </t>
         </xpath>
     </template>
 
     <template id="common_footer_layout" inherit_id="report_common_tks.common_footer_layout">
         <xpath expr="//div[@name='doc_footer']" position="inside">
-            <p t-if="doc.note">
-                <span t-field="doc.note"/>
-            </p>
-            <p t-if="doc.payment_term_id">
-                <span t-field="doc.payment_term_id.note"/>
-            </p>
+            <t t-if="type == 'quotation'">
+                <p t-if="doc.note">
+                    <span t-field="doc.note"/>
+                </p>
+                <p t-if="doc.payment_term_id">
+                    <span t-field="doc.payment_term_id.note"/>
+                </p>
+            </t>
         </xpath>
     </template>
 
@@ -88,108 +96,112 @@
             <div class="page">
                 <t t-set="type">quotation</t>
                 <t t-call="report_common_tks.common_header_layout"/>
-                <t t-foreach="doc.order_lines_layouted()" t-as="page">
-                    <table class="table table-condensed">
-                        <thead>
-                            <tr>
-                                <th>Item</th>
-                                <th>Remark</th>
-                                <th class="text-right">Quantity</th>
-                                <th class="text-right">Unit Price</th>
-                                <th t-if="display_discount" class="text-right" groups="sale.group_discount_per_so_line">Disc.(%)</th>
-                                <th class="text-right" groups="sale.group_show_price_subtotal">Price</th>
-                                <th class="text-right price_tax_included" groups="sale.group_show_price_total">Amount</th>
-                            </tr>
-                        </thead>
-                        <tbody class="sale_tbody">
-                            <t t-foreach="page" t-as="layout_category">
-                                <t t-if="layout_category_size > 0 or page_size > 1" groups="sale.group_sale_layout">
-                                    <tr class="active">
-                                        <td colspan="7" style="font-weight: bold; border-bottom: 1px solid black;">
-                                            <t t-esc="layout_category['description']"/>
-                                        </td>
-                                    </tr>
-                                </t>
 
-                                <!-- Lines associated -->
-                                <t t-foreach="layout_category['grouped_lines']" t-as="gl">
-                                    <t t-foreach="gl['inner_lines']" t-as="l">
-                                        <tr>
-                                            <td><span t-field="l.name"/></td>
-                                            <td><span t-field="l.remark"/></td>
-                                            <td class="text-right">
-                                                <span t-field="l.product_uom_qty"/>
-                                                <span t-field="l.product_uom" groups="product.group_uom"/>
+                <t t-if="type == 'quotation'">
+                    <t t-foreach="doc.order_lines_layouted()" t-as="page">
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Remark</th>
+                                    <th class="text-right">Quantity</th>
+                                    <th class="text-right">Unit Price</th>
+                                    <th t-if="display_discount" class="text-right" groups="sale.group_discount_per_so_line">Disc.(%)</th>
+                                    <th class="text-right" groups="sale.group_show_price_subtotal">Price</th>
+                                    <th class="text-right price_tax_included" groups="sale.group_show_price_total">Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody class="sale_tbody">
+                                <t t-foreach="page" t-as="layout_category">
+                                    <t t-if="layout_category_size > 0 or page_size > 1" groups="sale.group_sale_layout">
+                                        <tr class="active">
+                                            <td colspan="7" style="font-weight: bold; border-bottom: 1px solid black;">
+                                                <t t-esc="layout_category['description']"/>
                                             </td>
-                                            <t t-if="not gl['matl_subtotal'] or not layout_category['hide_price']">
-                                                <td class="text-right">
-                                                    <span t-field="l.price_unit"/>
-                                                </td>
-                                                <td t-if="display_discount" class="text-right" groups="sale.group_discount_per_so_line">
-                                                    <span t-field="l.discount"/>
-                                                </td>
-                                                <td class="text-right" groups="sale.group_show_price_subtotal">
-                                                    <span t-field="l.price_subtotal"
-                                                        t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>
-                                                </td>
-                                                <td class="text-right" groups="sale.group_show_price_total">
-                                                    <span t-field="l.price_total"
-                                                        t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>
-                                                </td>
-                                            </t>
-                                            <t t-if="gl['matl_subtotal'] and layout_category['hide_price']">
-                                                <td class="text-right">
-                                                </td>
-                                                <td t-if="display_discount" class="text-right" groups="sale.group_discount_per_so_line">
-                                                </td>
-                                                <td class="text-right" groups="sale.group_show_price_subtotal">
-                                                </td>
-                                                <td class="text-right" groups="sale.group_show_price_total">
-                                                </td>
-                                            </t>
                                         </tr>
                                     </t>
-                                    <t t-if="gl['matl_subtotal']" groups="sale.group_sale_layout">
+
+                                    <!-- Lines associated -->
+                                    <t t-foreach="layout_category['grouped_lines']" t-as="gl">
+                                        <t t-foreach="gl['inner_lines']" t-as="l">
+                                            <tr>
+                                                <td><span t-field="l.name"/></td>
+                                                <td><span t-field="l.remark"/></td>
+                                                <td class="text-right">
+                                                    <span t-field="l.product_uom_qty"/>
+                                                    <span t-field="l.product_uom" groups="product.group_uom"/>
+                                                </td>
+                                                <t t-if="not gl['matl_subtotal'] or not layout_category['hide_price']">
+                                                    <td class="text-right">
+                                                        <span t-field="l.price_unit"/>
+                                                    </td>
+                                                    <td t-if="display_discount" class="text-right" groups="sale.group_discount_per_so_line">
+                                                        <span t-field="l.discount"/>
+                                                    </td>
+                                                    <td class="text-right" groups="sale.group_show_price_subtotal">
+                                                        <span t-field="l.price_subtotal"
+                                                            t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>
+                                                    </td>
+                                                    <td class="text-right" groups="sale.group_show_price_total">
+                                                        <span t-field="l.price_total"
+                                                            t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>
+                                                    </td>
+                                                </t>
+                                                <t t-if="gl['matl_subtotal'] and layout_category['hide_price']">
+                                                    <td class="text-right">
+                                                    </td>
+                                                    <td t-if="display_discount" class="text-right" groups="sale.group_discount_per_so_line">
+                                                    </td>
+                                                    <td class="text-right" groups="sale.group_show_price_subtotal">
+                                                    </td>
+                                                    <td class="text-right" groups="sale.group_show_price_total">
+                                                    </td>
+                                                </t>
+                                            </tr>
+                                        </t>
+                                        <t t-if="gl['matl_subtotal']" groups="sale.group_sale_layout">
+                                            <tr class="text-right">
+                                                <td colspan="6">
+                                                    <span>Material Subtotal: </span>
+                                                    <t t-set="subtotal" t-value="sum(line.price_subtotal for line in gl['inner_lines'])"/>
+                                                    <span t-esc="subtotal" t-options="{'widget': 'monetary', 'display_currency': doc.pricelist_id.currency_id}"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </t>
+
+                                    <t t-if="(layout_category_size > 0 or page_size > 1) and layout_category['subtotal']" groups="sale.group_sale_layout">
                                         <tr class="text-right">
                                             <td colspan="6">
-                                                <span>Material Subtotal: </span>
-                                                <t t-set="subtotal" t-value="sum(line.price_subtotal for line in gl['inner_lines'])"/>
+                                                <strong>Subtotal: </strong>
+                                                <t t-set="subtotal" t-value="sum(line.price_subtotal for line in layout_category['lines'])"/>
                                                 <span t-esc="subtotal" t-options="{'widget': 'monetary', 'display_currency': doc.pricelist_id.currency_id}"/>
                                             </td>
                                         </tr>
                                     </t>
                                 </t>
-
-                                <t t-if="(layout_category_size > 0 or page_size > 1) and layout_category['subtotal']" groups="sale.group_sale_layout">
-                                    <tr class="text-right">
-                                        <td colspan="6">
-                                            <strong>Subtotal: </strong>
-                                            <t t-set="subtotal" t-value="sum(line.price_subtotal for line in layout_category['lines'])"/>
-                                            <span t-esc="subtotal" t-options="{'widget': 'monetary', 'display_currency': doc.pricelist_id.currency_id}"/>
-                                        </td>
-                                    </tr>
-                                </t>
-                            </t>
-                        </tbody>
-                    </table>
-
-                    <t t-if="page_index &lt; page_size - 1" groups="sale.group_sale_layout">
-                        <p style="page-break-before:always;"> </p>
-                    </t>
-                </t>
-                <div class="row" name="total" style="page-break-inside:avoid;">
-                    <div class="col-xs-4 pull-right">
-                        <table class="table table-condensed">
-                            <tr class="border-black">
-                                <td><strong>NET Amount (w/o Tax)</strong></td>
-                                <td class="text-right">
-                                    <span t-field="doc.amount_untaxed"
-                                        t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>
-                                </td>
-                            </tr>
+                            </tbody>
                         </table>
+
+                        <t t-if="page_index &lt; page_size - 1" groups="sale.group_sale_layout">
+                            <p style="page-break-before:always;"> </p>
+                        </t>
+                    </t>
+                    <div class="row" name="total" style="page-break-inside:avoid;">
+                        <div class="col-xs-4 pull-right">
+                            <table class="table table-condensed">
+                                <tr class="border-black">
+                                    <td><strong>NET Amount (w/o Tax)</strong></td>
+                                    <td class="text-right">
+                                        <span t-field="doc.amount_untaxed"
+                                            t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
-                </div>
+                </t>
+
                 <t t-call="report_common_tks.common_footer_layout"/>
             </div>
         </t>
