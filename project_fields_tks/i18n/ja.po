@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-16 07:43+0000\n"
-"PO-Revision-Date: 2017-04-16 07:43+0000\n"
+"POT-Creation-Date: 2017-04-30 00:59+0000\n"
+"PO-Revision-Date: 2017-04-30 00:59+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -163,6 +163,11 @@ msgid "Loading"
 msgstr "積込"
 
 #. module: project_fields_tks
+#: model:project.task.category,name:project_fields_tks.task_category_00
+msgid "Overview"
+msgstr "概要"
+
+#. module: project_fields_tks
 #: model:project.task.category,name:project_fields_tks.task_category_10
 msgid "Painting"
 msgstr "塗装"
@@ -193,6 +198,11 @@ msgstr "プラズマ"
 #: model:ir.ui.view,arch_db:project_fields_tks.view_partner_form
 msgid "Project"
 msgstr "プロジェクト"
+
+#. module: project_fields_tks
+#: model:ir.model.fields,field_description:project_fields_tks.field_project_task_date_project_due
+msgid "Project Due Date"
+msgstr "プロジェクト期日"
 
 #. module: project_fields_tks
 #: model:ir.model.fields,field_description:project_fields_tks.field_project_task_project_state
@@ -247,11 +257,6 @@ msgid "Stairs (sets)"
 msgstr "階段 (セット)"
 
 #. module: project_fields_tks
-#: model:ir.model.fields,field_description:project_fields_tks.field_project_task_date_startdate
-msgid "Start Date"
-msgstr "開始日"
-
-#. module: project_fields_tks
 #: model:ir.model.fields,field_description:project_fields_tks.field_project_project_state
 msgid "Status"
 msgstr "ステータス"
@@ -273,6 +278,11 @@ msgstr "タスクカテゴリ"
 #: model:ir.ui.view,arch_db:project_fields_tks.task_category_form
 #: model:ir.ui.view,arch_db:project_fields_tks.task_category_tree
 msgid "Task Category"
+msgstr "タスクカテゴリ"
+
+#. module: project_fields_tks
+#: model:ir.ui.view,arch_db:project_fields_tks.task_category_search
+msgid "Tasks Categories"
 msgstr "タスクカテゴリ"
 
 #. module: project_fields_tks
