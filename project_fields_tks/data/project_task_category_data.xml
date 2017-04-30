@@ -2,6 +2,11 @@
 <odoo>
 <data noupdate="1">
 
+    <record id="task_category_00" model="project.task.category">
+        <field name="name">Overview</field>
+        <field name="code">overview</field>
+        <field name="sequence">00</field>
+    </record>
     <record id="task_category_01" model="project.task.category">
         <field name="name">Quotation</field>
         <field name="code">quotation</field>
