@@ -59,3 +59,7 @@ class ProjectTask(models.Model):
         related='project_id.date',
         string='Project Due Date',
     )
+    """ make partner_id a related field """
+    partner_id = fields.Many2one(
+        related='project_id.partner_id',
+    )
