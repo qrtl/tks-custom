@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-29 11:25+0000\n"
-"PO-Revision-Date: 2017-04-29 11:25+0000\n"
+"POT-Creation-Date: 2017-05-13 06:15+0000\n"
+"PO-Revision-Date: 2017-05-13 06:15+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -56,6 +56,11 @@ msgstr "活動を確認"
 #: model:ir.ui.view,arch_db:project_activity.view_activity_search_form
 msgid "Confirmed"
 msgstr "確認済"
+
+#. module: project_activity
+#: model:ir.model.fields,field_description:project_activity.field_project_activity_cost_amt
+msgid "Cost (Actual)"
+msgstr "労務費 (結果)"
 
 #. module: project_activity
 #: model:ir.model.fields,field_description:project_activity.field_project_activity_confirm_create_uid
@@ -152,10 +157,15 @@ msgid "Output Amount (Plan)"
 msgstr "生産高 (予定)"
 
 #. module: project_activity
-#: code:addons/project_activity/models/project_activity.py:151
+#: code:addons/project_activity/models/project_activity.py:186
 #, python-format
 msgid "Planned quantity is larger than the outstanding task quantity."
 msgstr "予定数量はタスクの作業残数量を超えないようにしてください"
+
+#. module: project_activity
+#: model:ir.model.fields,field_description:project_activity.field_project_activity_profit_amt
+msgid "Profit (Actual)"
+msgstr "利益 (結果)"
 
 #. module: project_activity
 #: model:ir.ui.view,arch_db:project_activity.view_activity_search_form
