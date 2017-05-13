@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-# Copyright 2017 Rooms For (Hong Kong) Limited T/A OSCG
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# Copyright 2017 Quartile Limited
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 from openerp import api, fields, models
 
@@ -18,6 +18,4 @@ class ProjectTaskCategory(models.Model):
         string='Code',
         required=True,
     )
-    sequence = fields.Integer(
-        default=1
-    )
+    sequence = fields.Integer(default=1)
