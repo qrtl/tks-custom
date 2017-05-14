@@ -5,11 +5,10 @@
         <xpath expr="//table[@name='ext_header']" position="inside">
             <t t-if="type == 'quotation'">
                 <tr style="border-top:hidden;">
-                    <td>
-                        <div style="width:30%"></div>
+                    <td width="30%">
                     </td>
-                    <td>
-                        <div style="width:40%; font-size:35px; white-space:nowrap;">Quotation</div>
+                    <td width="40%" style="text-align:center;">
+                        <div style="font-size:35px; white-space:nowrap;">Quotation</div>
                     </td>
                     <td width="30%">
                         <table>
