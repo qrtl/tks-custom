@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-# Copyright 2017 Rooms For (Hong Kong) Limited T/A OSCG
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# Copyright 2017 Quartile Limited
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 from openerp import fields, models, api, _
 from odoo.exceptions import UserError
@@ -35,8 +35,8 @@ class ProjectActivity(models.Model):
         store=True,
         readonly=True,
     )
-    """ avoid making this field required at model level to avoid error at
-    creation through task form view """
+    # avoid making this field required at model level to avoid error at
+    # creation through task form view
     project_id = fields.Many2one(
         comodel_name='project.project',
         related='task_id.project_id',
@@ -91,6 +91,24 @@ class ProjectActivity(models.Model):
         store=True,
         readonly=True,
     )
+    # project manager group to be assigned at model level, or this field
+    # becomes visible to everyone in pivot view
+    cost_amt = fields.Monetary(
+        string='Cost (Actual)',
+        compute='_update_profit',
+        store=True,
+        readonly=True,
+        groups="project.group_project_manager",
+    )
+    # project manager group to be assigned at model level, or this field
+    # becomes visible to everyone in pivot view
+    profit_amt = fields.Monetary(
+        string='Profit (Actual)',
+        compute='_update_profit',
+        store=True,
+        readonly=True,
+        groups="project.group_project_manager",
+    )
     currency_id = fields.Many2one(
         related='task_id.currency_id',
         store=True,
@@ -138,6 +156,23 @@ class ProjectActivity(models.Model):
                 act.actual_weight = act.task_id.weight * ratio
                 act.actual_output_amt = act.task_id.budget_amt * ratio
 
+    @api.multi
+    @api.depends('hours', 'actual_output_amt')
+    def _update_profit(self):
+        for act in self:
+            vals = {
+                'project_id': act.project_id.id,
+                'unit_amount': act.hours,
+                'user_id': act.user_id.id,
+            }
+            cost_vals = self.env['account.analytic.line']. \
+                _get_timesheet_cost(vals)
+            if cost_vals:
+                act.cost_amt = cost_vals['amount'] * -1
+            else:
+                act.cost_amt = 0.0
+            act.profit_amt = act.actual_output_amt - act.cost_amt
+
     @api.one
     @api.constrains('plan_qty')
     def _check_plan_qty(self):
@@ -159,7 +194,9 @@ class ProjectActivity(models.Model):
                 self.analytic_line_ids.unlink()
             if vals['hours']:  # no action if 'hours' has been changed to zero
                 self.create_analytic_line(vals)
-        res = super(ProjectActivity, self).write(vals)
+        # use `self.sudo()` to circumvent access error for writing to
+        # restricted fields such as profit_amt
+        res = super(ProjectActivity, self.sudo()).write(vals)
         return res
 
     @api.multi

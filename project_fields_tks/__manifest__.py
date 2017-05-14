@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-# Copyright 2016-2017 Rooms For (Hong Kong) Limited T/A OSCG
+# Copyright 2016-2017 Quartile Limited
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 {
     "name": "Project Fields",
     "summary": "",
-    "version": "10.0.1.2.1",
+    "version": "10.0.1.3.0",
     "category": "Project",
     "website": "https://www.odoo-asia.com/",
-    "author": "Rooms For (Hong Kong) Limited T/A OSCG",
+    "author": "Quartile Limited",
     "license": "LGPL-3",
     "application": False,
     "installable": True,
@@ -35,4 +35,3 @@
     "qweb": [
     ]
 }
-

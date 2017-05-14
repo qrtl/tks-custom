@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-# Copyright 2017 Rooms For (Hong Kong) Limited T/A OSCG
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# Copyright 2016-2017 Quartile Limited
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-from odoo import models, fields, api
+from odoo import models, fields, api, _
+from odoo.exceptions import Warning
 
 
 class ProjectTask(models.Model):
@@ -63,3 +64,15 @@ class ProjectTask(models.Model):
     partner_id = fields.Many2one(
         related='project_id.partner_id',
     )
+
+
+    @api.multi
+    def write(self, vals):
+        if 'project_id' in vals:
+            new_proj = self.env['project.project'].browse(vals['project_id'])
+            for task in self:
+                if new_proj != task.project_id:
+                    raise Warning(
+                        _('Task cannot be moved to another project.'))
+        res = super(ProjectTask, self).write(vals)
+        return res

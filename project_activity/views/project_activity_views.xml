@@ -5,7 +5,7 @@
         <field name="name">project.activity.tree</field>
         <field name="model">project.activity</field>
         <field name="arch" type="xml">
-            <tree string="Activities" editable="top">
+            <tree string="Activities" colors="blue:confirmed==False" editable="top">
                 <field name="project_id" domain="[('state','!=','done')]" attrs="{'readonly':['|',('actual_qty','&gt;',0),('confirmed','=',True)]}" options="{'no_create':True}" required="True"/>
                 <field name="project_type"/>
                 <field name="task_id" domain="[('project_id','=',project_id)]" attrs="{'readonly':['|',('actual_qty','&gt;',0),('confirmed','=',True)]}" options="{'no_create':True}"/>
@@ -20,6 +20,8 @@
                 <field name="actual_output_amt"/>
                 <field name="hours" attrs="{'readonly':[('confirmed','=',True)]}"/>
                 <field name="note" attrs="{'readonly':[('confirmed','=',True)]}"/>
+                <field name="cost_amt" groups="project.group_project_manager"/>
+                <field name="profit_amt" groups="project.group_project_manager"/>
                 <field name="confirmed" groups="project.group_project_manager"/>
             </tree>
         </field>
@@ -40,6 +42,8 @@
                 <field name="actual_output_amt"/>
                 <field name="hours" attrs="{'readonly':[('confirmed','=',True)]}"/>
                 <field name="note" attrs="{'readonly':[('confirmed','=',True)]}"/>
+                <field name="cost_amt" groups="project.group_project_manager"/>
+                <field name="profit_amt" groups="project.group_project_manager"/>
                 <field name="confirmed" groups="project.group_project_manager"/>
             </tree>
         </field>
@@ -56,6 +60,8 @@
                 <field name="actual_qty" type="measure"/>
                 <field name="plan_output_amt" type="measure"/>
                 <field name="actual_output_amt" type="measure"/>
+                <field name="cost_amt" type="measure" groups="project.group_project_manager"/>
+                <field name="profit_amt" type="measure" groups="project.group_project_manager"/>
             </pivot>
         </field>
     </record>
