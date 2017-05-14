@@ -24,7 +24,7 @@
     </template>
 
     <template id="common_header_layout" inherit_id="report_common_tks.common_header_layout">
-        <xpath expr="//table[@name='header_main']/tr" position="after">
+        <xpath expr="//tr[@name='partner_name']" position="after">
             <t t-if="type == 'quotation'">
                 <tr>
                     <td>
