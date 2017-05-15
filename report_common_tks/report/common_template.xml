@@ -6,7 +6,10 @@
             <tr>
                 <td width="400">
                     <table name="header_main" class="table">
-                        <tr>
+                        <!-- placeholder for partner address -->
+                        <tr name="partner_address">
+                        </tr>
+                        <tr name="partner_name">
                             <td style="font-size:20px">
                                 <t t-if="doc.partner_id.parent_id">
                                     <span t-field="doc.partner_id.parent_id.name"/>, <span t-field="doc.partner_id.name"/>
@@ -59,15 +62,13 @@
                                             <td style="width:70;">FAX: </td><td><span t-field="doc.company_id.fax"/></td>
                                         </tr>
                                     </table>
-                                    <t t-if="type == 'quotation'">
-                                        <table class="table table-bordered">
-                                            <tr height="70">
-                                                <td/>
-                                                <td/>
-                                                <td/>
-                                            </tr>
-                                        </table>
-                                    </t>
+                                    <table class="table table-bordered">
+                                        <tr height="70">
+                                            <td/>
+                                            <td/>
+                                            <td/>
+                                        </tr>
+                                    </table>
                                 </td>
                             </table>
                         </tr>

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-# Copyright 2017 Rooms For (Hong Kong) Limited T/A OSCG
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# Copyright 2017 Quartile Limited
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 from odoo import fields, models, api
 
@@ -25,4 +25,10 @@ class SaleOrderLine(models.Model):
         else:
             matl_subtotal = False
         self.update({'matl_subtotal': matl_subtotal})
+        return res
+
+    @api.multi
+    def _prepare_invoice_line(self, qty):
+        res = super(SaleOrderLine, self)._prepare_invoice_line(qty)
+        res.update({'remark': self.remark})
         return res
