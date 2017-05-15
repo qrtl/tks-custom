@@ -1,0 +1,43 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* purchase_destination_info
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-05-15 10:07+0000\n"
+"PO-Revision-Date: 2017-05-15 10:07+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_destination_info
+#: model:ir.model.fields,field_description:purchase_destination_info.field_purchase_order_destination
+#: model:ir.model.fields,field_description:purchase_destination_info.field_purchase_order_line_destination
+msgid "Destination"
+msgstr "納入先"
+
+#. module: purchase_destination_info
+#: model:ir.model,name:purchase_destination_info.model_purchase_order
+msgid "Purchase Order"
+msgstr "発注"
+
+#. module: purchase_destination_info
+#: model:ir.model,name:purchase_destination_info.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "発注明細"
+
+#. module: purchase_destination_info
+#: model:ir.model.fields,help:purchase_destination_info.field_purchase_order_destination
+msgid "The value set in this field will default to the corresponding field in lines."
+msgstr "この項目の値は新規追加される明細行の同項目に初期値提案されます。"
+
+#. module: purchase_destination_info
+#: model:ir.model.fields,help:purchase_destination_info.field_purchase_order_line_destination
+msgid "This field is for information purpose only."
+msgstr "これは情報保持目的の項目です。"
+
