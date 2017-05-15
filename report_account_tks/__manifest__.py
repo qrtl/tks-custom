@@ -24,6 +24,7 @@
         "report_common_tks",
     ],
     "data": [
+        'views/account_invoice_views.xml',
         'report/account_report_invoice.xml',
     ],
     "demo": [
