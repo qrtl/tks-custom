@@ -5,12 +5,12 @@
         <xpath expr="//table[@name='ext_header']" position="inside">
             <t t-if="type == 'invoice'">
                 <tr style="border-top:hidden;">
-                    <td width="30%">
+                    <td width="50%">
                     </td>
-                    <td width="40%" style="text-align:right;">
+                    <td width="25%" style="text-align:center;">
                         <div style="font-size:35px; white-space:nowrap;">Invoice</div>
                     </td>
-                    <td width="30%">
+                    <td width="25%">
                         <table>
                             <tr height="25px"/>
                         </table>
