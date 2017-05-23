@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-21 11:27+0000\n"
-"PO-Revision-Date: 2017-04-21 11:27+0000\n"
+"POT-Creation-Date: 2017-05-23 11:01+0000\n"
+"PO-Revision-Date: 2017-05-23 11:01+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,8 +17,13 @@ msgstr ""
 
 #. module: report_sale_tks
 #: model:ir.ui.view,arch_db:report_sale_tks.report_salequotation_document
-msgid "<span>Material Subtotal: </span>"
-msgstr "<span>鋼材小計: </span>"
+msgid "<span>Mat'l Price Subtotal: </span>"
+msgstr "<span>鋼材価格小計: </span>"
+
+#. module: report_sale_tks
+#: model:ir.ui.view,arch_db:report_sale_tks.report_salequotation_document
+msgid "<span>Mat'l Qty Subtotal: </span>"
+msgstr "<span>鋼材数量小計: </span>"
 
 #. module: report_sale_tks
 #: model:ir.ui.view,arch_db:report_sale_tks.common_header_layout
@@ -113,7 +118,7 @@ msgstr "ID"
 #. module: report_sale_tks
 #: model:ir.model.fields,help:report_sale_tks.field_product_template_discount_product
 msgid "If selected, the amount of the quotation line will be deducted from the total amount to calculate \"gross amount\""
-msgstr "この項目が選択された製品は、見積書印刷での"合計金額"の計算から除外されます"
+msgstr "この項目が選択された製品は、見積書印刷での\"合計金額\"の計算から除外されます"
 
 #. module: report_sale_tks
 #: model:ir.ui.view,arch_db:report_sale_tks.common_header_layout
@@ -165,6 +170,12 @@ msgstr "NET金額 (税別):"
 #: model:ir.ui.view,arch_db:report_sale_tks.external_layout_tks
 msgid "No.:"
 msgstr "No.:"
+
+#. module: report_sale_tks
+#: code:addons/report_sale_tks/models/sale_order_line.py:46
+#, python-format
+msgid "Only one UoM should be used per section for lines with material subtotal selection."
+msgstr "鋼材小計が選択された行では、1セクション内で複数種類の単位は使用できません。"
 
 #. module: report_sale_tks
 #: model:ir.ui.view,arch_db:report_sale_tks.report_salequotation_document
@@ -253,4 +264,5 @@ msgstr "税別合計金額"
 #: model:ir.ui.view,arch_db:report_sale_tks.report_salequotation_document
 msgid "quotation"
 msgstr "quotation"
+
 

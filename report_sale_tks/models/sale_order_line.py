@@ -2,7 +2,8 @@
 # Copyright 2017 Quartile Limited
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-from odoo import fields, models, api
+from odoo import fields, models, api, _
+from odoo.exceptions import UserError
 
 
 class SaleOrderLine(models.Model):
@@ -32,3 +33,16 @@ class SaleOrderLine(models.Model):
         res = super(SaleOrderLine, self)._prepare_invoice_line(qty)
         res.update({'remark': self.remark})
         return res
+
+    # not allow multiple units of measure for one section + matl_subtotal
+    @api.constrains('product_uom', 'matl_subtotal', 'layout_category_id')
+    def _check_uom(self):
+        if self.layout_category_id and self.matl_subtotal:
+            if self.order_id.order_line.filtered(
+                    lambda x: x.layout_category_id == self.layout_category_id
+                    and x.matl_subtotal == True
+                    and x.product_uom != self.product_uom
+            ):
+                raise UserError(_(
+                    'Only one UoM should be used per section for lines with '
+                    'material subtotal selection.'))
