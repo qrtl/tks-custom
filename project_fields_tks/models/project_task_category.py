@@ -2,7 +2,7 @@
 # Copyright 2017 Quartile Limited
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-from openerp import api, fields, models
+from openerp import fields, models
 
 
 class ProjectTaskCategory(models.Model):
@@ -19,3 +19,6 @@ class ProjectTaskCategory(models.Model):
         required=True,
     )
     sequence = fields.Integer(default=1)
+    plant = fields.Boolean(
+        string="Plant Operation",
+    )

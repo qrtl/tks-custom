@@ -64,6 +64,10 @@ class ProjectTask(models.Model):
     partner_id = fields.Many2one(
         related='project_id.partner_id',
     )
+    plant = fields.Boolean(
+        related='category_id.plant',
+        readonly=True,
+    )
 
 
     @api.multi
