@@ -14,6 +14,7 @@
                         </group>
                         <group>
                             <field name="code"/>
+                            <field name="plant"/>
                         </group>
                     </group>
                 </sheet>
@@ -29,6 +30,7 @@
                 <field name="name"/>
                 <field name="sequence"/>
                 <field name="code"/>
+                <field name="plant"/>
             </tree>
         </field>
     </record>

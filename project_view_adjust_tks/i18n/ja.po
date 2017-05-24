@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-30 01:04+0000\n"
-"PO-Revision-Date: 2017-04-30 01:04+0000\n"
+"POT-Creation-Date: 2017-05-24 11:58+0000\n"
+"PO-Revision-Date: 2017-05-24 11:58+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -72,9 +72,27 @@ msgid "Open Projects"
 msgstr "未完了プロジェクト"
 
 #. module: project_view_adjust_tks
+#: model:ir.ui.view,arch_db:project_view_adjust_tks.view_task_search_form
+msgid "Open Tasks"
+msgstr "未完了タスク"
+
+#. module: project_view_adjust_tks
 #: model:ir.actions.act_window,help:project_view_adjust_tks.open_view_project_tks
 msgid "Organize your activities (plan tasks, track issues, invoice timesheets) for internal, personal or customer projects."
 msgstr "社内、個人または顧客のプロジェクトのために、あなたの活動(計画タスク、課題追跡、請求書タイムシート)を整理します。"
+
+#. module: project_view_adjust_tks
+#: model:ir.actions.act_window,name:project_view_adjust_tks.action_view_task_leveling
+#: model:ir.ui.menu,name:project_view_adjust_tks.menu_action_view_task_leveling
+msgid "Plant Task Leveling"
+msgstr "工場タスク山崩し"
+
+#. module: project_view_adjust_tks
+#: model:ir.ui.view,arch_db:project_view_adjust_tks.view_task_pivot_leveling
+#: model:ir.ui.view,arch_db:project_view_adjust_tks.view_task_search_form
+#: model:ir.ui.view,arch_db:project_view_adjust_tks.view_task_tree_leveling
+msgid "Plant Tasks"
+msgstr "工場タスク"
 
 #. module: project_view_adjust_tks
 #: model:ir.model,name:project_view_adjust_tks.model_project_project
