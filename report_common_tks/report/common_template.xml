@@ -62,13 +62,9 @@
                                             <td style="width:70;">FAX: </td><td><span t-field="doc.company_id.fax"/></td>
                                         </tr>
                                     </table>
-                                    <table class="table table-bordered">
-                                        <tr height="70">
-                                            <td/>
-                                            <td/>
-                                            <td/>
-                                        </tr>
-                                    </table>
+                                    <!-- placeholder for signature area -->
+                                    <div name="signature_area">
+                                    </div>
                                 </td>
                             </table>
                         </tr>

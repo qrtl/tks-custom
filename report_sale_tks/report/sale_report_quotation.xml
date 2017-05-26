@@ -74,6 +74,17 @@
                 </tr>
             </t>
         </xpath>
+        <xpath expr="//div[@name='signature_area']" position="inside">
+            <t t-if="type == 'quotation'">
+                <table class="table table-bordered">
+                    <tr height="70">
+                        <td/>
+                        <td/>
+                        <td/>
+                    </tr>
+                </table>
+            </t>
+        </xpath>
     </template>
 
     <template id="common_footer_layout" inherit_id="report_common_tks.common_footer_layout">
