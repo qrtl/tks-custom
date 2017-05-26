@@ -9,6 +9,12 @@
             <xpath expr="//field[@name='is_shipped']" position="after">
                 <field name="doc_title"/>
             </xpath>
+            <xpath expr="//tree/field[@name='name']" position="after">
+                <field name="remark"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/form//field[@name='name']" position="after">
+                <field name="remark"/>
+            </xpath>
         </field>
     </record>
 
