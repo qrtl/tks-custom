@@ -84,132 +84,65 @@
 
     <template id="report_purchaseorder_document">
         <t t-set="doc" t-value="doc.with_context({'lang':doc.partner_id.lang})"/>
-        <t t-call="report_common_tks.external_layout_tks">
+        <tr t-call="report_common_tks.external_layout_tks">
             <div class="page">
                 <t t-set="type">purchase</t>
                 <t t-call="report_common_tks.common_header_layout"/>
 
-                <t t-if="type == 'purchase'">
-                    <t t-foreach="doc.order_lines_layouted()" t-as="page">
-                        <table class="table table-condensed">
-                            <thead>
-                                <tr>
-                                    <th>Item</th>
-                                    <th>Remark</th>
-                                    <th class="text-right">Quantity</th>
-                                    <th class="text-right">Unit Price</th>
-                                    <th t-if="display_discount" class="text-right" groups="sale.group_discount_per_so_line">Disc.(%)</th>
-                                    <th class="text-right" groups="sale.group_show_price_subtotal">Price</th>
-                                    <th class="text-right price_tax_included" groups="sale.group_show_price_total">Amount</th>
-                                </tr>
-                            </thead>
-                            <tbody class="sale_tbody">
-                                <t t-foreach="page" t-as="layout_category">
-                                    <t t-if="layout_category_size > 0 or page_size > 1" groups="sale.group_sale_layout">
-                                        <tr class="active">
-                                            <td colspan="7" style="font-weight: bold; border-bottom: 1px solid black;">
-                                                <t t-esc="layout_category['description']"/>
-                                            </td>
-                                        </tr>
-                                    </t>
-
-                                    <!-- Lines associated -->
-                                    <t t-foreach="layout_category['grouped_lines']" t-as="gl">
-                                        <t t-foreach="gl['inner_lines']" t-as="l">
-                                            <tr>
-                                                <td><span t-field="l.name"/></td>
-                                                <td><span t-field="l.remark"/></td>
-                                                <td class="text-right">
-                                                    <span t-field="l.product_uom_qty"/>
-                                                    <span t-field="l.product_uom" groups="product.group_uom"/>
-                                                </td>
-                                                <t t-if="not gl['matl_subtotal'] or not layout_category['hide_price']">
-                                                    <td class="text-right">
-                                                        <span t-field="l.price_unit"/>
-                                                    </td>
-                                                    <td t-if="display_discount" class="text-right" groups="sale.group_discount_per_so_line">
-                                                        <span t-field="l.discount"/>
-                                                    </td>
-                                                    <td class="text-right" groups="sale.group_show_price_subtotal">
-                                                        <span t-field="l.price_subtotal"
-                                                            t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>
-                                                    </td>
-                                                    <td class="text-right" groups="sale.group_show_price_total">
-                                                        <span t-field="l.price_total"
-                                                            t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>
-                                                    </td>
-                                                </t>
-                                                <t t-if="gl['matl_subtotal'] and layout_category['hide_price']">
-                                                    <td class="text-right">
-                                                    </td>
-                                                    <td t-if="display_discount" class="text-right" groups="sale.group_discount_per_so_line">
-                                                    </td>
-                                                    <td class="text-right" groups="sale.group_show_price_subtotal">
-                                                    </td>
-                                                    <td class="text-right" groups="sale.group_show_price_total">
-                                                    </td>
-                                                </t>
-                                            </tr>
-                                        </t>
-                                        <t t-if="gl['matl_subtotal']" groups="sale.group_sale_layout">
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td class="text-right">
-                                                    <span>Mat'l Qty Subtotal: </span>
-                                                    <t t-set="matl_subtotal_uom_qty" t-value="sum(line.product_uom_qty for line in gl['inner_lines'])"/>
-                                                    <!-- avoid showing after decimal point -->
-                                                    <span t-esc="'%.0f' %(matl_subtotal_uom_qty)"/>
-                                                    <!-- take the value from the first line for convenience -->
-                                                    <t t-set="mat_subtotal_uom" t-value="[l.product_uom.name for l in gl['inner_lines']][0]"/>
-                                                    <span t-esc="mat_subtotal_uom" groups="product.group_uom"/>
-                                                </td>
-                                                <td></td>
-                                                <td t-if="display_discount" class="text-right" groups="sale.group_discount_per_so_line"></td>
-                                                <td class="text-right">
-                                                    <span>Mat'l Price Subtotal: </span>
-                                                    <t t-set="subtotal" t-value="sum(line.price_subtotal for line in gl['inner_lines'])"/>
-                                                    <span t-esc="subtotal" t-options="{'widget': 'monetary', 'display_currency': doc.pricelist_id.currency_id}"/>
-                                                </td>
-                                            </tr>
-                                        </t>
-                                    </t>
-
-                                    <t t-if="(layout_category_size > 0 or page_size > 1) and layout_category['subtotal']" groups="sale.group_sale_layout">
-                                        <tr class="text-right">
-                                            <td colspan="6">
-                                                <strong>Subtotal: </strong>
-                                                <t t-set="subtotal" t-value="sum(line.price_subtotal for line in layout_category['lines'])"/>
-                                                <span t-esc="subtotal" t-options="{'widget': 'monetary', 'display_currency': doc.pricelist_id.currency_id}"/>
-                                            </td>
-                                        </tr>
-                                    </t>
-                                </t>
-                            </tbody>
-                        </table>
-
-                        <t t-if="page_index &lt; page_size - 1" groups="sale.group_sale_layout">
-                            <p style="page-break-before:always;"> </p>
-                        </t>
-                    </t>
+                <tr t-if="type == 'purchase'">
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Remark</th>
+                                <th class="text-right">Quantity</th>
+                                <th class="text-right">Unit Price</th>
+                                <th class="text-right">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="doc.order_line" t-as="l">
+                                <td><span t-field="l.name"/></td>
+                                <td><span t-field="l.remark"/></td>
+                                <td class="text-right">
+                                    <span t-field="l.product_qty"/>
+                                    <span t-field="l.product_uom" groups="product.group_uom"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="l.price_unit"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="l.price_subtotal"
+                                        t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                     <div class="row" name="total" style="page-break-inside:avoid;">
                         <div class="col-xs-4 pull-right">
                             <table class="table table-condensed">
-                                <tr class="border-black">
-                                    <td><strong>NET Amount (w/o Tax)</strong></td>
+                                <tr>
+                                    <td>Taxes</td>
                                     <td class="text-right">
-                                        <span t-field="doc.amount_untaxed"
-                                            t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'/>
+                                        <span t-field="doc.amount_tax"
+                                            t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                    </td>
+                                </tr>
+                                <tr class="border-black">
+                                    <td><strong>Total</strong></td>
+                                    <td class="text-right">
+                                        <span t-field="doc.amount_total"
+                                            t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
                                     </td>
                                 </tr>
                             </table>
                         </div>
                     </div>
-                </t>
+                </tr>
 
                 <t t-call="report_common_tks.common_footer_layout"/>
             </div>
-        </t>
+        </tr>
     </template>
 
     <template id="report_purchaseorder">

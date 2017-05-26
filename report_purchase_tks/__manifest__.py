@@ -19,8 +19,4 @@
         'views/purchase_order_views.xml',
         'report/purchase_report_order.xml',
     ],
-    "demo": [
-    ],
-    "qweb": [
-    ]
 }
