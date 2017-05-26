@@ -75,6 +75,28 @@
                 </tr>
             </t>
         </xpath>
+        <xpath expr="//div[@name='signature_area']" position="inside">
+            <t t-if="type == 'purchase' and type_ext != 'conf'">
+                <table class="table table-bordered">
+                    <tr height="70">
+                        <td/>
+                        <td/>
+                        <td/>
+                    </tr>
+                </table>
+            </t>
+            <t t-if="type == 'purchase' and type_ext == 'conf'">
+                <table>
+                    <tr height="70">
+                        <td style="width: 120px; vertical-align: middle">
+                            Chop or Signature
+                        </td>
+                        <td class="table table-bordered" style="width: 180px">
+                        </td>
+                    </tr>
+                </table>
+            </t>
+        </xpath>
     </template>
 
     <template id="common_footer_layout" inherit_id="report_common_tks.common_footer_layout">
