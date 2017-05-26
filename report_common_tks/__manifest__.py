@@ -4,7 +4,7 @@
 {
     "name": "Report Common",
     "summary": "",
-    "version": "10.0.1.1.0",
+    "version": "10.0.1.1.1",
     "category": "Uncategorized",
     "website": "https://www.odoo-asia.com/",
     "author": "Quartile Limited",
