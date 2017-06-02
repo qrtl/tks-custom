@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
-# Copyright 2017 Rooms For (Hong Kong) Limited T/A OSCG
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# Copyright 2017 Quartile Limited
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 {
     'name': "Create Project from Sales",
-    'version': "10.0.1.0.1",
-    'author': "Rooms For (Hong Kong) Limited T/A OSCG",
+    'version': "10.0.1.0.2",
+    'author': "Quartile Limited",
     'website': "https://www.odoo-asia.com/",
     'category': "Sales",
-    'license': "AGPL-3",
+    'license': "LGPL-3",
     'depends': [
         'sales_team',
+        'sale_line_analytic',
         'project_task_analytic',
     ],
     'data': [
