@@ -75,7 +75,10 @@ class ProjectTask(models.Model):
         if 'project_id' in vals:
             new_proj = self.env['project.project'].browse(vals['project_id'])
             for task in self:
-                if new_proj != task.project_id:
+                # there should be no warning when a new project is created
+                # by copying a template project
+                if not task.project_id.is_template and \
+                                new_proj != task.project_id:
                     raise Warning(
                         _('Task cannot be moved to another project.'))
         res = super(ProjectTask, self).write(vals)
