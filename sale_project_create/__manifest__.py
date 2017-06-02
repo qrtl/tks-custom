@@ -10,6 +10,7 @@
     'license': "AGPL-3",
     'depends': [
         'sales_team',
+        'sale_line_analytic',
         'project_task_analytic',
     ],
     'data': [
