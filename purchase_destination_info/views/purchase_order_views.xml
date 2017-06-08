@@ -10,7 +10,8 @@
                 <field name="destination"/>
             </xpath>
             <xpath expr="//field[@name='order_line']" position="attributes">
-                <attribute name="context">{'default_destination': destination}</attribute>
+                <!-- add "project_id" - for this reason this module adds "project_purchase_create" module as a dependency -->
+                <attribute name="context">{'default_destination': destination, 'project_id': project_id}</attribute>
             </xpath>
             <xpath expr="//field[@name='date_planned']" position="after">
                 <field name="destination"/>
