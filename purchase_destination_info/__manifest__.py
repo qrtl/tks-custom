@@ -5,7 +5,11 @@
     "name": "Destination Info in Purchase Order",
     "summary": """
     """,
-    "version": "10.0.1.0.0",
+    "description": """
+This module depends on project_purchase_create to for the purpose of
+maintaining the context "project_id" for order_line.
+    """,
+    "version": "10.0.1.0.1",
     "category": "Purchase",
     "website": "https://www.odoo-asia.com/",
     "author": "Quartile Limited",
@@ -13,6 +17,7 @@
     "installable": True,
     "depends": [
         "purchase",
+        "project_purchase_create",
     ],
     "data": [
         'views/purchase_order_views.xml',
