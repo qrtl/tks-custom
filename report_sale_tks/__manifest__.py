@@ -4,7 +4,7 @@
 {
     "name": "Sales Document Print",
     "summary": "",
-    "version": "10.0.1.3.1",
+    "version": "10.0.1.4.0",
     "category": "Sales",
     "website": "https://www.odoo-asia.com/",
     "author": "Quartile Limited",
