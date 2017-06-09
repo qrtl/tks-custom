@@ -186,7 +186,7 @@
                                                     <span>Mat'l Unit Price: </span>
                                                     <t t-if="sum(line.product_uom_qty for line in gl['inner_lines']) > 0">
                                                         <t t-set="unit_price" t-value="sum(line.price_subtotal for line in gl['inner_lines']) / sum(line.product_uom_qty for line in gl['inner_lines'])"/>
-                                                        <span t-esc="'{0:,.2f}'.format(unit_price)"/>
+                                                        <span t-esc="'{0:,.0f}'.format(unit_price)"/>
                                                     </t>
                                                 </td>
                                                 <td t-if="display_discount" class="text-right" groups="sale.group_discount_per_so_line"></td>
